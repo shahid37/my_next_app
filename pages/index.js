@@ -3,7 +3,7 @@ import axios from 'axios';
 const fetchData = async () =>
 	await axios
 		// .get('https://jsonplaceholder.typicode.com/users')
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-LolBAAACMAYwzD#format=json')
+		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-L8ZhAAACQAY2TU#format=json')
 		.then((res) => ({
 			error: false,
 			data: res.data,
@@ -17,25 +17,25 @@ const App = ({ data, error }) => {
 	return (
 		<section>
 			<header>
-				<h1>List of users</h1>
+				<h1>List of posts</h1>
 			</header>
-			{data.results.length}
 			{error && <div>There was an error.</div>}
 			{!error && data && (
 				<table>
 					<thead>
 						<tr>
-							<th>Username</th>
-							<th>Email</th>
+							<th>Date</th>
 							<th>Name</th>
+							{'  '}
+							{/* <th>Title</th> */}
 						</tr>
 					</thead>
 					<tbody>
-						{data.results.map((user, key) => (
+						{data.results.map((post, key) => (
 							<tr key={key}>
-								<td>{user.username}</td>
-								<td>{user.email}</td>
-								<td>{user.name}</td>
+								<td>{post.first_publication_date}</td>
+								<td>{post.slugs[0]}</td>
+								{/* <td>{user.name}</td> */}
 							</tr>
 						))}
 					</tbody>
@@ -47,9 +47,9 @@ const App = ({ data, error }) => {
 
 export const getStaticProps = async () => {
 	const data = await fetchData();
-	console.log('llllllllllllllllllllllllll');
-	console.log(data.data.results);
-	console.log(data.data.results.length);
+	console.log('fffffffffffffffffffffffff');
+	console.log(data.data.results[0]);
+	// console.log(data.data.results.length);
 
 	return {
 		props: data,
