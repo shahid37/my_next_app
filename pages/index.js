@@ -10,17 +10,18 @@ const fetchData = async () =>
 		}))
 		.catch(() => ({
 			error: true,
-			users: null,
+			data: null,
 		}));
 
-const App = ({ users, error }) => {
+const App = ({ data, error }) => {
 	return (
 		<section>
 			<header>
 				<h1>List of users</h1>
 			</header>
+			{data.results.length}
 			{error && <div>There was an error.</div>}
-			{!error && users && (
+			{!error && data && (
 				<table>
 					<thead>
 						<tr>
@@ -30,7 +31,7 @@ const App = ({ users, error }) => {
 						</tr>
 					</thead>
 					<tbody>
-						{users.map((user, key) => (
+						{data.results.map((user, key) => (
 							<tr key={key}>
 								<td>{user.username}</td>
 								<td>{user.email}</td>
