@@ -48,7 +48,6 @@ export const getStaticProps = async () => {
 	const data = await fetchData();
 	console.log('llllllllllllllllllllllllll');
 	console.log(data.data.results);
-	console.log(data.data.results.length);
 
 	return {
 		props: data,

@@ -1,0 +1,73 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  position: relative;
+}
+
+.cursor,
+.follower {
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0; 
+  pointer-events: none;
+}
+
+.cursor {
+  width: 8px;
+  height: 8px;
+  background-color: #ff0000;
+  z-index: 1001;
+  display: none;
+}
+
+.follower {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(#DBC189, .5);
+  z-indes: 1000;
+  transition: transform ease .4s;
+  text-align: center;
+  span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    transform: scale(0);
+  }
+  &.is-active {
+    transform: scale(10);
+  }
+}
+
+.btn {
+    display: inline-block;
+    width: 160px;
+    margin: 16px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1;
+
+    a {
+      display: block;
+      color: #622866;
+      text-decoration: none;
+      padding: 0px;
+      background-color: white;
+      cursor: none;
+      border-radius:12px;
+      transition: color 0.4s ease;
+      
+      &:hover {
+        color: #EDCA82;
+      }
+    }
+
+}

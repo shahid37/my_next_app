@@ -2,18 +2,17 @@ import axios from 'axios';
 
 const fetchData = async () =>
 	await axios
-		// .get('https://jsonplaceholder.typicode.com/users')
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-LolBAAACMAYwzD#format=json')
+		.get('https://jsonplaceholder.typicode.com/users')
 		.then((res) => ({
 			error: false,
-			data: res.data,
+			users: res.data,
 		}))
 		.catch(() => ({
 			error: true,
 			users: null,
 		}));
 
-const App = ({ users, error }) => {
+const Users = ({ users, error }) => {
 	return (
 		<section>
 			<header>
@@ -46,13 +45,10 @@ const App = ({ users, error }) => {
 
 export const getStaticProps = async () => {
 	const data = await fetchData();
-	console.log('llllllllllllllllllllllllll');
-	console.log(data.data.results);
-	console.log(data.data.results.length);
 
 	return {
 		props: data,
 	};
 };
 
-export default App;
+export default Users;
