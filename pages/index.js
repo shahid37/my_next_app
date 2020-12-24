@@ -250,20 +250,16 @@ const App = ({ data, error }) => {
 						>
 							Home
 						</a>
-						<a href="work.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+						<a href="/work" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 							Work
 						</a>
-						<a
-							href="capabilities.html"
-							className="nav__menu__link-mobile w-nav-link"
-							data-ix="nav-link-hover"
-						>
+						<a href="/capabilities" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 							Capabilities
 						</a>
-						<a href="community.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+						<a href="/community" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 							Community
 						</a>
-						<a href="company.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+						<a href="/company" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 							Company
 						</a>
 						<a
@@ -274,7 +270,7 @@ const App = ({ data, error }) => {
 						>
 							Blog
 						</a>
-						<a href="contact.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+						<a href="/contact" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 							Contact
 						</a>
 					</nav>

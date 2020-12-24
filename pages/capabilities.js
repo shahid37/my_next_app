@@ -71,7 +71,7 @@ export default class Capabilities extends React.Component {
 					className="nav w-nav"
 				>
 					<div className="nav__container">
-						<a href="index.html" className="nav__brand w-inline-block">
+						<a href="/" className="nav__brand w-inline-block">
 							<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b698" className="html-embed w-embed">
 								{/*?xml version="1.0" encoding="UTF-8"?*/}
 								<svg

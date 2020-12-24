@@ -74,7 +74,7 @@ export default class Company extends React.Component {
 					className="nav w-nav"
 				>
 					<div className="nav__container">
-						<a href="index.html" className="nav__brand w-inline-block">
+						<a href="/" className="nav__brand w-inline-block">
 							<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b698" className="html-embed w-embed">
 								{/*?xml version="1.0" encoding="UTF-8"?*/}
 								<svg
@@ -231,28 +231,24 @@ export default class Company extends React.Component {
 							>
 								contact
 							</a>
-							<a href="index.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+							<a href="/" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Home
 							</a>
-							<a href="work.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+							<a href="/work" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Work
 							</a>
 							<a
-								href="capabilities.html"
+								href="/capabilities"
 								className="nav__menu__link-mobile w-nav-link"
 								data-ix="nav-link-hover"
 							>
 								Capabilities
 							</a>
-							<a
-								href="community.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
+							<a href="/community" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Community
 							</a>
 							<a
-								href="company.html"
+								href="/company"
 								aria-current="page"
 								className="nav__menu__link-mobile w-nav-link w--current"
 								data-ix="nav-link-hover"
@@ -267,11 +263,7 @@ export default class Company extends React.Component {
 							>
 								Blog
 							</a>
-							<a
-								href="contact.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
+							<a href="/contact" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Contact
 							</a>
 						</nav>

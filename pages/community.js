@@ -71,7 +71,7 @@ export default class Community extends React.Component {
 					className="nav w-nav"
 				>
 					<div className="nav__container">
-						<a href="index.html" className="nav__brand w-inline-block">
+						<a href="/" className="nav__brand w-inline-block">
 							<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b698" className="html-embed w-embed">
 								{/*?xml version="1.0" encoding="UTF-8"?*/}
 								<svg
@@ -779,7 +779,7 @@ export default class Community extends React.Component {
 				<div className="footer">
 					<div className="footer__container">
 						<div className="footer__nav">
-							<a href="index.html" className="footer__nav__brand w-inline-block">
+							<a href="/" className="footer__nav__brand w-inline-block">
 								<img
 									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad55212785322a62948a6_logo-ir%402x.png"
 									width={81}
