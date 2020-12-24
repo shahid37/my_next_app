@@ -228,32 +228,28 @@ export default class Community extends React.Component {
 							>
 								contact
 							</a>
-							<a href="index.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+							<a href="/" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Home
 							</a>
-							<a href="work.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
+							<a href="/work" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Work
 							</a>
 							<a
-								href="capabilities.html"
+								href="/capabilities"
 								className="nav__menu__link-mobile w-nav-link"
 								data-ix="nav-link-hover"
 							>
 								Capabilities
 							</a>
 							<a
-								href="community.html"
+								href="/community"
 								aria-current="page"
 								className="nav__menu__link-mobile w-nav-link w--current"
 								data-ix="nav-link-hover"
 							>
 								Community
 							</a>
-							<a
-								href="company.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
+							<a href="/company" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Company
 							</a>
 							<a
@@ -264,11 +260,7 @@ export default class Community extends React.Component {
 							>
 								Blog
 							</a>
-							<a
-								href="contact.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
+							<a href="/contact" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
 								Contact
 							</a>
 						</nav>
