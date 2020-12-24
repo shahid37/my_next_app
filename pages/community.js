@@ -1,3 +1,5 @@
+import NavBar from './components/navebar';
+
 var React = require('react');
 
 export default class Community extends React.Component {
@@ -17,37 +19,20 @@ export default class Community extends React.Component {
 					content="We believe in paying it forward. Our team has created and contributed to many open source projects, and has also hosted conferences and meetups."
 					property="og:description"
 				/>
-				<meta
-					content="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f80cc1fe7e52347ee9eb300_graph-ir.jpg"
-					property="og:image"
-				/>
+				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="og:image" />
 				<meta content="Community - React Native, Elixir, Ruby on Rails" property="twitter:title" />
 				<meta
 					content="We believe in paying it forward. Our team has created and contributed to many open source projects, and has also hosted conferences and meetups."
 					property="twitter:description"
 				/>
-				<meta
-					content="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f80cc1fe7e52347ee9eb300_graph-ir.jpg"
-					property="twitter:image"
-				/>
+				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="twitter:image" />
 				<meta property="og:type" content="website" />
 				<meta content="summary_large_image" name="twitter:card" />
 				<meta content="width=device-width, initial-scale=1" name="viewport" />
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/css/infinite-red-website.f19641911.min.css"
-					rel="stylesheet"
-					type="text/css"
-				/>
+				<link href="/css/infinite-red-website.f19641911.min.css" rel="stylesheet" type="text/css" />
 				{/*[if lt IE 9]><![endif]*/}
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e96204b6085211e0c7f48f2_favicon.png"
-					rel="shortcut icon"
-					type="image/x-icon"
-				/>
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e96204d92bbee4276b5761c_webclip.png"
-					rel="apple-touch-icon"
-				/>
+				<link href="/5e96204b6085211e0c7f48f2_favicon.png" rel="shortcut icon" type="image/x-icon" />
+				<link href="/5e96204d92bbee4276b5761c_webclip.png" rel="apple-touch-icon" />
 				<style
 					dangerouslySetInnerHTML={{
 						__html:
@@ -169,101 +154,7 @@ export default class Community extends React.Component {
 								</svg>
 							</div>
 						</a>
-						<nav role="navigation" className="nav__menu w-nav-menu">
-							<a
-								href="/"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69a"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Home
-							</a>
-							<a
-								href="/work"
-								data-w-id="33e117a4-4d46-4e9f-176e-cb3d83e17f4d"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Work
-							</a>
-							<a
-								href="/capabilities"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69c"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								capabilities
-							</a>
-							<a
-								href="/company"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a0"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								company
-							</a>
-							<a
-								href="/community"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69e"
-								aria-current="page"
-								className="nav__menu__link w-nav-link w--current"
-								data-ix="nav-link-hover"
-							>
-								community
-							</a>
-							<a
-								href="http://shift.infinite.red/"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a2"
-								target="_blank"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								blog
-							</a>
-							<a
-								href="/contact"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a6"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								contact
-							</a>
-							<a href="/" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Home
-							</a>
-							<a href="/work" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Work
-							</a>
-							<a
-								href="/capabilities"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Capabilities
-							</a>
-							<a
-								href="/community"
-								aria-current="page"
-								className="nav__menu__link-mobile w-nav-link w--current"
-								data-ix="nav-link-hover"
-							>
-								Community
-							</a>
-							<a href="/company" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Company
-							</a>
-							<a
-								href="https://shift.infinite.red/"
-								target="_blank"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Blog
-							</a>
-							<a href="/contact" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Contact
-							</a>
-						</nav>
+						<NavBar />
 						<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b6" className="menu-button w-nav-button">
 							<div className="nav-icon">
 								<div
@@ -325,7 +216,7 @@ export default class Community extends React.Component {
 							>
 								<div className="cta__card__img">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e753462d0097c5229f0d3b5_ignite-logo.svg"
+										src="/5e753462d0097c5229f0d3b5_ignite-logo.svg"
 										alt="Ignite logo "
 										className="cta-card__img"
 									/>
@@ -337,7 +228,7 @@ export default class Community extends React.Component {
 									</p>
 									<div className="cta__card__content__link">
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e753769351b76cf7cf58492_icon-github.svg"
+											src="/5e753769351b76cf7cf58492_icon-github.svg"
 											alt="github icon"
 											className="cta__link__icon"
 										/>
@@ -353,7 +244,7 @@ export default class Community extends React.Component {
 							>
 								<div className="cta__card__img">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75380f34e76c4a5eaeb46b_reactotron-logo.svg"
+										src="/5e75380f34e76c4a5eaeb46b_reactotron-logo.svg"
 										alt="Reactotron logo "
 										className="cta-card__img"
 									/>
@@ -363,7 +254,7 @@ export default class Community extends React.Component {
 									<p>Have a peek inside your React Native and ReactJS apps.</p>
 									<div className="cta__card__content__link">
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e753769351b76cf7cf58492_icon-github.svg"
+											src="/5e753769351b76cf7cf58492_icon-github.svg"
 											alt="github icon"
 											className="cta__link__icon"
 										/>
@@ -393,7 +284,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7541fa0a930f5596bf87ff_rnn-logo-mark.svg"
+										src="/5e7541fa0a930f5596bf87ff_rnn-logo-mark.svg"
 										alt="React Native Newsletter logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -411,7 +302,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">Sign Up</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -421,7 +312,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout grid-overview__callout--mult">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75413c351b764515f5a92f_ir-mark__red.svg"
+										src="/5e75413c351b764515f5a92f_ir-mark__red.svg"
 										alt="React Native Newsletter logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -438,7 +329,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">Sign Up</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -448,7 +339,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout grid-overview__callout--mult">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75412334e76cf6d2aed5ba_ai-fyi__mark2.png"
+										src="/5e75412334e76cf6d2aed5ba_ai-fyi__mark2.png"
 										alt="React Native Newsletter logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -466,7 +357,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">Sign Up</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -490,11 +381,11 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7543ee34e76c8d82aedc12_Screen Shot 2020-03-20 at 4.29.21 PM.png"
+										src="/5e7543ee34e76c8d82aedc12_Screen Shot 2020-03-20 at 4.29.21 PM.png"
 										alt="The Building Infinite Red podcast logo"
 										width={17}
 										sizes="(max-width: 479px) 50vw, 32px"
-										srcSet="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM-p-500.png 500w, https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM-p-800.png 800w, https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM.png 982w"
+										srcSet="/5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM-p-500.png 500w, /5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM-p-800.png 800w, /5e7543ee34e76c8d82aedc12_Screen%20Shot%202020-03-20%20at%204.29.21%20PM.png 982w"
 										className="grid-overview__content__callout__heading__img"
 									/>
 									<h4>Building Infinite Red</h4>
@@ -510,7 +401,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">Listen to Episodes</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -520,7 +411,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f7b68f7a8d5f294a61371ca_rnr-mark-red.svg"
+										src="/5f7b68f7a8d5f294a61371ca_rnr-mark-red.svg"
 										alt="The Building Infinite Red podcast logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -538,7 +429,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">Listen to Episodes</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -562,7 +453,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e7543d7c78e1c6f74b0fe48_iracademy-mark-color.svg"
+										src="/5e7543d7c78e1c6f74b0fe48_iracademy-mark-color.svg"
 										alt="The Building Infinite Red podcast logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -598,7 +489,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e754242cdc6becc7dfe4ba0_cr_mark_accent-orange.png"
+										src="/5e754242cdc6becc7dfe4ba0_cr_mark_accent-orange.png"
 										alt="React Native Newsletter logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -618,7 +509,7 @@ export default class Community extends React.Component {
 								>
 									<div className="icon-link">More about Chain React</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -628,7 +519,7 @@ export default class Community extends React.Component {
 							<div className="grid-overview__content__callout">
 								<div className="grid-overview__content__callout__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75413c351b764515f5a92f_ir-mark__red.svg"
+										src="/5e75413c351b764515f5a92f_ir-mark__red.svg"
 										alt="React Native Newsletter logo"
 										width={17}
 										className="grid-overview__content__callout__heading__img"
@@ -643,7 +534,7 @@ export default class Community extends React.Component {
 								<a href="talks.html" className="grid-overview__content__callout__link w-inline-block">
 									<div className="icon-link">See all upcoming &amp; past talks</div>
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+										src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 										alt="arrow"
 										width={256}
 										className="link__icon-arrow"
@@ -679,7 +570,7 @@ export default class Community extends React.Component {
 									</div>
 									<div className="work-list__project__card__icon">
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+											src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 											alt="arrow pointing right"
 											width={256}
 										/>
@@ -700,7 +591,7 @@ export default class Community extends React.Component {
 									</div>
 									<div className="work-list__project__card__icon">
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+											src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 											alt="arrow pointing right"
 											width={256}
 										/>
@@ -721,7 +612,7 @@ export default class Community extends React.Component {
 									</div>
 									<div className="work-list__project__card__icon">
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+											src="/5e6fe919bfeebf469720b8e3_arrow-r.svg"
 											alt="arrow pointing right"
 											width={256}
 										/>
@@ -781,7 +672,7 @@ export default class Community extends React.Component {
 						<div className="footer__nav">
 							<a href="/" className="footer__nav__brand w-inline-block">
 								<img
-									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad55212785322a62948a6_logo-ir%402x.png"
+									src="/5e6ad55212785322a62948a6_logo-ir%402x.png"
 									width={81}
 									alt="Infinite Red log in light gray"
 								/>
@@ -828,7 +719,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad5521278536f7a2948a2_icon-twitter-footer%402x.png"
+											src="/5e6ad5521278536f7a2948a2_icon-twitter-footer%402x.png"
 											width={20}
 											alt="Twitter icon"
 										/>
@@ -839,7 +730,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb3209221f6df4423f5786e_c-insta.svg"
+											src="/5eb3209221f6df4423f5786e_c-insta.svg"
 											width={20}
 											alt="Instagram icon"
 										/>
@@ -850,7 +741,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb3209204b0b68175029ead_c-github.svg"
+											src="/5eb3209204b0b68175029ead_c-github.svg"
 											width={20}
 											alt="GitHub icon"
 										/>
@@ -861,7 +752,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb32091cf9abc54fdfec0f5_c-youtube.svg"
+											src="/5eb32091cf9abc54fdfec0f5_c-youtube.svg"
 											width={20}
 											alt="YouTube icon"
 										/>
@@ -872,7 +763,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb32091fdaa86845c72da3e_c-facebook.svg"
+											src="/5eb32091fdaa86845c72da3e_c-facebook.svg"
 											width={20}
 											alt="Facebook icon"
 										/>
@@ -883,7 +774,7 @@ export default class Community extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb320922c43276f58d1a0f3_c-linkedin.svg"
+											src="/5eb320922c43276f58d1a0f3_c-linkedin.svg"
 											width={20}
 											alt="LinkedIn icon"
 										/>

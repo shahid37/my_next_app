@@ -1,3 +1,5 @@
+import NavBar from './components/navebar';
+
 var React = require('react');
 
 export default class Capabilities extends React.Component {
@@ -17,37 +19,24 @@ export default class Capabilities extends React.Component {
 					content="We provide custom app and web design, as well as React Native iOS/Android app development, and Elixir/Phoenix and Ruby on Rails web development."
 					property="og:description"
 				/>
-				<meta
-					content="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f80cc1fe7e52347ee9eb300_graph-ir.jpg"
-					property="og:image"
-				/>
+				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="og:image" />
 				<meta content="Capabilities - Design, iOS/Android Apps, Web" property="twitter:title" />
 				<meta
 					content="We provide custom app and web design, as well as React Native iOS/Android app development, and Elixir/Phoenix and Ruby on Rails web development."
 					property="twitter:description"
 				/>
-				<meta
-					content="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f80cc1fe7e52347ee9eb300_graph-ir.jpg"
-					property="twitter:image"
-				/>
+				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="twitter:image" />
 				<meta property="og:type" content="website" />
 				<meta content="summary_large_image" name="twitter:card" />
 				<meta content="width=device-width, initial-scale=1" name="viewport" />
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/css/infinite-red-website.f19641911.min.css"
+				{/* <link
+					href="/css/infinite-red-website.f19641911.min.css"
 					rel="stylesheet"
 					type="text/css"
-				/>
+				/> */}
 				{/*[if lt IE 9]><![endif]*/}
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e96204b6085211e0c7f48f2_favicon.png"
-					rel="shortcut icon"
-					type="image/x-icon"
-				/>
-				<link
-					href="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e96204d92bbee4276b5761c_webclip.png"
-					rel="apple-touch-icon"
-				/>
+				<link href="/5e96204b6085211e0c7f48f2_favicon.png" rel="shortcut icon" type="image/x-icon" />
+				<link href="/5e96204d92bbee4276b5761c_webclip.png" rel="apple-touch-icon" />
 				<style
 					dangerouslySetInnerHTML={{
 						__html:
@@ -169,109 +158,7 @@ export default class Capabilities extends React.Component {
 								</svg>
 							</div>
 						</a>
-						<nav role="navigation" className="nav__menu w-nav-menu">
-							<a
-								href="/"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69a"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Home
-							</a>
-							<a
-								href="/work"
-								data-w-id="33e117a4-4d46-4e9f-176e-cb3d83e17f4d"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Work
-							</a>
-							<a
-								href="/capabilities"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69c"
-								aria-current="page"
-								className="nav__menu__link w-nav-link w--current"
-								data-ix="nav-link-hover"
-							>
-								capabilities
-							</a>
-							<a
-								href="/company"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a0"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								company
-							</a>
-							<a
-								href="/community"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69e"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								community
-							</a>
-							<a
-								href="http://shift.infinite.red/"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a2"
-								target="_blank"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								blog
-							</a>
-							<a
-								href="/contact"
-								data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a6"
-								className="nav__menu__link w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								contact
-							</a>
-							<a href="index.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Home
-							</a>
-							<a href="work.html" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-								Work
-							</a>
-							<a
-								href="capabilities.html"
-								aria-current="page"
-								className="nav__menu__link-mobile w-nav-link w--current"
-								data-ix="nav-link-hover"
-							>
-								Capabilities
-							</a>
-							<a
-								href="community.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Community
-							</a>
-							<a
-								href="company.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Company
-							</a>
-							<a
-								href="https://shift.infinite.red/"
-								target="_blank"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Blog
-							</a>
-							<a
-								href="contact.html"
-								className="nav__menu__link-mobile w-nav-link"
-								data-ix="nav-link-hover"
-							>
-								Contact
-							</a>
-						</nav>
+						<NavBar />
 						<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b6" className="menu-button w-nav-button">
 							<div className="nav-icon">
 								<div
@@ -558,7 +445,7 @@ export default class Capabilities extends React.Component {
 							<div className="col-icon__col w-col w-col-4">
 								<div className="col-icon__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75005077d2fb4a746c2f88_icon-responsive.svg"
+										src="/5e75005077d2fb4a746c2f88_icon-responsive.svg"
 										alt="icon with desktop, phone, and tablet inside a circle"
 										className="col-icon__col__icon"
 									/>
@@ -574,7 +461,7 @@ export default class Capabilities extends React.Component {
 							<div className="col-icon__col w-col w-col-4">
 								<div className="col-icon__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e75012fdbb70b455face123_icon-wearable.svg"
+										src="/5e75012fdbb70b455face123_icon-wearable.svg"
 										alt="icon with apple watch inside of a circle"
 										className="col-icon__col__icon"
 									/>
@@ -589,7 +476,7 @@ export default class Capabilities extends React.Component {
 							<div className="col-icon__col col--last w-col w-col-4">
 								<div className="col-icon__heading">
 									<img
-										src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e750143e856fa54d83dbd6e_icon-virtual.svg"
+										src="/5e750143e856fa54d83dbd6e_icon-virtual.svg"
 										alt="Icon with documents, forms, and graphs representing strategy in a circle"
 										className="col-icon__col__icon"
 									/>
@@ -623,7 +510,7 @@ export default class Capabilities extends React.Component {
 						<div className="footer__nav">
 							<a href="index.html" className="footer__nav__brand w-inline-block">
 								<img
-									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad55212785322a62948a6_logo-ir%402x.png"
+									src="/5e6ad55212785322a62948a6_logo-ir%402x.png"
 									width={81}
 									alt="Infinite Red log in light gray"
 								/>
@@ -670,7 +557,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad5521278536f7a2948a2_icon-twitter-footer%402x.png"
+											src="/5e6ad5521278536f7a2948a2_icon-twitter-footer%402x.png"
 											width={20}
 											alt="Twitter icon"
 										/>
@@ -681,7 +568,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb3209221f6df4423f5786e_c-insta.svg"
+											src="/5eb3209221f6df4423f5786e_c-insta.svg"
 											width={20}
 											alt="Instagram icon"
 										/>
@@ -692,7 +579,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb3209204b0b68175029ead_c-github.svg"
+											src="/5eb3209204b0b68175029ead_c-github.svg"
 											width={20}
 											alt="GitHub icon"
 										/>
@@ -703,7 +590,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb32091cf9abc54fdfec0f5_c-youtube.svg"
+											src="/5eb32091cf9abc54fdfec0f5_c-youtube.svg"
 											width={20}
 											alt="YouTube icon"
 										/>
@@ -714,7 +601,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb32091fdaa86845c72da3e_c-facebook.svg"
+											src="/5eb32091fdaa86845c72da3e_c-facebook.svg"
 											width={20}
 											alt="Facebook icon"
 										/>
@@ -725,7 +612,7 @@ export default class Capabilities extends React.Component {
 										className="footer__contact__social__icon w-inline-block"
 									>
 										<img
-											src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb320922c43276f58d1a0f3_c-linkedin.svg"
+											src="/5eb320922c43276f58d1a0f3_c-linkedin.svg"
 											width={20}
 											alt="LinkedIn icon"
 										/>
