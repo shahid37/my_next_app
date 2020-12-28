@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import Footer from './components/footer';
-import MenuButton from './components/menu';
+import { useState, useEffect } from 'react';
 import MenuBar from './components/menuBar';
-import NavBar from './components/navebar';
 var React = require('react');
 
 const fetchData = async () =>

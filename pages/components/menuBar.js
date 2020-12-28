@@ -1,12 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MenuButton from './menu';
 import NavBar from './navebar';
 
 const MenuBar = (props) => {
 	const [visible, setVisible] = useState(false);
+	const [id, setId] = useState(null);
+	useEffect(() => {
+		console.log('llllllllllllllllllllllllllllllllllllll');
+		async function _() {
+			const last = window.location.href.split('/').pop();
+			console.log(last, 'lassssssssssssttttttttttttt');
+
+			if (last == 'create') {
+			} else {
+				setId(last);
+			}
+		}
+		_();
+	}, []);
 	const setValue = () => {
 		setVisible(!visible);
 	};
+
 	return (
 		<>
 			<div
@@ -198,7 +213,7 @@ const MenuBar = (props) => {
 						<a
 							href="/community"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
