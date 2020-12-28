@@ -171,7 +171,7 @@ const MenuBar = (props) => {
 						<a
 							href="/"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -180,7 +180,7 @@ const MenuBar = (props) => {
 						<a
 							href="/work"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -189,7 +189,7 @@ const MenuBar = (props) => {
 						<a
 							href="/capabilities"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -198,7 +198,7 @@ const MenuBar = (props) => {
 						<a
 							href="/community"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -207,7 +207,7 @@ const MenuBar = (props) => {
 						<a
 							href="/company"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -216,7 +216,7 @@ const MenuBar = (props) => {
 						<a
 							href="/contact"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
