@@ -4,16 +4,18 @@ import NavBar from './navebar';
 
 const MenuBar = (props) => {
 	const [visible, setVisible] = useState(false);
-	const [id, setId] = useState(null);
+	const [route, setRoute] = useState(null);
+	const blueColor = 'nav__menu__link-mobile w-nav-link w--current w--nav-link-open';
+	const blackColor = 'nav__menu__link-mobile w-nav-link w--nav-link-open';
 	useEffect(() => {
 		console.log('llllllllllllllllllllllllllllllllllllll');
 		async function _() {
 			const last = window.location.href.split('/').pop();
 			console.log(last, 'lassssssssssssttttttttttttt');
 
-			if (last == 'create') {
+			if (last) {
+				setRoute(last);
 			} else {
-				setId(last);
 			}
 		}
 		_();
@@ -186,7 +188,7 @@ const MenuBar = (props) => {
 						<a
 							href="/"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class={route == null ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -195,7 +197,7 @@ const MenuBar = (props) => {
 						<a
 							href="/work"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class={route == 'work' ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -204,7 +206,7 @@ const MenuBar = (props) => {
 						<a
 							href="/capabilities"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class={route == 'capabilities' ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -213,7 +215,7 @@ const MenuBar = (props) => {
 						<a
 							href="/community"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--current w--nav-link-open"
+							class={route == 'community' ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -222,7 +224,7 @@ const MenuBar = (props) => {
 						<a
 							href="/company"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class={route == 'company' ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
@@ -231,7 +233,7 @@ const MenuBar = (props) => {
 						<a
 							href="/contact"
 							aria-current="page"
-							class="nav__menu__link-mobile w-nav-link w--nav-link-open"
+							class={route == 'contact' ? blueColor : blackColor}
 							data-ix="nav-link-hover"
 							style={{ opacity: 1 }}
 						>
