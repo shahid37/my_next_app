@@ -82,7 +82,7 @@ const PageLayout = (props) => {
 			{/* End Inspectlet Asynchronous Code */}
 			<meta name="google-site-verification" content="PziDawbND-UbE8RPHIApiyKHqLwhQqNCzyAYEmFW-Tc" />
 			{/* Global site tag (gtag.js) - Google Analytics */}
-			<MenuBar data={props.data} />
+			<MenuBar />
 			{props.children}
 			<Footer />
 		</>

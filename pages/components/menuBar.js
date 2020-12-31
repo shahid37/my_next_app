@@ -11,7 +11,6 @@ const MenuBar = (props) => {
 	const setValue = () => {
 		setVisible(!visible);
 	};
-	// console.log('menubar', props.data);
 	return (
 		<>
 			<div
@@ -125,7 +124,7 @@ const MenuBar = (props) => {
 							</svg>
 						</div>
 					</a>
-					<NavBar data={props.data} />
+					<NavBar />
 					<MenuButton visible={visible} setValue={setValue} />
 				</div>
 				<div
