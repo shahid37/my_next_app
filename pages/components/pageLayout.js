@@ -23,7 +23,7 @@ const fetchData = async () =>
 		}));
 
 const PageLayout = (props) => {
-	// console.log('data in page layout', props.data);
+	console.log('data in page layout', props.data);
 	return (
 		<>
 			{/* Last Published: Thu Dec 03 2020 16:57:12 GMT+0000 (Coordinated Universal Time) */}
