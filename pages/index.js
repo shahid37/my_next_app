@@ -2,7 +2,6 @@ import axios from 'axios';
 import PageLayout from './components/pageLayout';
 var React = require('react');
 export const getStaticProps = async () => {
-	console.log('llllllllllllllllllllllllllllllllllllllllllllllll');
 	const data = await fetchData();
 	return {
 		// props: data,
