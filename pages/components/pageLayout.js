@@ -1,26 +1,5 @@
 import Footer from './footer';
-import { useState, useEffect } from 'react';
 import MenuBar from './menuBar';
-
-export const getStaticProps = async () => {
-	const data = await fetchData();
-	return {
-		// props: data,
-		props: { data: data.data.results },
-	};
-};
-
-const fetchData = async () =>
-	await axios
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-xmSBAAACQAjSo3#format=json')
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
 
 const PageLayout = (props) => {
 	console.log('data in page layout', props.data);
