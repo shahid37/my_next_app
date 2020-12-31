@@ -3735,7 +3735,7 @@ li {
 	align-items: center;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #e73536;
+	border-color: #35c3e7;
 	border-radius: 100px;
 }
 .container-full,
@@ -3752,7 +3752,7 @@ li {
 }
 .team__owner__card__bio {
 	display: flex;
-	min-height: 460px;
+	min-height: 200px;
 	-webkit-flex-direction: column;
 	-ms-flex-direction: column;
 	flex-direction: column;

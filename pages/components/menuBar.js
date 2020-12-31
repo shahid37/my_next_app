@@ -1,29 +1,17 @@
 import { useState, useEffect } from 'react';
 import MenuButton from './menu';
 import NavBar from './navebar';
+import Link from 'next/link';
 
 const MenuBar = (props) => {
 	const [visible, setVisible] = useState(false);
 	const [route, setRoute] = useState(null);
 	const blueColor = 'nav__menu__link-mobile w-nav-link w--current w--nav-link-open';
 	const blackColor = 'nav__menu__link-mobile w-nav-link w--nav-link-open';
-	useEffect(() => {
-		console.log('llllllllllllllllllllllllllllllllllllll');
-		async function _() {
-			const last = window.location.href.split('/').pop();
-			console.log(last, 'lassssssssssssttttttttttttt');
-
-			if (last) {
-				setRoute(last);
-			} else {
-			}
-		}
-		_();
-	}, []);
 	const setValue = () => {
 		setVisible(!visible);
 	};
-
+	// console.log('menubar', props.data);
 	return (
 		<>
 			<div
@@ -137,7 +125,7 @@ const MenuBar = (props) => {
 							</svg>
 						</div>
 					</a>
-					<NavBar />
+					<NavBar data={props.data} />
 					<MenuButton visible={visible} setValue={setValue} />
 				</div>
 				<div
@@ -221,7 +209,7 @@ const MenuBar = (props) => {
 						>
 							Community
 						</a>
-						<a
+						{/* <a
 							href="/company"
 							aria-current="page"
 							class={route == 'company' ? blueColor : blackColor}
@@ -229,7 +217,22 @@ const MenuBar = (props) => {
 							style={{ opacity: 1 }}
 						>
 							Company
-						</a>
+						</a> */}
+						<Link
+							href={{
+								query: { data: props.data },
+								pathname: '/company',
+							}}
+						>
+							<a
+								aria-current="page"
+								class={route == 'company' ? blueColor : blackColor}
+								data-ix="nav-link-hover"
+								style={{ opacity: 1 }}
+							>
+								{'Companyyyy' || 'Unknown'}
+							</a>
+						</Link>
 						<a
 							href="/contact"
 							aria-current="page"

@@ -1,56 +1,50 @@
 import Footer from './components/footer';
-import MenuBar from './components/menuBar';
-import NavBar from './components/navebar';
+import PageLayout from './components/pageLayout';
+import { withRouter } from 'next/router';
+import axios from 'axios';
 
 var React = require('react');
+export const getStaticProps = async () => {
+	const data = await fetchData();
+	const companyData = [];
+	if (data) {
+		for (let i = 0; i < data.data.results.length; i++) {
+			console.log(data.data.results[i]);
+			if (data.data.results[i].type === 'team_members') {
+				companyData.push(data.data.results[i]);
+			}
+		}
+	}
+	return {
+		// props: data,
+		props: { data: companyData },
+	};
+};
 
-export default class Company extends React.Component {
-	render() {
-		return (
-			<div>
-				{/* Last Published: Thu Dec 03 2020 16:57:12 GMT+0000 (Coordinated Universal Time) */}
-				{/* Mirrored from infinite.red/company by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Dec 2020 11:36:33 GMT */}
-				<meta charSet="utf-8" />
-				<title>Meet the Infinite Red Team - Portland, San Francisco, New Orleans</title>
-				<meta
-					content="As a distributed company spread from San Francisco up to Portland, over to New Orleans, and up to Toronto, our team is still very close-knit."
-					name="description"
-				/>
-				<meta content="Meet the Infinite Red Team - Portland, San Francisco, New Orleans" property="og:title" />
-				<meta
-					content="As a distributed company spread from San Francisco up to Portland, over to New Orleans, and up to Toronto, our team is still very close-knit."
-					property="og:description"
-				/>
-				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="og:image" />
-				<meta
-					content="Meet the Infinite Red Team - Portland, San Francisco, New Orleans"
-					property="twitter:title"
-				/>
-				<meta
-					content="As a distributed company spread from San Francisco up to Portland, over to New Orleans, and up to Toronto, our team is still very close-knit."
-					property="twitter:description"
-				/>
-				<meta content="/5f80cc1fe7e52347ee9eb300_graph-ir.jpg" property="twitter:image" />
-				<meta property="og:type" content="website" />
-				<meta content="summary_large_image" name="twitter:card" />
-				<meta content="width=device-width, initial-scale=1" name="viewport" />
-				<link href="/css/infinite-red-website.f19641911.min.css" rel="stylesheet" type="text/css" />
-				{/*[if lt IE 9]><![endif]*/}
-				<link href="/5e96204b6085211e0c7f48f2_favicon.png" rel="shortcut icon" type="image/x-icon" />
-				<link href="/5e96204d92bbee4276b5761c_webclip.png" rel="apple-touch-icon" />
-				<style
-					dangerouslySetInnerHTML={{
-						__html:
-							'\n  \n     .container-scroll {\n\t\tscrollbar-width: none; /* Firefox 64 */\n        -ms-overflow-style: none; /* Internet Explorer 11 */\n    }\n  \n    .container-scroll::-webkit-scrollbar { /** WebKit */\n      display: none;\n    }\n  \n',
-					}}
-				/>
-				<meta property="og:image:width" content={1200} />
-				<meta property="og:image:height" content={630} />
-				{/* Begin Inspectlet Asynchronous Code */}
-				{/* End Inspectlet Asynchronous Code */}
-				<meta name="google-site-verification" content="PziDawbND-UbE8RPHIApiyKHqLwhQqNCzyAYEmFW-Tc" />
-				{/* Global site tag (gtag.js) - Google Analytics */}
-				<MenuBar />
+const fetchData = async () =>
+	await axios
+		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-2n7xAAACQAksZX#format=json')
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
+
+const Company = ({ data, error }) => {
+	// const router = useRouter();
+
+	// // const object = JSON.parse(query.finalData);
+	// const {
+	// 	query: { data },
+	// } = router;
+	// const finalData = JSON.parse(data).Cdata;
+	// console.log('companyyyyyyyyyyy', finalData[0]);
+	return (
+		<div>
+			<PageLayout data={data}>
 				<div className="hero-sub hero-img--company">
 					<div className="container">
 						<div className="hero-sub__content">
@@ -72,7 +66,7 @@ export default class Company extends React.Component {
 							width={1197}
 							alt="Group photo of Infinite Red team"
 							sizes="(max-width: 479px) 96vw, (max-width: 767px) 95vw, (max-width: 991px) 96vw, 98vw"
-							srcSet="/5efcf4f9833ed01d545638c6_team_infinite_red-p-500.jpeg 500w, /5efcf4f9833ed01d545638c6_team_infinite_red-p-800.jpeg 800w, /5efcf4f9833ed01d545638c6_team_infinite_red-p-1600.jpeg 1600w, /5efcf4f9833ed01d545638c6_team_infinite_red-p-2000.jpeg 2000w, /5efcf4f9833ed01d545638c6_team_infinite_red.jpg 2440w"
+							srcSet="/profile.jpg 500w, /profile.jpg 800w, /profile.jpg 1600w, /profile.jpg 2000w, /profile.jpg 2440w"
 							className="team-gallery__img"
 						/>
 					</div>
@@ -131,231 +125,85 @@ export default class Company extends React.Component {
 					<div className="container">
 						<div className="section-intro">
 							<h2>Meet Our Team</h2>
-							<p className="p--large">The people behind the magic at Infinite Red.</p>
+							<p className="p--large">The people behind the magic at Pikes Soft.</p>
 						</div>
 						<div className="team__owners">
 							<div className="team__owners__collection-wrapper w-dyn-list">
 								<div role="list" className="team__owners__collection w-dyn-items w-row">
-									<div
-										role="listitem"
-										className="team__owners__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__owners__card">
-											<div className="team__details">
-												<div
-													style={{
-														backgroundImage:
-															'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43aae5c0bce8ee474b0e5_Todd.html)',
-													}}
-													className="team__owners__card__img"
-												/>
-												<h4 className="h4--team-name">Todd Werth</h4>
-												<p className="p--small">Founder &amp; CEO</p>
-												<div className="team__details__location">
-													<img
-														src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-														alt="location pin icon"
-														className="team__details__location__icon"
-													/>
-													<h5 className="h5--opacity">Las Vegas, NV</h5>
+									<div style={{ display: 'flex', justifyContent: 'center' }}>
+										{data.map((element) => (
+											<div
+												role="listitem"
+												className="team__owners__collection__item w-dyn-item w-col w-col-4"
+											>
+												<div className="team__owners__card">
+													<div className="team__details">
+														<div
+															style={{
+																backgroundImage:
+																	// 'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43ab81e665c7da404fcc8_Jamon.html)',
+																	`url(${element.data.team_members.image.value.main.url})`,
+															}}
+															className="team__owners__card__img"
+														/>
+														<h4 className="h4--team-name">
+															{element.data.team_members.name.value[0].text}
+														</h4>
+														<p className="p--small">
+															{element.data.team_members.designation.value[0].text}
+														</p>
+														<div className="team__details__location">
+															<img
+																src="/location.svg"
+																alt="location pin icon"
+																className="team__details__location__icon"
+															/>
+															<h5 className="h5--opacity">
+																{element.data.team_members.location.value[0].text}
+															</h5>
+														</div>
+													</div>
+													<div className="team__owner__card__bio">
+														<p>{element.data.team_members.description.value[0].text}</p>
+														<div className="team__owner__bio__social">
+															<a
+																href={element.data.team_members.twitter_link.value.url}
+																target="_blank"
+																className="team__social__icon w-inline-block"
+															>
+																<img
+																	src="/twitter.svg"
+																	alt="Twitter icon"
+																	className="team__social__icon__img"
+																/>
+															</a>
+															<a
+																href={element.data.team_members.github_link.value.url}
+																target="_blank"
+																className="team__social__icon w-inline-block"
+															>
+																<img
+																	src="/github.svg"
+																	alt="Github icon"
+																	className="team__social__icon__img"
+																/>
+															</a>
+															<a
+																href={element.data.team_members.linkedin.value.url}
+																target="_blank"
+																className="team__social__icon w-inline-block"
+															>
+																<img
+																	src="/linkedin.svg"
+																	alt="LinkedIn icon"
+																	className="team__social__icon__img"
+																/>
+															</a>
+														</div>
+													</div>
 												</div>
 											</div>
-											<div className="team__owner__card__bio">
-												<p>
-													Todd is a leader who excels at bridging the gap between the
-													technical and non-technical. He’s been coding since he was eleven
-													years old, and he’s founded three companies as well as consulted for
-													big names in Silicon Valley. Todd is a health nut who lives with his
-													wife and kitty in the dichotomy of rural Las Vegas. In the event of
-													a zombie apocalypse, Todd would develop a plan to convince the
-													zombies to go vegan, thereby paving the way to the first
-													cross-species cooperative community. What can we say? He’s a
-													visionary.
-												</p>
-												<div className="team__owner__bio__social">
-													<a
-														href="http://www.twitter.com/twerth"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-															alt="Twitter icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="http://www.github.com/twerth"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-															alt="Github icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="https://www.linkedin.com/in/toddwerth"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-															alt="LinkedIn icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__owners__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__owners__card">
-											<div className="team__details">
-												<div
-													style={{
-														backgroundImage:
-															'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43ab81e665c7da404fcc8_Jamon.html)',
-													}}
-													className="team__owners__card__img"
-												/>
-												<h4 className="h4--team-name">Jamon Holmgren</h4>
-												<p className="p--small">Founder &amp; CTO</p>
-												<div className="team__details__location">
-													<img
-														src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-														alt="location pin icon"
-														className="team__details__location__icon"
-													/>
-													<h5 className="h5--opacity">Portland, OR</h5>
-												</div>
-											</div>
-											<div className="team__owner__card__bio">
-												<p>
-													Jamon has a special talent for identifying and drawing out
-													potential, whether human or technological. Informed by a deep
-													programming background combined with over a decade in running web
-													and software development studios, he can be counted on to recognize
-													the right people and tools for the job. Jamon lives in Vancouver on
-													three acres with his wife and four children. In the aftermath of the
-													zombie apocalypse, Jamon will be our ambassador to other survivor
-													communities, ensuring we form the right allegiances and improve our
-													odds of survival.
-												</p>
-												<div className="team__owner__bio__social">
-													<a
-														href="http://twitter.com/jamonholmgren"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-															alt="Twitter icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="http://www.github.com/jamonholmgren"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-															alt="Github icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="https://www.linkedin.com/in/jamonholmgren"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-															alt="LinkedIn icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__owners__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__owners__card">
-											<div className="team__details">
-												<div
-													style={{
-														backgroundImage:
-															'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43ad01e665c885605030e_Gant.html)',
-													}}
-													className="team__owners__card__img"
-												/>
-												<h4 className="h4--team-name">Gant Laborde</h4>
-												<p className="p--small">Chief Innovation Officer</p>
-												<div className="team__details__location">
-													<img
-														src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-														alt="location pin icon"
-														className="team__details__location__icon"
-													/>
-													<h5 className="h5--opacity">New Orleans, LA</h5>
-												</div>
-											</div>
-											<div className="team__owner__card__bio">
-												<p>
-													Gant, an owner of Infinite Red, is a New Orleans-based force of
-													nature. Not satisfied to be “just” an experienced programmer in an
-													array of disciplines, he’s also a prolific writer, an award-winning
-													public speaker, and an adjunct professor. A self-improvement
-													aficionado, he takes every opportunity to connect with people and
-													share knowledge through education and outreach. In the zombie
-													apocalypse, Gant will run our much-needed bar, offering up advice,
-													encouragement, and libations in equal measure.
-												</p>
-												<div className="team__owner__bio__social">
-													<a
-														href="http://www.twitter.com/GantLaborde"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-															alt="Twitter icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="http://www.github.com/GantMan"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-															alt="Github icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-													<a
-														href="https://www.linkedin.com/in/gant-laborde/"
-														target="_blank"
-														className="team__social__icon w-inline-block"
-													>
-														<img
-															src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-															alt="LinkedIn icon"
-															className="team__social__icon__img"
-														/>
-													</a>
-												</div>
-											</div>
-										</div>
+										))}
 									</div>
 								</div>
 							</div>
@@ -1653,7 +1501,8 @@ export default class Company extends React.Component {
 				<Footer />
 				{/*[if lte IE 9]><![endif]*/}
 				{/* Mirrored from infinite.red/company by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Dec 2020 11:36:52 GMT */}
-			</div>
-		);
-	}
-}
+			</PageLayout>
+		</div>
+	);
+};
+export default withRouter(Company);

@@ -1,4 +1,13 @@
+import Link from 'next/link';
+
 const NavBar = (props) => {
+	const { data } = props;
+	// console.log('navbar', data);
+	const object = {
+		Cdata: data,
+	};
+	// console.log('nav', object);
+
 	return (
 		<nav role="navigation" className="nav__menu w-nav-menu">
 			<a
@@ -26,14 +35,30 @@ const NavBar = (props) => {
 			>
 				capabilities
 			</a>
-			<a
+			{/* <a
 				href="/company"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a0"
 				className="nav__menu__link w-nav-link"
 				data-ix="nav-link-hover"
 			>
 				company
-			</a>
+			</a> */}
+			<Link
+				href={{
+					pathname: '/company',
+					// query: { data: JSON.stringify(object) },
+				}}
+			>
+				<a
+					aria-current="page"
+					data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a0"
+					// className="nav__menu__link w-nav-link"
+					className="nav__menu__link w-nav-link w--current"
+					data-ix="nav-link-hover"
+				>
+					{'Company' || 'Unknown'}
+				</a>
+			</Link>
 			<a
 				href="/community"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69e"
