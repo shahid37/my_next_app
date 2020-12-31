@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
 
 const fetchData = async () =>
 	await axios
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-2n7xAAACQAksZX#format=json')
+		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-3bHRAAACIAk6xL#format=json')
 		.then((res) => ({
 			error: false,
 			data: res.data,
@@ -22,7 +22,7 @@ const fetchData = async () =>
 		}));
 const App = ({ data, error }) => {
 	return (
-		<PageLayout data={data}>
+		<PageLayout>
 			<div className="hero-home">
 				<div className="container">
 					<div className="hero-home__overview">

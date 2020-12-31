@@ -7,23 +7,29 @@ var React = require('react');
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const companyData = [];
+	const employeeTeamMembers = [];
 	if (data) {
 		for (let i = 0; i < data.data.results.length; i++) {
 			console.log(data.data.results[i]);
 			if (data.data.results[i].type === 'team_members') {
 				companyData.push(data.data.results[i]);
+			} else {
+				if (data.data.results[i].type === 'employee_team_members') {
+					employeeTeamMembers.push(data.data.results[i]);
+				}
 			}
 		}
+		console.log('lengthhhhhhhhh', employeeTeamMembers[0].data.employee_team_members.boolean);
 	}
 	return {
 		// props: data,
-		props: { data: companyData },
+		props: { ownerTeamMembers: companyData, teamMembers: employeeTeamMembers },
 	};
 };
 
 const fetchData = async () =>
 	await axios
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-2n7xAAACQAksZX#format=json')
+		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-3bHRAAACIAk6xL#format=json')
 		.then((res) => ({
 			error: false,
 			data: res.data,
@@ -33,7 +39,7 @@ const fetchData = async () =>
 			data: null,
 		}));
 
-const Company = ({ data, error }) => {
+const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 	// const router = useRouter();
 
 	// // const object = JSON.parse(query.finalData);
@@ -44,7 +50,7 @@ const Company = ({ data, error }) => {
 	// console.log('companyyyyyyyyyyy', finalData[0]);
 	return (
 		<div>
-			<PageLayout data={data}>
+			<PageLayout>
 				<div className="hero-sub hero-img--company">
 					<div className="container">
 						<div className="hero-sub__content">
@@ -131,7 +137,7 @@ const Company = ({ data, error }) => {
 							<div className="team__owners__collection-wrapper w-dyn-list">
 								<div role="list" className="team__owners__collection w-dyn-items w-row">
 									<div style={{ display: 'flex', justifyContent: 'center' }}>
-										{data.map((element) => (
+										{ownerTeamMembers.map((element) => (
 											<div
 												role="listitem"
 												className="team__owners__collection__item w-dyn-item w-col w-col-4"
@@ -211,1265 +217,127 @@ const Company = ({ data, error }) => {
 						<div className="team__list">
 							<div className="team__list__collection-wrapper w-dyn-list">
 								<div role="list" className="team__list__collection w-dyn-items w-row">
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a98b21f577b36dec3f6_Justin.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Justin Huskey</h4>
-											<p className="p--small">Design Lead</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
+									{teamMembers.map((element) => (
+										<div
+											role="listitem"
+											className="team__list__collection__item w-dyn-item w-col w-col-4"
 										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Justin leads the design team with a keen aesthetic eye and an
-												instinctive understanding of the end user perspective. With over five
-												years’ experience in UX, Journey Mapping, and Strategy, Justin is the
-												end user’s advocate in the midst of goal-oriented programmers. Justin
-												lives in Portland where he enjoys comic books and photography. Justin
-												will start the very first Zombie Safari in America, taking friends and
-												tourists on epic adventures to spot curiosities like the YogaGirl
-												Zombie, the TechBro Zombie, and the ever-elusive KittenZombie.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/justinhuskey"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="#"
-													className="team__social__icon w-inline-block w-condition-invisible"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/justin-huskey-a697b6104"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43c9a2ddb13e779ad47b0_Jed.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Jed Bartausky</h4>
-											<p className="p--small">Project Manager</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
+											<div className="team__details">
+												<div
+													style={{
+														backgroundImage: `url(${element.data.employee_team_members.image.value.main.url})`,
+													}}
+													className="team__list__img"
 												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
+												<h4 className="h4--team-name">
+													{element.data.employee_team_members.name.value[0].text}
+												</h4>
+												<p className="p--small">
+													{element.data.employee_team_members.designation.value[0].text}
+												</p>
+												<div className="team__details__location">
+													<img
+														src="/location.svg"
+														alt="location pin icon"
+														className="team__details__location__icon"
+													/>
+													<h5 className="h5--opacity">
+														{element.data.employee_team_members.location.value[0].text}
+													</h5>
+												</div>
 											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Jed is the crucial linchpin connecting the client and team. He works
-												directly with the client to keep them updated on the team’s progress and
-												apprised of any speedbumps. On the team side, he handles scheduling and
-												ensures everyone has what they need to get the job done. Jed is an
-												accomplished violinist who works on his tiny house with his family in
-												his spare time. He’ll lead our local branch of the Anti-Zombie Human
-												Defense League when the zombie apocalypse hits.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/InfiniteJed"
-													target="_blank"
-													className="team__social__icon w-inline-block"
+											<a
+												data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
+												href="#"
+												className="team__list__more-link w-inline-block"
+											>
+												<div
+													// className="team__list__link-open"
+													style={{
+														display: element.data.employee_team_members.boolean.value
+															? 'none'
+															: 'block',
+													}}
+													onClick={() => {
+														element.data.employee_team_members.boolean.value = !element.data
+															.employee_team_members.boolean.value;
+													}}
 												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/jedbartausky"
-													target="_blank"
-													className="team__social__icon w-inline-block"
+													+ More
+												</div>
+												{/* <button onClick={() => console.log('press meeeeeeeeeeeeeeeeeeeeeeee')}>
+													Click me
+												</button> */}
+
+												<div
+													// className="team__list__link-close"
+													style={{
+														display: element.data.employee_team_members.boolean.value
+															? 'block'
+															: 'none',
+														// : 'none',
+													}}
+													onClick={() => {
+														element.data.employee_team_members.boolean.value = !element.data
+															.employee_team_members.boolean.value;
+														console.log(
+															element.data.employee_team_members.boolean.value,
+															'llllllllllllllllllllllllllllllllllllll'
+														);
+													}}
 												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/jed-bartausky-9a71ba26/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
+													— less
+												</div>
+											</a>
 											<div
+												className="team__list__bio"
 												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a854336125506769b20_shawni.html)',
+													display: element.data.employee_team_members.boolean.value
+														? 'block'
+														: 'none',
+													// : 'none',
 												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Shawni Danner</h4>
-											<p className="p--small">Project Coordinator</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">San Diego, CA</h5>
+											>
+												<p>{element.data.employee_team_members.description.value[0].text}</p>
+												<div className="team__list__bio__social">
+													<a
+														href={element.data.employee_team_members.twitter_link.value.url}
+														target="_blank"
+														className="team__social__icon w-inline-block"
+													>
+														<img
+															src="/twitter.svg"
+															alt="Twitter icon"
+															className="team__social__icon__img"
+														/>
+													</a>
+													<a
+														href={element.data.employee_team_members.github_link.value.url}
+														className="team__social__icon w-inline-block w-condition-invisible"
+													>
+														<img
+															src="/github.svg"
+															alt="Github icon"
+															className="team__social__icon__img"
+														/>
+													</a>
+													<a
+														href={
+															element.data.employee_team_members.linkedin_link.value.url
+														}
+														target="_blank"
+														className="team__social__icon w-inline-block"
+													>
+														<img
+															src="/linkedin.svg"
+															alt="LinkedIn icon"
+															className="team__social__icon__img"
+														/>
+													</a>
+												</div>
 											</div>
 										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Shawni doesn’t just herd cats—she herds the cat-herders too. She excels
-												at Getting Things Done, whether that’s planning a large event or
-												managing internal projects. From teaching in South Korea to playing
-												community flag football in San Diego, she brings a passionate work ethic
-												and open-minded perspective to everything she does. In the crisis of the
-												zombie apocalypse Shawni will be found sharing her knowledge, delegating
-												tasks, and running around making sure everything’s handled—shouldn’t be
-												much of a change, honestly.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://twitter.com/alwayshiccups"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="#"
-													className="team__social__icon w-inline-block w-condition-invisible"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/shawnid"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a7a5d465bf43259e86d_jenna.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Jenna Fucci</h4>
-											<p className="p--small">Senior Designer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Denver, CO</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Jenna got into art the way most do, by drawing horses and cartoon
-												characters repeatedly. While studying at Southeastern Louisiana
-												University, she discovered a love for design. She is an avid user of
-												Sketch and will happily try to convert anyone who doesn’t believe in the
-												power of symbols. Jenna will be a key member of our defense team during
-												the zombie apocalypse, as long as all she has to fight is zombies (and
-												not moths).
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/jemfucci"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://github.com/jenfucci"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/jennafucci"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a6faa898fb6df2331d1_Darin%20Wilson.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Darin Wilson</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">San Francisco, CA</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Darin has been coding professionally since the days when you got help
-												with coding problems by posting on a CompuServe forum over a 300-baud
-												modem. His primary focus is web development (Ruby/Rails and
-												Elixir/Phoenix), but he’s also worked on desktop and mobile apps for
-												everything from banking to social media to robotic arms. In his free
-												time, Darin is a jazz pianist and composer. Expect an elaborate,
-												original jazz suite in honor of the zombie catastrophe, probably in
-												D-minor, which is the saddest of all keys.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/darinwilson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/darinwilson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/darin-wilson-89a5862/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a668e93f7acda8d62c6_bryan.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Bryan Stearns</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Bryan has been paid to code since the 70s. He was hired at Apple as a
-												teenager, where he worked on the Apple //e, Macintosh, and Newton. Since
-												the Web 1.0 days he's focused on the backend—lately in Elixir, though he
-												really enjoys React Native too. When away from the keyboard, he's
-												probably at the movies, watching or serving beer and popcorn while
-												volunteering at his local historic nonprofit theatre. Bryan's already
-												ready for the zombies; he thinks 1932's "White Zombie", the first
-												feature-length zombie film, was a documentary.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/bryanstearns"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/bryanstearns"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/bryanstearns"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a5c95b89af54905839c_derek.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Derek Greenberg</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">San Francisco, CA</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Derek has worked in website and mobile app development for over 20
-												years, calling on a wide range of languages and platforms including Ruby
-												On Rails, React.js, and React Native. In his free time he cooks and
-												volunteers his audio engineering and music production expertise. In the
-												zombie apocalypse, Derek will use his immense store of Halloween
-												paraphernalia to stage a daring escape, then become our culinary
-												caretaker, transforming what would be our 1,205th can of beans into
-												something amazing.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/cardwalker"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/derekgreenberg"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/derek-greenberg/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43baad841ed2972ab6d6a_yulian.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Yulian Glukhenko</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Yulian is a skilled front-end developer whose go-to tool is ReactJS,
-												although recently he’s been delving into more back-end work. He’s been
-												described as an “energetic strategist” with a deep knowledge of web
-												development. Based in Portland, Yulian’s hobby is working on cars,
-												driving cars, cars, and also anything to do with cars. In the zombie
-												apocalypse, Yulian will keep our extensive vehicle fleet going long
-												after other communities have been forced to resort to traveling by
-												skateboard or horseback.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/yulolimum"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/yulolimum"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/yulian-glukhenko-9278275a/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a452ddb135a8aad3c51_Mark.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Mark Rickert</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Nomad</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Mark combines 15 years in software development with experience in a
-												breadth of industries from e-commerce to hardware prototyping. His
-												degree in Management Information Systems further informs his ability to
-												understand the multiple levels on which an app needs to achieve success.
-												A full-time nomad, voracious traveler, and leggings enthusiast, Mark
-												skydives and BASE jumps in locations around the world. Given that social
-												pressures couldn’t convince Mark to lead a “normal” life, zombies aren’t
-												likely to get in the way either. In the zombie apocalypse, Mark will
-												channel his wanderlust to link disparate communities and locate
-												constrained resources.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="#"
-													className="team__social__icon w-inline-block w-condition-invisible"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/markrickert"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="#"
-													className="team__social__icon w-inline-block w-condition-invisible"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a338e93f7fbb68d6281_Kevin.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Kevin Vangelder</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												With over 10 years in website and app development, Kevin brings
-												strategic insight and painstaking attention to detail to every project.
-												His specialties are React Native and React Native Windows. As a bonus,
-												he’s a motorcyclist and student helicopter pilot. When the zombie
-												apocalypse hits, Kevin will be the most prepared of us all, having
-												memorized 42 different zombie survival plans organized by likelihood of
-												a given outbreak scenario cross-indexed by the potential number of
-												survivors.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/kevin_vangelder"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/kevinvangelder"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/kevinvangelder"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a2992efe3e0e85ade23_Leon.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Leon Kim</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">South Korea</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Leon is a self-driven programmer with a master’s degree in computer
-												engineering where he studied computer vision and pattern recognition.
-												With a background in automation, robotics, and telecommunications, Leon
-												brings a wide insight to his projects, which these days are usually
-												based in React Native. Leon is a passionate foodie who travels to Hong
-												Kong at least once a year to check how their restaurant industry is
-												doing. In the throes of the zombie apocalypse, Leon will work to
-												reestablish communications across the globe to find other survivors… and
-												eat their food.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/leonskim"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/leonskim"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/leon-seong-hoon-kim-9179b48a/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a1fb21f572bdcdec180_Frank%20von%20Hoven.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Frank von Hoven</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">New Orleans, LA</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Frank specializes in React Native. Besides developing mobile apps, he is
-												the Executive Editor of the React Native Newsletter. He completed an MBA
-												at Loyola University and is a talented musician who plays eight
-												instruments, sings, composes, and performs in the New Orleans area.
-												Though morale may be low during the zombie apocalypse, Frank’s
-												innumerable musical talents will put a new skip in everyone’s shuffle,
-												alive or undead.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/infinite_frank"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/fvonhoven"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/frank-von-hoven-iii-a24a3281/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a128e93f732758d61cc_Silas.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Silas Matson</h4>
-											<p className="p--small">Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Silas has been elbow deep in code since high school. With experience in
-												Ruby on Rails, Elixir/Phoenix, and React.JS, he enjoys building projects
-												that clients will love. He also contributes to numerous open source
-												projects and follows the Dota 2 eSports scene. Silas’s affinity for
-												multiplayer online battle arenas will lead him to start the first zombie
-												v. zombie MMA league. This may or may not end well.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="http://www.twitter.com/silasjmatson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/silasjmatson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/silasjm/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43a065c0bce84af74ae78_Missy.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Missy Warren</h4>
-											<p className="p--small">Sales Coordinator</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Reno, NV</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Our first contact for new projects couldn’t be more welcoming and
-												competent than Missy. She brings a long history of marketing experience
-												to our team. She is a fourth-generation resident of Reno, Nevada,
-												affectionately called the Biggest Little City, and a proud alum of the
-												University of Nevada. She enjoys anything creative, especially making
-												pottery and taking photos. Missy is already prepared for the apocalypse
-												and can be found training people how to outrun zombies using an
-												elaborate obstacle course.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/MissyWarren_"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://github.com/mwarren522"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/warrenmk"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43fe18e93f71a478da6ca_robin.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Robin Heinze</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												ROBIN HEINZE Senior Software Engineer PORTLAND, OR Robin is very
-												professional and excels at building functional performant mobile apps.
-												Before becoming a programmer, she graduated with a degree in math and
-												economics and spent several years working in data analysis. Based in
-												Portland, Robin is a sewing enthusiast who recently completed her first
-												quilt. During the zombie onslaught, she will create data models that
-												analyze our likelihood of survival in various scenarios, from the
-												initial attack of the undead horde to the Great Pancake Shortage of
-												2047.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/robin_heinze"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="http://www.github.com/robinheinze"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/robin-heinze"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div
-										role="listitem"
-										className="team__list__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div className="team__details">
-											<div
-												style={{
-													backgroundImage:
-														'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb43df01e665c8a27052772_carlin%20copy.html)',
-												}}
-												className="team__list__img"
-											/>
-											<h4 className="h4--team-name">Carlin Isaacson</h4>
-											<p className="p--small">Senior Software Engineer</p>
-											<div className="team__details__location">
-												<img
-													src="/5e7a56689ddc640ba16dc5b0_icon-location.svg"
-													alt="location pin icon"
-													className="team__details__location__icon"
-												/>
-												<h5 className="h5--opacity">Portland, OR</h5>
-											</div>
-										</div>
-										<a
-											data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-											href="#"
-											className="team__list__more-link w-inline-block"
-										>
-											<div className="team__list__link-open">+ More</div>
-											<div className="team__list__link-close">— less</div>
-										</a>
-										<div className="team__list__bio">
-											<p>
-												Carlin is a proficient engineer who specializes in creating polished
-												user interfaces. He comes from a background in construction and has a
-												gift for understanding how to make things fit together beautifully,
-												whether that’s in the physical or digital realm. In his free time,
-												Carlin enjoys woodworking, helping his wife with her vintage shop, and
-												spending time with his family. We’ll be relying on Carlin’s calm
-												temperament and building expertise to lead us in cobbling together a
-												survival compound when the zombie apocalypse starts.
-											</p>
-											<div className="team__list__bio__social">
-												<a
-													href="https://twitter.com/carlinmisaacson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a57f47ccf83a96333fd4d_icon-twitter.svg"
-														alt="Twitter icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://github.com/carlinisaacson"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a594e5ee481703b2c3af4_icon-github.svg"
-														alt="Github icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/carlin-isaacson/"
-													target="_blank"
-													className="team__social__icon w-inline-block"
-												>
-													<img
-														src="/5e7a591bc5036883b46dc336_icon-linkedin.svg"
-														alt="LinkedIn icon"
-														className="team__social__icon__img"
-													/>
-												</a>
-											</div>
-										</div>
-									</div>
+									))}
 								</div>
 							</div>
 						</div>
