@@ -19,7 +19,7 @@ const MenuButton = (props) => {
 					<div
 						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
 						className="nav-icon__bar--white"
-						style={{ 'will-change': 'background', 'background-color': 'rgb(255, 255, 255)' }}
+						// style={{ 'background-color': 'rgb(255, 255, 255)' }}
 					></div>
 					<div
 						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"

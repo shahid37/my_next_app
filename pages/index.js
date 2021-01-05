@@ -1,6 +1,8 @@
 import axios from 'axios';
 import PageLayout from './components/pageLayout';
-var React = require('react');
+import React from 'react';
+import { constants } from '../constants';
+import MyDocument from './components/Scoll';
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	return {
@@ -11,7 +13,7 @@ export const getStaticProps = async () => {
 
 const fetchData = async () =>
 	await axios
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-3bHRAAACIAk6xL#format=json')
+		.get(`${constants.base_url}`)
 		.then((res) => ({
 			error: false,
 			data: res.data,

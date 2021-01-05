@@ -1648,10 +1648,10 @@ ul {
 .w-tabs:after {
 	clear: both;
 }
-/* .w-nav {
+.w-nav {
 	background: #ddd;
 	z-index: 1000;
-} */
+}
 .w-nav:after,
 .w-nav:before {
 	display: table;

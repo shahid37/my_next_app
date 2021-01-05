@@ -2,8 +2,8 @@ import Footer from './components/footer';
 import PageLayout from './components/pageLayout';
 import { withRouter } from 'next/router';
 import axios from 'axios';
-
-var React = require('react');
+import { constants } from '../constants';
+import React from 'react';
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const companyData = [];
@@ -29,7 +29,7 @@ export const getStaticProps = async () => {
 
 const fetchData = async () =>
 	await axios
-		.get('https://pikes.prismic.io/api/v1/documents/search?ref=X-3bHRAAACIAk6xL#format=json')
+		.get(`${constants.base_url}`)
 		.then((res) => ({
 			error: false,
 			data: res.data,

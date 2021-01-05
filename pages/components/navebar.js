@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
 const NavBar = (props) => {
-	// const { data } = props;
+	const { headerColor } = props;
 	// console.log('navbar', data);
 	// const object = {
 	// Cdata: data,
 	// };
 	// console.log('nav', object);
-
+	const color2 = headerColor === 'rgba(0, 0, 0, 0)' ? '' : 'rgb(76, 62, 84)';
 	return (
 		<nav role="navigation" className="nav__menu w-nav-menu">
 			<a
@@ -15,6 +15,7 @@ const NavBar = (props) => {
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69a"
 				aria-current="page"
 				className="nav__menu__link w-nav-link w--current"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				Home
@@ -23,6 +24,7 @@ const NavBar = (props) => {
 				href="/work"
 				data-w-id="33e117a4-4d46-4e9f-176e-cb3d83e17f4d"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				Work
@@ -31,6 +33,7 @@ const NavBar = (props) => {
 				href="/capabilities"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69c"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				capabilities
@@ -39,6 +42,7 @@ const NavBar = (props) => {
 				href="/company"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a0"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				company
@@ -63,6 +67,7 @@ const NavBar = (props) => {
 				href="/community"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69e"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				community
@@ -72,6 +77,7 @@ const NavBar = (props) => {
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a2"
 				target="_blank"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				blog
@@ -80,6 +86,7 @@ const NavBar = (props) => {
 				href="/contact"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a6"
 				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				contact
@@ -88,6 +95,7 @@ const NavBar = (props) => {
 				href="/"
 				aria-current="page"
 				className="nav__menu__link-mobile w-nav-link w--current"
+				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
 				Home
