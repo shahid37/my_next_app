@@ -1,28 +1,8 @@
 import axios from 'axios';
 import PageLayout from './components/pageLayout';
 import React from 'react';
-import { constants } from '../constants';
-import MyDocument from './components/Scoll';
-export const getStaticProps = async () => {
-	const data = await fetchData();
-	return {
-		// props: data,
-		props: { data: data.data.results },
-	};
-};
 
-const fetchData = async () =>
-	await axios
-		.get(`${constants.base_url}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
-const App = ({ data, error }) => {
+const App = () => {
 	return (
 		<PageLayout>
 			<div className="hero-home">
