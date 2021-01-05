@@ -2,7 +2,6 @@ import React from 'react';
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
-import ProtfolioComp from './components/portfolioComp';
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const companyPortfolioData = [];
