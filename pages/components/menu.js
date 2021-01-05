@@ -4,6 +4,7 @@ const MenuButton = (props) => {
 	const [bool, setBool] = useState(false);
 
 	const { visible, setValue } = props;
+	console.log('lllllllllllllllllllllll', visible);
 	return (
 		<>
 			<div

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="40px" viewBox="0 0 36 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/reactnative</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-RNTraining" transform="translate(-625.000000, -1397.000000)">
+            <g id="Intro" transform="translate(-1.000000, 902.000000)">
+                <g id="Group-11" transform="translate(584.285714, 487.000000)">
+                    <g id="icons-/-tech-/-reactnative">
+                        <g id="Group" transform="translate(39.000000, 8.000000)">
+                            <circle id="Oval-2" stroke="#FFA7A8" stroke-width="1.5" cx="21.1320755" cy="19.6226415" r="2.26886792"></circle>
+                            <path d="M21.1320755,38.9265499 C24.6611969,38.9265499 28.1448787,30.2085739 28.1448787,19.8382749 C28.1448787,9.46797601 24.6611969,0.75 21.1320755,0.75 C17.6029541,0.75 14.1192722,9.46797601 14.1192722,19.8382749 C14.1192722,30.2085739 17.6029541,38.9265499 21.1320755,38.9265499 Z" id="Oval" stroke="#E73536" stroke-width="1.5"></path>
+                            <path d="M21.1320755,38.9265499 C24.6611969,38.9265499 28.1448787,30.2085739 28.1448787,19.8382749 C28.1448787,9.46797601 24.6611969,0.75 21.1320755,0.75 C17.6029541,0.75 14.1192722,9.46797601 14.1192722,19.8382749 C14.1192722,30.2085739 17.6029541,38.9265499 21.1320755,38.9265499 Z" id="Oval" stroke="#E73536" stroke-width="1.5" transform="translate(21.132075, 19.838275) rotate(60.000000) translate(-21.132075, -19.838275) "></path>
+                            <path d="M21.1320755,38.9265499 C24.6611969,38.9265499 28.1448787,30.2085739 28.1448787,19.8382749 C28.1448787,9.46797601 24.6611969,0.75 21.1320755,0.75 C17.6029541,0.75 14.1192722,9.46797601 14.1192722,19.8382749 C14.1192722,30.2085739 17.6029541,38.9265499 21.1320755,38.9265499 Z" id="Oval" stroke="#E73536" stroke-width="1.5" transform="translate(21.132075, 19.838275) rotate(-60.000000) translate(-21.132075, -19.838275) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

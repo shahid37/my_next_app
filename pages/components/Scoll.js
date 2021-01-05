@@ -31,10 +31,8 @@ class MyDocument extends React.Component {
 		}
 	}
 	setValue = () => {
-		this.setState((state) => {
-			return {
-				visible: !visible,
-			};
+		this.setState({
+			visible: !this.state.visible,
 		});
 		// setVisible(!visible);
 	};
@@ -161,14 +159,14 @@ class MyDocument extends React.Component {
 							</div>
 						</a>
 						<NavBar headerColor={this.state.headerColor} />
-						<MenuButton visible={this.visible} setValue={this.setValue} />
+						<MenuButton visible={this.state.visible} setValue={this.setValue} />
 					</div>
 					<div
 						class="w-nav-overlay"
 						data-wf-ignore=""
 						id="w-nav-overlay-0"
 						style={{
-							display: this.visible ? 'block' : 'none',
+							display: this.state.visible ? 'block' : 'none',
 							height: '10676px',
 							width: '740px',
 							background: 'white',

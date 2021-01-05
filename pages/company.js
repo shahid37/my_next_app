@@ -248,7 +248,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 											</div>
 											<a
 												data-w-id="6e4668f0-962e-8832-1b7c-84eb117c6bcd"
-												href="#"
+												// href="#"
 												className="team__list__more-link w-inline-block"
 											>
 												<div

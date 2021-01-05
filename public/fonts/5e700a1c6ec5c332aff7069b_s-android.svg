@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/android</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-RNTraining" transform="translate(-475.000000, -1397.000000)">
+            <g id="Intro" transform="translate(-1.000000, 902.000000)">
+                <g id="Group-11-Copy" transform="translate(432.857143, 487.000000)">
+                    <g id="icons-/-tech-/-android">
+                        <path d="M63,42 L57,42 L57,45.5 C57,46.3284271 56.3284271,47 55.5,47 C54.6715729,47 54,46.3284271 54,45.5 L54,42 L50,42 L50,22 L70,22 L70,42 L66,42 L66,45.5 C66,46.3284271 65.3284271,47 64.5,47 C63.6715729,47 63,46.3284271 63,45.5 L63,42 Z" id="Combined-Shape" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <g id="Group-12" stroke-width="1" fill-rule="evenodd" transform="translate(51.000000, 9.000000)">
+                            <path d="M18,10 C17.405776,5.186625 14.454273,1.25 8.99918264,1.25 C3.54490964,1.25 0.593406593,5.186625 0,10 L18,10 Z" id="Stroke-1" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M14.1428571,2.5 L15.4285714,0" id="Stroke-3" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M3.85714286,2.5 L2.57142857,0" id="Stroke-5" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M14.1428571,6.25041681 C14.1428571,6.94064688 13.5677143,7.5 12.8571429,7.5 C12.1482857,7.5 11.5714286,6.94064688 11.5714286,6.25041681 C11.5714286,5.56018673 12.1482857,5 12.8571429,5 C13.5677143,5 14.1428571,5.56018673 14.1428571,6.25041681" id="Fill-7" fill="#FFA7A8"></path>
+                            <path d="M6.42857143,6.25 C6.42857143,6.94 5.85342857,7.5 5.14285714,7.5 C4.434,7.5 3.85714286,6.94 3.85714286,6.25 C3.85714286,5.56 4.434,5 5.14285714,5 C5.85342857,5 6.42857143,5.56 6.42857143,6.25" id="Fill-9" fill="#FFA7A8"></path>
+                        </g>
+                        <rect id="Rectangle-5" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" x="44" y="23" width="3" height="12" rx="1.5"></rect>
+                        <rect id="Rectangle-5-Copy" stroke="#E73536" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" x="73" y="23" width="3" height="12" rx="1.5"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

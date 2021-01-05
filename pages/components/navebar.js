@@ -14,7 +14,7 @@ const NavBar = (props) => {
 				href="/"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69a"
 				aria-current="page"
-				className="nav__menu__link w-nav-link w--current"
+				className="nav__menu__link w-nav-link"
 				style={{ color: color2 }}
 				data-ix="nav-link-hover"
 			>
