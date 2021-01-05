@@ -1,5 +1,6 @@
 const ProtfolioComp = (props) => {
 	const { element } = props;
+	console.log(element, 'elementtttttttttttt');
 	return (
 		<>
 			<div role="listitem" className="projects__list__collection__item w-dyn-item w-col w-col-4">

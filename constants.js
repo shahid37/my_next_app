@@ -1,5 +1,5 @@
 const constants = {
-	base_url: 'https://pikes.prismic.io/api/v1/documents/search?ref=X_Q68RAAAIBCr-R3#format=json',
+	base_url: 'https://pikes.prismic.io/api/v1/documents/search?ref=X_RD1BAAAIBCsA5F#format=json',
 };
 
 module.exports = { constants };
