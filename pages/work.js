@@ -3,6 +3,7 @@ import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
 export const getStaticProps = async () => {
+	// console.log('lllllllllllllllllllllllll', webflow - icons);
 	const data = await fetchData();
 	const companyPortfolioData = [];
 	if (data) {

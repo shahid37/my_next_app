@@ -2,8 +2,10 @@ import Footer from './components/footer';
 import PageLayout from './components/pageLayout';
 import { withRouter } from 'next/router';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { constants } from '../constants';
-import React from 'react';
+
+var React = require('react');
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const companyData = [];
@@ -40,6 +42,11 @@ const fetchData = async () =>
 		}));
 
 const Company = ({ ownerTeamMembers, teamMembers, error }) => {
+	const [teamMembersData, setTeamMembersData] = useState(teamMembers);
+	useEffect(() => {
+		console.log('kkkkkkkkkkkkkkkkkkkkkk');
+		// setTeamMembersData(teamMembers);
+	});
 	// const router = useRouter();
 
 	// // const object = JSON.parse(query.finalData);
@@ -48,6 +55,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 	// } = router;
 	// const finalData = JSON.parse(data).Cdata;
 	// console.log('companyyyyyyyyyyy', finalData[0]);
+
 	return (
 		<div>
 			<PageLayout>
@@ -217,7 +225,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 						<div className="team__list">
 							<div className="team__list__collection-wrapper w-dyn-list">
 								<div role="list" className="team__list__collection w-dyn-items w-row">
-									{teamMembers.map((element) => (
+									{teamMembersData.map((element) => (
 										<div
 											role="listitem"
 											className="team__list__collection__item w-dyn-item w-col w-col-4"
@@ -259,8 +267,32 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 															: 'block',
 													}}
 													onClick={() => {
-														element.data.employee_team_members.boolean.value = !element.data
-															.employee_team_members.boolean.value;
+														setTeamMembersData(
+															teamMembersData.map((item) => {
+																if (
+																	item.data.employee_team_members ===
+																	element.data.employee_team_members
+																) {
+																	return {
+																		...item,
+																		data: {
+																			...item.data,
+																			employee_team_members: {
+																				...item.data.employee_team_members,
+																				boolean: {
+																					...item.data.employee_team_members
+																						.boolean,
+																					value: !item.data
+																						.employee_team_members.boolean
+																						.value,
+																				},
+																			},
+																		},
+																	};
+																}
+																return item;
+															})
+														);
 													}}
 												>
 													+ More
@@ -278,11 +310,31 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 														// : 'none',
 													}}
 													onClick={() => {
-														element.data.employee_team_members.boolean.value = !element.data
-															.employee_team_members.boolean.value;
-														console.log(
-															element.data.employee_team_members.boolean.value,
-															'llllllllllllllllllllllllllllllllllllll'
+														setTeamMembersData(
+															teamMembersData.map((item) => {
+																if (
+																	item.data.employee_team_members ===
+																	element.data.employee_team_members
+																) {
+																	return {
+																		...item,
+																		data: {
+																			...item.data,
+																			employee_team_members: {
+																				...item.data.employee_team_members,
+																				boolean: {
+																					...item.data.employee_team_members
+																						.boolean,
+																					value: !item.data
+																						.employee_team_members.boolean
+																						.value,
+																				},
+																			},
+																		},
+																	};
+																}
+																return item;
+															})
 														);
 													}}
 												>

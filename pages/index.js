@@ -1,4 +1,3 @@
-import axios from 'axios';
 import PageLayout from './components/pageLayout';
 import React from 'react';
 
