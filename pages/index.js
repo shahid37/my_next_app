@@ -1,7 +1,36 @@
 import PageLayout from './components/pageLayout';
-import React from 'react';
+import axios from 'axios';
+import { constants } from '../constants';
 
-const App = () => {
+export const getStaticProps = async () => {
+	const data = await fetchData();
+	const companyPortfolioData = [];
+	if (data) {
+		for (let i = 0; i < data.data.results.length; i++) {
+			console.log(data.data.results[i]);
+			if (data.data.results[i].type === 'portfolio') {
+				companyPortfolioData.push(data.data.results[i]);
+			}
+		}
+	}
+	return {
+		props: { portfolio: companyPortfolioData },
+	};
+};
+
+const fetchData = async () =>
+	await axios
+		.get(`${constants.base_url}`)
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
+
+const App = ({ portfolio, error }) => {
 	return (
 		<PageLayout>
 			<div className="hero-home">
@@ -22,78 +51,34 @@ const App = () => {
 				<div className="container">
 					<div className="clients-featured__collection-wrapper w-dyn-list">
 						<div role="list" className="clients-featured__collection w-dyn-items w-row">
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696ca86810061d659d79a8_microsoft.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696d25681006100a9d7acc_bluejeans.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696d85157c8c11856f45d0_fandor.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696e1e681006f6419d81ec_ucberkley.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
-							<div
-								role="listitem"
-								className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-							>
-								<div
-									style={{
-										backgroundImage:
-											'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696e83157c8c24846f4964_chain%20react.html)',
-									}}
-									className="clients-featured__collection__item__img"
-								/>
-							</div>
+							{[1, 2, 3].map((element) => (
+								<>
+									<div
+										role="listitem"
+										className="clients-featured__collection__item w-dyn-item w-col w-col-4"
+									>
+										<div
+											style={{
+												backgroundImage:
+													'url(https://assets.website-files.com/5e696c156810060ef59d768e/5e696ca86810061d659d79a8_microsoft.png)',
+											}}
+											className="clients-featured__collection__item__img"
+										/>
+									</div>
+									<div
+										role="listitem"
+										className="clients-featured__collection__item w-dyn-item w-col w-col-4"
+									>
+										<div
+											style={{
+												backgroundImage:
+													'url(https://assets.website-files.com/5e696c156810060ef59d768e/5e696d25681006100a9d7acc_bluejeans.png)',
+											}}
+											className="clients-featured__collection__item__img"
+										/>
+									</div>
+								</>
+							))}
 						</div>
 					</div>
 				</div>
@@ -120,10 +105,7 @@ const App = () => {
 						<div className="capabilities__collection-wrapper w-dyn-list">
 							<div role="list" className="capabilities__collection w-dyn-items">
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a
-										href="technologies/react-native.html"
-										className="cta-capabilities__tech__link w-inline-block"
-									>
+									<a href="/reactNative" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a6fbfeebf79fe21790f_s-react-native.svg"
 											alt="React Native"
@@ -133,7 +115,7 @@ const App = () => {
 									</a>
 								</div>
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a href="design.html" className="cta-capabilities__tech__link w-inline-block">
+									<a href="/design" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a2cff2c95d8c91c588a_s-design.svg"
 											alt="Design"
@@ -143,7 +125,7 @@ const App = () => {
 									</a>
 								</div>
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a href="websites.html" className="cta-capabilities__tech__link w-inline-block">
+									<a href="/website" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a4e5ff238eb00682bb1_s-react-js.svg"
 											alt="ReactJS"
@@ -153,10 +135,7 @@ const App = () => {
 									</a>
 								</div>
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a
-										href="technologies/ruby-on-rails.html"
-										className="cta-capabilities__tech__link w-inline-block"
-									>
+									<a href="ruby" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a4208830f673ff1e946_s-ruby.svg"
 											alt="Ruby on Rails"
@@ -166,7 +145,7 @@ const App = () => {
 									</a>
 								</div>
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a href="mobile-apps.html" className="cta-capabilities__tech__link w-inline-block">
+									<a href="mobileAppsIos" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a0f067b43914cd50ff6_s-ios.svg"
 											alt="iOS"
@@ -176,7 +155,7 @@ const App = () => {
 									</a>
 								</div>
 								<div role="listitem" className="capabilities__collection__item w-dyn-item">
-									<a href="mobile-apps.html" className="cta-capabilities__tech__link w-inline-block">
+									<a href="mobileAppsIos" className="cta-capabilities__tech__link w-inline-block">
 										<img
 											src="https://assets.website-files.com/5e696c156810060ef59d768e/5e700a1c6ec5c332aff7069b_s-android.svg"
 											alt="Android"
@@ -298,330 +277,26 @@ const App = () => {
 					<div className="client-list__logos">
 						<div className="client-list__collection-wrapper w-dyn-list">
 							<div role="list" className="client-list__collection w-dyn-items w-row">
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://cr.infinite.red/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696e83157c8c24846f4964_chain%20react.html)',
-										}}
-										href="https://cr.infinite.red/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.berkeley.edu/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696e1e681006f6419d81ec_ucberkley.html)',
-										}}
-										href="https://www.berkeley.edu/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="work/arcade-city.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.html)',
-										}}
-										href="work/arcade-city.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="work/fandor.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696d85157c8c11856f45d0_fandor.html)',
-										}}
-										href="work/fandor.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.bluejeans.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696d25681006100a9d7acc_bluejeans.html)',
-										}}
-										href="https://www.bluejeans.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.microsoft.com/en-us/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e696ca86810061d659d79a8_microsoft.html)',
-										}}
-										href="https://www.microsoft.com/en-us/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8d4ccc8f81014a1a1430_logo-fortis.html)',
-										}}
-										href="work/fortis-riders.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8f447cf3f334c379f2ba_logo-fortis.html)',
-										}}
-										href="work/fortis-riders.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb1f75f880c3ea915829296_tes-teach.html)',
-										}}
-										href="work/blendspace.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb1f75f880c3ea915829296_tes-teach.html)',
-										}}
-										href="work/blendspace.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.pipelinedeals.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ea366b05186cf7177ff10d0_logo-pipeline-deals.html)',
-										}}
-										href="https://www.pipelinedeals.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://crossoverhealth.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8ef34e6fd6698a4193cd_logo-crossover.html)',
-										}}
-										href="https://crossoverhealth.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="work/bukowskis-market.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8d29bd7e3c3d9b62df0f_logo-bukowskis.html)',
-										}}
-										href="work/bukowskis-market.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://eoslightmedia.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8f2fb900e009b98951c7_logo-eos.html)',
-										}}
-										href="https://eoslightmedia.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="http://www.inventist.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8f7a44a96e261b16c980_logo-inventist.html)',
-										}}
-										href="http://www.inventist.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb33077e506f587e72b4074_winmore--logo%402x.html)',
-										}}
-										href="https://winmore.app/lanetix-winmore.html"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eb33077e506f587e72b4074_winmore--logo%402x.html)',
-										}}
-										href="https://winmore.app/lanetix-winmore.html"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://outstand.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eac5d1f487e56b7904ec581_logo-outstand.html)',
-										}}
-										href="https://outstand.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.panago.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8f928d147a6c3d9ba74c_logo-panago.html)',
-										}}
-										href="https://www.panago.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.realtor.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8fc93b6cf2cb18dc0760_logo-realtor.html)',
-										}}
-										href="https://www.realtor.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.shirtspace.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8d5a05b120d8f71b30f9_logo-shirtspace.html)',
-										}}
-										href="https://www.shirtspace.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://shopraise.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8d641d36322cf8b1d6e4_logo-shopraise.html)',
-										}}
-										href="https://shopraise.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://www.protread.com/"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8fb7cf9d1ea70a1c8c8b_logo-pro-tread.html)',
-										}}
-										href="https://www.protread.com/"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
-								<div role="listitem" className="client-list__collection__item w-dyn-item w-col w-col-4">
-									<a
-										style={{ backgroundImage: 'none' }}
-										href="https://ti.to/home"
-										className="client-list__collection__item__img w-inline-block w-condition-invisible"
-									/>
-									<a
-										style={{
-											backgroundImage:
-												'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eac5d86487e5603c84ec81c_logo-tito.html)',
-										}}
-										href="https://ti.to/home"
-										className="client-list__collection__item__img w-inline-block"
-									/>
-								</div>
+								{[1, 2, 3, 4, 5, 6, 7, 8].map((element) => (
+									<div
+										role="listitem"
+										className="client-list__collection__item w-dyn-item w-col w-col-4"
+									>
+										<a
+											style={{ backgroundImage: 'none' }}
+											href="https://cr.infinite.red/"
+											className="client-list__collection__item__img w-inline-block w-condition-invisible"
+										/>
+										<a
+											style={{
+												backgroundImage:
+													'url(https://assets.website-files.com/5e696c156810060ef59d768e/5e696e83157c8c24846f4964_chain%20react.png)',
+											}}
+											href="https://cr.infinite.red/"
+											className="client-list__collection__item__img w-inline-block"
+										/>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
@@ -782,8 +457,7 @@ const App = () => {
 									>
 										<div
 											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5f8914a7175a715314e3ab88_sellebrate-header.html)',
+												backgroundImage: 'url(/5f8914a7175a715314e3ab88_sellebrate-header.jpg)',
 											}}
 											className="work-list__project__featured__img"
 										>
@@ -805,192 +479,40 @@ const App = () => {
 					<div className="work-list__cards">
 						<div className="work-list__cards__collection-wrapper w-dyn-list">
 							<div role="list" className="work-list__cards__collection w-dyn-items w-row">
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/arcade-city.html"
-										className="project__card w-inline-block"
+								{portfolio.map((element) => (
+									<div
+										role="listitem"
+										className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
 									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6feccebfeebf7acb20ce94_thumb.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Arcade City</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>Android&nbsp; |&nbsp; iOS</h5>
+										<a
+											data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
+											href={element.data.portfolio.app_link.value.url}
+											className="project__card w-inline-block"
+										>
+											<div
+												style={{
+													backgroundImage: `url(${element.data.portfolio.image.value.main.url})`,
+												}}
+												className="work-list__project__card__img"
+											/>
+											<div className="work-list__project__card__info">
+												<h4>{element.data.portfolio.app_name.value[0].text}</h4>
+												<div className="work-list__slider__title__categories">
+													{element.data.portfolio.app_type.value[0].text === 'web_app'
+														? 'Web'
+														: 'Mobile'}
+												</div>
+												<div className="work-list__project__card__icon">
+													<img
+														src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
+														alt="arrow pointing right"
+														width={256}
+													/>
+												</div>
 											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/docibr.html"
-										className="project__card w-inline-block"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6feaa25e9c8334dcf86e05_docibr__thumb.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Docibr</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>Web</h5>
-											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/fortis-riders.html"
-										className="project__card w-inline-block"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6ff02bbfeebf0d1e20e10e_fortis__thumb.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Fortis Riders</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>Android&nbsp; |&nbsp; iOS</h5>
-											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/elemeno.html"
-										className="project__card w-inline-block"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e6ff200067b43829ad48267_elemeno__thumb.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Elemeno</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>Web&nbsp; |&nbsp; Android&nbsp; | iOS</h5>
-											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/blendspace.html"
-										className="project__card w-inline-block"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5e979c1535e37ac26d9d39eb_work-small-blendspace%402x-4c7e3c39bf88d8d160af8ffb3a973502.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Blendspace</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>iOS</h5>
-											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div
-									role="listitem"
-									className="work-list__cards__collection__item w-dyn-item w-col w-col-4"
-								>
-									<a
-										data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-										href="work/fandor.html"
-										className="project__card w-inline-block"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5ebd8a01b10ada76bb29c277_tile-fandor.html)',
-											}}
-											className="work-list__project__card__img"
-										/>
-										<div className="work-list__project__card__info">
-											<h4>Fandor</h4>
-											<div className="work-list__slider__title__categories">
-												<h5>iOS</h5>
-											</div>
-											<div className="work-list__project__card__icon">
-												<img
-													src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
-													alt="arrow pointing right"
-													width={256}
-												/>
-											</div>
-										</div>
-									</a>
-								</div>
+										</a>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
