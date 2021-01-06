@@ -4,28 +4,24 @@ const Footer = (props) => {
 			<div className="footer__container">
 				<div className="footer__nav">
 					<a href="index.html" aria-current="page" className="footer__nav__brand w-inline-block w--current">
-						<img
-							src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6ad55212785322a62948a6_logo-ir%402x.png"
-							width={81}
-							alt="Infinite Red log in light gray"
-						/>
+						<img src={'./logo-dark.png'} width={81} alt="Infinite Red log in light gray" />
 					</a>
-					<a href="work.html" className="footer__nav__link">
+					<a href="/work" className="footer__nav__link">
 						Work
 					</a>
-					<a href="capabilities.html" className="footer__nav__link">
+					<a href="/capabilities" className="footer__nav__link">
 						Capabilities
 					</a>
-					<a href="community.html" className="footer__nav__link">
+					{/* <a href="/community" className="footer__nav__link">
 						Community
-					</a>
-					<a href="company.html" className="footer__nav__link">
+					</a> */}
+					<a href="/company" className="footer__nav__link">
 						Company
 					</a>
 					<a href="http://shift.infinite.red/" target="_blank" className="footer__nav__link">
 						Blog
 					</a>
-					<a href="contact.html" className="footer__nav__link">
+					<a href="/contact" className="footer__nav__link">
 						Contact
 					</a>
 				</div>

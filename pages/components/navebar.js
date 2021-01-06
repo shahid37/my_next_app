@@ -63,7 +63,7 @@ const NavBar = (props) => {
 					{'Company' || 'Unknown'}
 				</a>
 			</Link> */}
-			<a
+			{/* <a
 				href="/community"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69e"
 				className="nav__menu__link w-nav-link"
@@ -71,7 +71,7 @@ const NavBar = (props) => {
 				data-ix="nav-link-hover"
 			>
 				community
-			</a>
+			</a> */}
 			<a
 				href="http://shift.infinite.red/"
 				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6a2"

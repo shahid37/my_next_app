@@ -417,8 +417,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 							Contact us
 						</a>
 					</div>
-				</div>
-				<Footer />
+				</div>{' '}
 				{/*[if lte IE 9]><![endif]*/}
 				{/* Mirrored from infinite.red/company by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Dec 2020 11:36:52 GMT */}
 			</PageLayout>

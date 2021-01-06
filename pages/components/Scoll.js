@@ -141,7 +141,7 @@ class MyDocument extends React.Component {
 							>
 								Capabilities
 							</a>
-							<a
+							{/* <a
 								href="/community"
 								aria-current="page"
 								class={this.route == 'community' ? blueColor : blackColor}
@@ -149,7 +149,7 @@ class MyDocument extends React.Component {
 								style={{ opacity: 1 }}
 							>
 								Community
-							</a>
+							</a> */}
 							{/* <a
 							href="/company"
 							aria-current="page"
