@@ -4,7 +4,6 @@ const MenuButton = (props) => {
 	const [bool, setBool] = useState(false);
 
 	const { visible, setValue } = props;
-	console.log('lllllllllllllllllllllll', visible);
 	return (
 		<>
 			<div
@@ -25,12 +24,12 @@ const MenuButton = (props) => {
 					<div
 						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
 						className="nav-icon__bar--white"
-						style={{ 'will-change': 'background', 'background-color': 'rgb(255, 255, 255)' }}
+						style={{ 'background-color': 'rgb(255, 255, 255)' }}
 					></div>
 					<div
 						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
 						className="nav-icon__bar--white"
-						style={{ 'will-change': 'background', 'background-color': 'rgb(255, 255, 255)' }}
+						style={{ 'background-color': 'rgb(255, 255, 255)' }}
 					></div>
 					<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b8" className="nav-icon__bar--white" />
 					<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9" className="nav-icon__bar--white" />

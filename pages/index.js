@@ -41,7 +41,7 @@ const App = ({ portfolio, error }) => {
 								We're developers and designers who build apps and websites&nbsp;for you
 							</h1>
 							<p className="p--large p--reversed">
-								A friendly group of experts in the US who build impactful products and relationships
+								A friendly group of experts, who build impactful products and relationships
 							</p>
 						</div>
 					</div>
