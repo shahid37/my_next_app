@@ -6,7 +6,7 @@ const MenuBar = (props) => {
 	const [route, setRoute] = useState(null);
 	// const [headerColor, setHeaderColor] = useState('rgba(0,0,0,0)');
 	const [headerColor, setHeaderColor] = useState('');
-	const [windowWidth, setWindowWidth] = useState('');
+	const [windowWidth, setWindowWidth] = useState(400);
 	const [bool, setBool] = useState(false);
 	const [isHidden, setIsHidden] = React.useState(false);
 	const number = '123';

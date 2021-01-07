@@ -40,6 +40,8 @@ class MyDocument extends React.Component {
 
 	render() {
 		const { windowWidth } = this.props;
+		console.log(windowWidth, 'widthhhhhhhhhhh');
+
 		const blueColor = 'nav__menu__link-mobile w-nav-link w--current w--nav-link-open';
 		const blackColor = 'nav__menu__link-mobile w-nav-link w--nav-link-open';
 		return (
