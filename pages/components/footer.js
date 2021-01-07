@@ -55,18 +55,8 @@ const Footer = (props) => {
 									alt="Twitter icon"
 								/>
 							</a>
-							<a
-								href="https://www.instagram.com/infinitered_designers/"
-								target="_blank"
-								className="footer__contact__social__icon w-inline-block"
-							>
-								<img
-									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5eb3209221f6df4423f5786e_c-insta.svg"
-									width={20}
-									alt="Instagram icon"
-								/>
-							</a>
-							<a
+
+							{/* <a
 								href="https://github.com/pikessoft"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
@@ -76,8 +66,8 @@ const Footer = (props) => {
 									width={20}
 									alt="GitHub icon"
 								/>
-							</a>
-							<a
+							</a> */}
+							{/* <a
 								href="https://www.youtube.com/channel/UCKR2b4BNVmOzDtW1sUkU4hg"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
@@ -87,7 +77,7 @@ const Footer = (props) => {
 									width={20}
 									alt="YouTube icon"
 								/>
-							</a>
+							</a> */}
 							<a
 								href="https://www.facebook.com/PikesSoft/"
 								target="_blank"
@@ -100,7 +90,7 @@ const Footer = (props) => {
 								/>
 							</a>
 							<a
-								href="https://www.linkedin.com/company/pikes-soft/"
+								href="https://www.linkedin.com/company/pikes-soft/?originalSubdomain=pk"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>

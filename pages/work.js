@@ -67,7 +67,8 @@ const Work = ({ portfolio, error }) => {
 									<a
 										data-w-id="fb77d157-3886-01b9-8c12-b748e44bba8c"
 										// href="work/blendspace.html"
-										href={element.data.portfolio.app_link.value.url}
+										// href={element.data.portfolio.app_link.value.url}
+										href="/productDetails"
 										className="project__card w-inline-block"
 									>
 										<div

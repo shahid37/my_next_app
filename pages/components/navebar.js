@@ -121,7 +121,7 @@ const NavBar = (props) => {
 				Blog
 			</a>
 			<a href="/contact" className="nav__menu__link-mobile w-nav-link" data-ix="nav-link-hover">
-				Contact
+				Contactttttttttttt
 			</a>
 		</nav>
 	);

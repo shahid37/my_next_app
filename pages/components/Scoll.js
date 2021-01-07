@@ -14,6 +14,7 @@ class MyDocument extends React.Component {
 			headerColor: 'rgba(0, 0, 0, 0)',
 		};
 	}
+
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScroll);
 	}
@@ -38,6 +39,7 @@ class MyDocument extends React.Component {
 	};
 
 	render() {
+		const { windowWidth } = this.props;
 		const blueColor = 'nav__menu__link-mobile w-nav-link w--current w--nav-link-open';
 		const blackColor = 'nav__menu__link-mobile w-nav-link w--nav-link-open';
 		return (
@@ -76,7 +78,8 @@ class MyDocument extends React.Component {
 						style={{
 							display: this.state.visible ? 'block' : 'none',
 							height: '10676px',
-							width: '740px',
+							// width: '440px',
+							width: windowWidth,
 							background: 'white',
 						}}
 					>
@@ -171,7 +174,7 @@ class MyDocument extends React.Component {
 									data-ix="nav-link-hover"
 									style={{ opacity: 1 }}
 								>
-									{'Companyyyy' || 'Unknown'}
+									{'Company' || 'Unknown'}
 								</a>
 							</Link>
 							<a

@@ -1,20 +1,26 @@
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
+import { useState } from 'react';
 
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const companyPortfolioData = [];
+	const testimonails = [];
 	if (data) {
 		for (let i = 0; i < data.data.results.length; i++) {
 			console.log(data.data.results[i]);
 			if (data.data.results[i].type === 'portfolio') {
 				companyPortfolioData.push(data.data.results[i]);
+			} else {
+				if (data.data.results[i].type === 'testimonials_home_page') {
+					testimonails.push(data.data.results[i]);
+				}
 			}
 		}
 	}
 	return {
-		props: { portfolio: companyPortfolioData },
+		props: { portfolio: companyPortfolioData, testimonailsData: testimonails },
 	};
 };
 
@@ -38,7 +44,9 @@ const array1 = [
 	'/5e696e83157c8c24846f4964_chain%20react.png',
 ];
 
-const App = ({ portfolio, error }) => {
+const App = ({ portfolio, testimonailsData, error }) => {
+	const [testimonialsIndex, setTestimonialsIndex] = useState(0);
+	// console.log('lllll', testimonailsData[0].data.testimonials_home_page.description.value[0].text, 'kkkkkkkkkkkkkk');
 	return (
 		<PageLayout>
 			<div className="hero-home">
@@ -171,8 +179,6 @@ const App = ({ portfolio, error }) => {
 						<p className="p--large p--reversed">
 							When it comes to mobile and web technologies, we are second to none. Our software engineers
 							have worked with React.JS and React Native to build web and mobile apps for over five years.
-							We maintain some of the most popular React/React Native open source software. We also host
-							the USA’s only React Native conference.
 							<br />
 							<a href="technologies/react-native.html" className="p--reversed-link p--link">
 								Learn more
@@ -185,7 +191,7 @@ const App = ({ portfolio, error }) => {
 						</div>
 					</div>
 				</div>
-				<div className="container-scroll">
+				{/* <div className="container-scroll">
 					<a
 						data-w-id="ddfaf30e-01d4-fcee-ec44-0857e2093bb8"
 						href="https://cr.infinite.red/"
@@ -264,9 +270,9 @@ const App = ({ portfolio, error }) => {
 							</div>
 						</div>
 					</a>
-				</div>
+				</div> */}
 			</div>
-			<div className="client-list">
+			{/* <div className="client-list">
 				<div className="container">
 					<h2 className="section-intro">Some of the companies we've worked with</h2>
 					<div className="client-list__logos">
@@ -296,7 +302,7 @@ const App = ({ portfolio, error }) => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			<div className="client-testimonials">
 				<div className="container">
 					<div
@@ -309,113 +315,67 @@ const App = ({ portfolio, error }) => {
 							<div className="client-testimonials__slider__slide1 w-slide">
 								<div className="client-testimonial__slide-container">
 									<div className="client-testimonial__collection-wrapper w-dyn-list">
-										<div role="list" className="client-testimonial__collection w-dyn-items">
+										<div
+											role="list"
+											//  className="client-testimonial__collection w-dyn-items"
+											// className="my"
+										>
 											<div
 												role="listitem"
 												className="client-testimonial__collection__item w-dyn-item"
 											>
 												<p className="p--quote">
-													“The team at PikesSoft brought me from an idea, to reality. They
-													worked with me and added a unique perspective to my project and
-													created something beyond what I had imagined. They took the time to
-													listen to what I needed and quickly made it something beautiful and
-													cohesive! My experience with this design team was unparalleled!”
+													{/* {element.data.testimonails_home_page.description.value[0].text} */}
+													{
+														testimonailsData[testimonialsIndex].data.testimonials_home_page
+															.description.value[0].text
+													}
 												</p>
 												<div
 													style={{ backgroundImage: 'none' }}
 													className="client-testimonial__img"
 												/>
-												<h4 className="testimonial__client">Deby Aho</h4>
-												<p className="testimonail__company">Sellebrate</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="client-testimonials__slider__slide1 w-slide">
-								<div className="client-testimonial__slide-container">
-									<div className="client-testimonial__collection-wrapper w-dyn-list">
-										<div role="list" className="client-testimonial__collection w-dyn-items">
-											<div
-												role="listitem"
-												className="client-testimonial__collection__item w-dyn-item"
-											>
-												<p className="p--quote">
-													"We're building high visibility medical software for some of the
-													world's leading firms. PikesSoft has been an invaluable and trusted
-													partner with deep development expertise, excellent product vision,
-													and the muscle to get the job done."
-												</p>
-												<div
-													style={{ backgroundImage: 'none' }}
-													className="client-testimonial__img"
-												/>
-												<h4 className="testimonial__client">Steve Shreve</h4>
-												<p className="testimonail__company">Crossover Health</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="client-testimonials__slider__slide1 w-slide">
-								<div className="client-testimonial__slide-container">
-									<div className="client-testimonial__collection-wrapper w-dyn-list">
-										<div role="list" className="client-testimonial__collection w-dyn-items">
-											<div
-												role="listitem"
-												className="client-testimonial__collection__item w-dyn-item"
-											>
-												<p className="p--quote">
-													"They took our prototype and built it into a working production MVP,
-													and quickly adapted to changes as we did customer development."
-												</p>
-												<div
-													style={{
-														backgroundImage:
-															'url(_https_/assets.website-files.com/5e696c156810060ef59d768e/5eab6f37f839525eb81a4d16_avatar-elemeno.html)',
-													}}
-													className="client-testimonial__img"
-												/>
-												<h4 className="testimonial__client">Ed Nanale</h4>
-												<p className="testimonail__company">Elemeno</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="client-testimonials__slider__slide1 w-slide">
-								<div className="client-testimonial__slide-container">
-									<div className="client-testimonial__collection-wrapper w-dyn-list">
-										<div role="list" className="client-testimonial__collection w-dyn-items">
-											<div
-												role="listitem"
-												className="client-testimonial__collection__item w-dyn-item"
-											>
-												<p className="p--quote">
-													"We really appreciate all the help PikesSoft provided to us building
-													the app. They were always available, always professional, and a real
-													pleasure to work with."
-												</p>
-												<div
-													style={{ backgroundImage: 'none' }}
-													className="client-testimonial__img"
-												/>
-												<h4 className="testimonial__client">Dan Aronson</h4>
-												<p className="testimonail__company">Fandor</p>
+												<h4 className="testimonial__client">
+													{
+														testimonailsData[testimonialsIndex].data.testimonials_home_page
+															.author_name.value[0].text
+													}
+												</h4>
+												{/* <p className="testimonail__company">Sellebrate</p> */}
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div className="previousbutton w-slider-arrow-left">
+						<div
+							className="previousbutton w-slider-arrow-left"
+							onClick={() => {
+								if (testimonialsIndex === 0) {
+									setTestimonialsIndex(testimonailsData.length - 1);
+								} else {
+									if (testimonialsIndex > 0) {
+										setTestimonialsIndex(testimonialsIndex - 1);
+									}
+								}
+							}}
+						>
 							<img
 								src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6adcce03eb1a028fffb55b_circle-arrow-left.svg"
 								alt=""
 								className="image"
 							/>
 						</div>
-						<div className="nextbutton w-slider-arrow-right">
+						<div
+							className="nextbutton w-slider-arrow-right"
+							onClick={() => {
+								if (testimonialsIndex === 0 || testimonialsIndex < testimonailsData.length - 1) {
+									setTestimonialsIndex(testimonialsIndex + 1);
+								} else {
+									setTestimonialsIndex(0);
+								}
+							}}
+						>
 							<img
 								src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6adcce03eb1a6378ffb55c_circle-arrow-right.svg"
 								alt=""
@@ -435,7 +395,7 @@ const App = ({ portfolio, error }) => {
 							your project next!
 						</p>
 						<a
-							href="https://shift.infinite.red/behind-the-scenes-with-infinite-red-452a0df603ef"
+							// href="https://shift.infinite.red/behind-the-scenes-with-infinite-red-452a0df603ef"
 							className="section-intro-link icon-link"
 						>
 							Learn more about our process
@@ -481,7 +441,7 @@ const App = ({ portfolio, error }) => {
 									>
 										<a
 											data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-											href={element.data.portfolio.app_link.value.url}
+											href="/productDetails"
 											className="project__card w-inline-block"
 										>
 											<div
@@ -525,7 +485,7 @@ const App = ({ portfolio, error }) => {
 							probably be involved in some capacity.
 						</p>
 						<div className="cta__intro__bttns">
-							<a href="community.html" className="bttn bttn--outlined bttn--outlined-reversed w-button">
+							<a href="/community" className="bttn bttn--outlined bttn--outlined-reversed w-button">
 								Learn more
 							</a>
 						</div>
