@@ -189,9 +189,9 @@ const MobileApps = () => {
 						<div className="services-open-source__community__content">
 							<h3 className="h3--reversed">#1 Newsletter in the React Native community</h3>
 							<p className="p--reversed">
-								Infinite Red curates the React Native Newsletter which has well over 10,000 subscribers
-								and is the premier place for Reach Native news, articles, tutorials, announcements, and
-								much more.
+								PikesSoft curates the React Native Newsletter which has well over 10,000 subscribers and
+								is the premier place for Reach Native news, articles, tutorials, announcements, and much
+								more.
 							</p>
 						</div>
 					</div>

@@ -7,12 +7,12 @@ const PageLayout = (props) => {
 			{/* Last Published: Thu Dec 03 2020 16:57:12 GMT+0000 (Coordinated Universal Time) */}
 			{/* Mirrored from infinite.red/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Dec 2020 11:35:41 GMT */}
 			<meta charSet="utf-8" />
-			<title>Infinite Red: Designers and Developers in the US</title>
+			<title>PikesSoft : Designers and Developers in the Pakistan</title>
 			<meta
 				content="We design & build native mobile apps & websites. React Native, React.js, & Rails"
 				name="description"
 			/>
-			<meta content="Infinite Red: Designers and Developers in the US" property="og:title" />
+			<meta content="PikesSoft: Designers and Developers in the Pakistan" property="og:title" />
 			<meta
 				content="We design & build native mobile apps & websites. React Native, React.js, & Rails"
 				property="og:description"
@@ -21,7 +21,7 @@ const PageLayout = (props) => {
 				content="https://assets.website-files.com/5e67db0c1e7a468249544a75/5f80cc1fe7e52347ee9eb300_graph-ir.jpg"
 				property="og:image"
 			/>
-			<meta content="Infinite Red: Designers and Developers in the US" property="twitter:title" />
+			<meta content="PikesSoft: Designers and Developers in the Pakistan" property="twitter:title" />
 			<meta
 				content="We design & build native mobile apps & websites. React Native, React.js, & Rails"
 				property="twitter:description"

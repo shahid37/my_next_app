@@ -29,6 +29,14 @@ const fetchData = async () =>
 			error: true,
 			data: null,
 		}));
+const array1 = [
+	'/5e696ca86810061d659d79a8_microsoft.png',
+	'/5e696d25681006100a9d7acc_bluejeans.png',
+	'/5e696d85157c8c11856f45d0_fandor.png',
+	'/5e6fd30639a59734dc598b06_logo-arcade-city.png',
+	'/5e696e1e681006f6419d81ec_ucberkley.png',
+	'/5e696e83157c8c24846f4964_chain%20react.png',
+];
 
 const App = ({ portfolio, error }) => {
 	return (
@@ -51,7 +59,7 @@ const App = ({ portfolio, error }) => {
 				<div className="container">
 					<div className="clients-featured__collection-wrapper w-dyn-list">
 						<div role="list" className="clients-featured__collection w-dyn-items w-row">
-							{[1, 2, 3].map((element) => (
+							{array1.map((element) => (
 								<>
 									<div
 										role="listitem"
@@ -59,20 +67,7 @@ const App = ({ portfolio, error }) => {
 									>
 										<div
 											style={{
-												backgroundImage:
-													'url(https://assets.website-files.com/5e696c156810060ef59d768e/5e696ca86810061d659d79a8_microsoft.png)',
-											}}
-											className="clients-featured__collection__item__img"
-										/>
-									</div>
-									<div
-										role="listitem"
-										className="clients-featured__collection__item w-dyn-item w-col w-col-4"
-									>
-										<div
-											style={{
-												backgroundImage:
-													'url(https://assets.website-files.com/5e696c156810060ef59d768e/5e696d25681006100a9d7acc_bluejeans.png)',
+												backgroundImage: `url(${element})`,
 											}}
 											className="clients-featured__collection__item__img"
 										/>
@@ -97,7 +92,7 @@ const App = ({ portfolio, error }) => {
 							solution. We take pride in reliable, reusable, and readable works. <br />
 							Did we mention we over-communicate?
 						</p>
-						<a href="capabilities.html" className="bttn bttn--outlined bttn--spacing-top-lg w-button">
+						<a href="/capabilities" className="bttn bttn--outlined bttn--spacing-top-lg w-button">
 							What we offer
 						</a>
 					</div>
@@ -184,7 +179,7 @@ const App = ({ portfolio, error }) => {
 							</a>
 						</p>
 						<div className="cta__intro__bttns">
-							<a href="contact.html" className="bttn bttn-spacing-top-md w-button">
+							<a href="/contact" className="bttn bttn-spacing-top-md w-button">
 								Schedule a video call
 							</a>
 						</div>
@@ -257,7 +252,7 @@ const App = ({ portfolio, error }) => {
 							/>
 						</div>
 						<div className="cta__card__content">
-							<h4 className="heading">Infinite Red Academy</h4>
+							<h4 className="heading">PikesSoft</h4>
 							<p>Online training with experienced React Native engineers. </p>
 							<div className="cta__card__content__link">
 								<img
@@ -320,7 +315,7 @@ const App = ({ portfolio, error }) => {
 												className="client-testimonial__collection__item w-dyn-item"
 											>
 												<p className="p--quote">
-													“The team at Infinite Red brought me from an idea, to reality. They
+													“The team at PikesSoft brought me from an idea, to reality. They
 													worked with me and added a unique perspective to my project and
 													created something beyond what I had imagined. They took the time to
 													listen to what I needed and quickly made it something beautiful and
@@ -347,9 +342,9 @@ const App = ({ portfolio, error }) => {
 											>
 												<p className="p--quote">
 													"We're building high visibility medical software for some of the
-													world's leading firms. Infinite Red has been an invaluable and
-													trusted partner with deep development expertise, excellent product
-													vision, and the muscle to get the job done."
+													world's leading firms. PikesSoft has been an invaluable and trusted
+													partner with deep development expertise, excellent product vision,
+													and the muscle to get the job done."
 												</p>
 												<div
 													style={{ backgroundImage: 'none' }}
@@ -397,9 +392,9 @@ const App = ({ portfolio, error }) => {
 												className="client-testimonial__collection__item w-dyn-item"
 											>
 												<p className="p--quote">
-													"We really appreciate all the help Infinite Red provided to us
-													building the app. They were always available, always professional,
-													and a real pleasure to work with."
+													"We really appreciate all the help PikesSoft provided to us building
+													the app. They were always available, always professional, and a real
+													pleasure to work with."
 												</p>
 												<div
 													style={{ backgroundImage: 'none' }}
@@ -546,7 +541,7 @@ const App = ({ portfolio, error }) => {
 							impactful and professional product.
 						</p>
 					</div>
-					<a href="contact.html" className="bttn bttn--outlined w-button">
+					<a href="/contact" className="bttn bttn--outlined w-button">
 						Contact us
 					</a>
 				</div>

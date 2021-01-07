@@ -4,7 +4,7 @@ const Footer = (props) => {
 			<div className="footer__container">
 				<div className="footer__nav">
 					<a href="index.html" aria-current="page" className="footer__nav__brand w-inline-block w--current">
-						<img src={'./logo-dark.png'} width={81} alt="Infinite Red log in light gray" />
+						<img src={'./logo-dark.png'} width={81} alt="PikesSoft log in light gray" />
 					</a>
 					<a href="/work" className="footer__nav__link">
 						Work
@@ -27,23 +27,25 @@ const Footer = (props) => {
 				</div>
 				<div className="footer__contact">
 					<div className="footer__contact__locations">
-						<div className="footer__contact__locations__text">Fully remote throughout the U.S.</div>
+						<div className="footer__contact__locations__text">
+							Address : 22 H2 Block H 2 Phase 2 Johar Town, Lahore, Punjab.
+						</div>
 					</div>
 					<div className="footer__contact__info">
 						<div className="footer__contact__methods">
 							<a href="tel:+14152956152" className="footer__contact__method__link">
-								p:&nbsp;(415) 295-6152
+								p:&nbsp;+92 (42) 35941619
 							</a>
 							<a
 								href="mailto:hello@infinite.red?subject=New%20message%20from%20infinite.red"
 								className="footer__contact__method__link"
 							>
-								e:&nbsp;hello@infinite.red
+								e:&nbsp;hello@pikessoft
 							</a>
 						</div>
 						<div className="footer__contact__social">
 							<a
-								href="https://twitter.com/infinite_red"
+								href="https://twitter.com/pikes_soft"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>
@@ -65,7 +67,7 @@ const Footer = (props) => {
 								/>
 							</a>
 							<a
-								href="https://github.com/infinitered"
+								href="https://github.com/pikessoft"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>
@@ -76,7 +78,7 @@ const Footer = (props) => {
 								/>
 							</a>
 							<a
-								href="https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g"
+								href="https://www.youtube.com/channel/UCKR2b4BNVmOzDtW1sUkU4hg"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>
@@ -87,7 +89,7 @@ const Footer = (props) => {
 								/>
 							</a>
 							<a
-								href="https://www.facebook.com/infiniteredinc/"
+								href="https://www.facebook.com/PikesSoft/"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>
@@ -98,7 +100,7 @@ const Footer = (props) => {
 								/>
 							</a>
 							<a
-								href="https://www.linkedin.com/company/infinitered"
+								href="https://www.linkedin.com/company/pikes-soft/"
 								target="_blank"
 								className="footer__contact__social__icon w-inline-block"
 							>
