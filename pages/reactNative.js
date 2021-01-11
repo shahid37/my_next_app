@@ -204,7 +204,10 @@ const ReactNative = () => {
 								the rideshare experience. Our team created custom UI and a unqie experience to bring the
 								app to life.
 							</p>
-							<a href="../work/arcade-city.html" className="block-cta w-inline-block">
+							<a
+								// href="../work/arcade-city.html"
+								className="block-cta w-inline-block"
+							>
 								<div className="icon-link">View the case study</div>
 								<img
 									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
@@ -221,7 +224,10 @@ const ReactNative = () => {
 								software engineers and designers helped build, scale, and launch the app on both iOS and
 								Android.
 							</p>
-							<a href="../work/sellebrate.html" className="block-cta w-inline-block">
+							<a
+								// href="../work/sellebrate.html"
+								className="block-cta w-inline-block"
+							>
 								<div className="icon-link">View the case study</div>
 								<img
 									src="https://assets.website-files.com/5e67db0c1e7a468249544a75/5e6fe919bfeebf469720b8e3_arrow-r.svg"
@@ -245,7 +251,7 @@ const ReactNative = () => {
 								fun and app into the hands of doctors and medical staff.
 							</p>
 							<a
-								href="https://infinite-red-website.webflow.io/work/elemeno"
+								// href="https://infinite-red-website.webflow.io/work/elemeno"
 								className="block-cta w-inline-block"
 							>
 								<div className="icon-link">View the case study</div>
@@ -264,7 +270,7 @@ const ReactNative = () => {
 								features, and rewrite their version 3.0 entirely in React Native.
 							</p>
 							<a
-								href="https://infinite-red-website.webflow.io/work/fandor"
+								// href="https://infinite-red-website.webflow.io/work/fandor"
 								className="block-cta w-inline-block"
 							>
 								<div className="icon-link">View the case study</div>
