@@ -846,7 +846,7 @@ fieldset[disabled] .w-select {
 @media screen and (max-width: 991px) {
 	.w-container {
 		max-width: 728px;
-	}	
+	}
 	.w-hidden-main {
 		display: inherit !important;
 	}
@@ -3990,6 +3990,7 @@ li {
 	justify-content: center;
 	border: 1px #000;
 	text-decoration: none;
+	cursor: pointer;
 }
 .team__list__bio {
 	display: none;
@@ -4085,6 +4086,7 @@ li {
 	font-weight: 700;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 .contact__form__field {
 	height: 60px;

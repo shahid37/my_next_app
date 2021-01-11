@@ -155,16 +155,16 @@ class MyDocument extends React.Component {
 							>
 								Community
 							</a> */}
-							{/* <a
-							href="/company"
-							aria-current="page"
-							class={this.route == 'company' ? blueColor : blackColor}
-							data-ix="nav-link-hover"
-							style={{ opacity: 1 }}
-						>
-							Company
-						</a> */}
-							<Link
+							<a
+								href="/company"
+								aria-current="page"
+								class={this.route == 'company' ? blueColor : blackColor}
+								data-ix="nav-link-hover"
+								style={{ opacity: 1 }}
+							>
+								Company
+							</a>
+							{/* <Link
 								href={{
 									query: { data: this.props.data },
 									pathname: '/company',
@@ -178,7 +178,16 @@ class MyDocument extends React.Component {
 								>
 									{'Company' || 'Unknown'}
 								</a>
-							</Link>
+							</Link> */}
+							<a
+								href="/blog"
+								aria-current="page"
+								class={this.route == 'contact' ? blueColor : blackColor}
+								data-ix="nav-link-hover"
+								style={{ opacity: 1 }}
+							>
+								Blog
+							</a>
 							<a
 								href="/contact"
 								aria-current="page"
