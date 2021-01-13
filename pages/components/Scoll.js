@@ -28,6 +28,7 @@ class MyDocument extends React.Component {
 		if (top > 200) {
 			this.setState({ headerColor: 'rgba(255, 255, 255, 0.96)' });
 		} else {
+			// this.setState({ headerColor: 'rgba(0, 0, 0, 0)' });
 			this.setState({ headerColor: 'rgba(0, 0, 0, 0)' });
 		}
 	}
@@ -40,7 +41,7 @@ class MyDocument extends React.Component {
 
 	render() {
 		const { windowWidth } = this.props;
-		console.log(windowWidth, 'widthhhhhhhhhhh');
+		// console.log(windowWidth, 'widthhhhhhhhhhh');
 
 		const blueColor = 'nav__menu__link-mobile w-nav-link w--current w--nav-link-open';
 		const blackColor = 'nav__menu__link-mobile w-nav-link w--nav-link-open';

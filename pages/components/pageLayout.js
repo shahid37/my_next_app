@@ -2,6 +2,7 @@ import Footer from './footer';
 import MenuBar from './menuBar';
 
 const PageLayout = (props) => {
+	// console.log('props', props, 'props');
 	return (
 		<>
 			{/* Last Published: Thu Dec 03 2020 16:57:12 GMT+0000 (Coordinated Universal Time) */}
