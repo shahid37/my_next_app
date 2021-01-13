@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
