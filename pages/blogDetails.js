@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
+import { RichText } from 'prismic-reactjs';
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const blogs = [];
@@ -18,6 +19,15 @@ export const getStaticProps = async () => {
 		props: { blogsArray: blogs },
 	};
 };
+export const getInitialProps = async (context) => {
+	console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
+	const { slug } = context.query;
+	// const response = await getBlogPostAPI(slug);
+	console.log(slug, 'ssssssssssssssssssssssssssss');
+	return {
+		postId: '1',
+	};
+};
 
 const fetchData = async () =>
 	await axios
@@ -30,8 +40,86 @@ const fetchData = async () =>
 			error: true,
 			data: null,
 		}));
+const Test = ({ blogsArray, error, postId }) => {
+	const [blogg, setBlog] = useState({});
+	const [blogId, setBlogId] = useState(0);
+	useEffect(() => {
+		async function _() {
+			const last = window.location.href.split('=').pop();
+			let something = null;
+			setBlogId(last);
+			for (let i = 0; i < blogsArray.length; i++) {
+				if (blogsArray[i].type.includes(`blog_${last}`)) {
+					something = blogsArray[i];
+					break;
+				}
+			}
+			setBlog(something.data[`${something.type}`]);
+		}
+		_();
+	}, []);
+	const renderbase = Object.keys(blogg).map(function (keyName, keyIndex) {
+		return (
+			<div className="n p">
+				<div className="ab ac ae af ag dm ai aj">
+					{blogg[`${keyName}`].type === 'Image' && keyName === 'blog_image' ? (
+						<div class="ab ac ae af ag dm ai aj">
+							<figure className="hg hh hi hj hk hl cz da paragraph-image">
+								<div role="button" tabIndex={0} className="hm hn ho hp aj hq">
+									<div className="cz da hf">
+										<div className="hw s ho hx">
+											<div className="hy hz s">
+												<div className="hr hs t u v ht aj bm hu hv">
+													<img
+														alt="Image for post"
+														className="t u v ht aj ia ib ar wn"
+														src="https://miro.medium.com/max/60/1*QFTq4F4W8fmX26URT4gpDQ.jpeg?q=20"
+														width={3868}
+														height={2464}
+													/>
+												</div>
+												<img
+													alt="Image for post"
+													className="wj wk t u v ht aj c"
+													width={3868}
+													height={2464}
+													src="https://miro.medium.com/max/3868/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
+													srcSet="https://miro.medium.com/max/276/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 276w, https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 552w, https://miro.medium.com/max/640/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 640w, https://miro.medium.com/max/700/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 700w"
+													sizes="700px"
+												/>
+												<noscript>
+													&lt;img alt="Image for post" class="t u v ht aj"
+													src="https://miro.medium.com/max/7736/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
+													width="3868" height="2464"
+													srcSet="https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+													276w, https://miro.medium.com/max/1104/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+													552w, https://miro.medium.com/max/1280/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+													640w, https://miro.medium.com/max/1400/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+													700w" sizes="700px"/&gt;
+												</noscript>
+											</div>
+										</div>
+									</div>
+								</div>
+							</figure>
+						</div>
+					) : (
+						''
+					)}
+					{blogg[`${keyName}`].type === 'StructuredText' &&
+					keyName !== 'blog_title' &&
+					keyName !== 'short_description' &&
+					keyName !== 'author_name' &&
+					keyName !== 'read_time' &&
+					keyName !== 'publish_date'
+						? RichText.render(blogg[`${keyName}`].value)
+						: ''}
+				</div>
+			</div>
+		);
+		// and a[keyName] to get its value
+	});
 
-const Test = ({ blogsArray, error }) => {
 	return (
 		<PageLayout>
 			<style
@@ -196,393 +284,487 @@ const Test = ({ blogsArray, error }) => {
 						</p>
 					</div>
 				</div>
-			</div>
-			<div id="root">
-				<div className="a b c">
-					<div className="d e f g h i j k" />
-					<div />
-					<div className="s">
-						<div className="cs ct cu s cv cw" />
-
-						<article>
-							<section className="cx cy cz da aj db dc s" />
-							<span className="s" />
-							<div>
-								<div className="t v wi de df dg" />
-								<section className="dh di dj dk dl">
-									<div className="n p">
-										<div className="ab ac ae af ag dm ai aj">
-											<div className>
-												<h1
-													id="fc84"
-													className="dn do dp dq b dr ds dt du dv dw dx dy dz ea eb ec ed ee ef eg eh ei ej ek el em"
-												>
-													{blogsArray[0].data[`blog_${1 + 0}`].blog_title.value[0].text}
-												</h1>
-											</div>
-											<h2
-												id="17d8"
-												className="en do dp cg b eo ep eq er es et eu ev ew ex ey ez fa fb fc fd fe"
-											>
-												{blogsArray[0].data[`blog_${1 + 0}`].short_description.value[0].text}
-											</h2>
-											<div className="ff">
-												<div className="n fg fh fi fj">
-													<div className="o n">
-														<div>
+			</div>{' '}
+			{blogg ? (
+				<div className="n p">
+					<div className="ab ac ae af ag dm ai aj">
+						<div className>
+							<h1
+								id="fc84"
+								className="dn do dp dq b dr ds dt du dv dw dx dy dz ea eb ec ed ee ef eg eh ei ej ek el em"
+							>
+								{/* title */}
+								{/* {console.log(blogg.blog_title ? blogg.blog_title.type : '')} */}
+								{blogg.blog_title ? blogg.blog_title.value[0].text : ''}
+							</h1>
+						</div>
+						<h2 id="17d8" className="en do dp cg b eo ep eq er es et eu ev ew ex ey ez fa fb fc fd fe">
+							{/* {blogg.short_description.value[0].text} */}
+							{blogg.short_description ? blogg.short_description.value[0].text : ''}
+						</h2>
+						<div className="ff">
+							<div className="n fg fh fi fj">
+								<div className="o n">
+									<div>
+										<a
+											href="https://gantlaborde.medium.com/?source=post_page-----404950de4303--------------------------------"
+											rel="noopener"
+										>
+											<img
+												alt="Gant Laborde"
+												className="s fk fl fm"
+												src={
+													blogg.author_image
+														? blogg.author_image.value.main.url
+														: 'https://miro.medium.com/fit/c/96/96/1*gnkCSbW1lhpdf6ZvaLEXHQ.png'
+												}
+												// src="https://miro.medium.com/fit/c/96/96/1*gnkCSbW1lhpdf6ZvaLEXHQ.png"
+												width={48}
+												height={48}
+											/>
+										</a>
+									</div>
+									<div className="fn aj s">
+										<div className="n">
+											<div style={{ flex: 1 }}>
+												<span className="cg b fo ci em">
+													<div className="fp n o fq">
+														<span className="cg b fo ci bm fr fs ft fu fv fw em">
 															<a
 																href="https://gantlaborde.medium.com/?source=post_page-----404950de4303--------------------------------"
+																className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
 																rel="noopener"
 															>
-																<img
-																	alt="Gant Laborde"
-																	className="s fk fl fm"
-																	src={
-																		blogsArray[0].data[`blog_${1 + 0}`].author_image
-																			.value.main.url
-																	}
-																	// src="https://miro.medium.com/fit/c/96/96/1*gnkCSbW1lhpdf6ZvaLEXHQ.png"
-																	width={48}
-																	height={48}
-																/>
+																{blogg.author_name
+																	? blogg.author_name.value[0].text
+																	: 'none'}
 															</a>
-														</div>
-														<div className="fn aj s">
-															<div className="n">
-																<div style={{ flex: 1 }}>
-																	<span className="cg b fo ci em">
-																		<div className="fp n o fq">
-																			<span className="cg b fo ci bm fr fs ft fu fv fw em">
-																				<a
-																					href="https://gantlaborde.medium.com/?source=post_page-----404950de4303--------------------------------"
-																					className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
-																					rel="noopener"
-																				>
-																					{
-																						blogsArray[0].data[
-																							`blog_${1 + 0}`
-																						].author_name.value[0].text
-																					}
-																				</a>
-																			</span>
-																			<div className="ga s aq h">
-																				<span>
-																					<a
-																						href="https://medium.com/m/signin?actionUrl=%2F_%2Fsubscribe%2Fuser%2F6ca0fe37eac1&operation=register&redirect=https%3A%2F%2Fshift.infinite.red%2Fxmas-dice-mathematics-404950de4303&source=post_page-6ca0fe37eac1----404950de4303---------------------follow_byline-----------"
-																						className="cg b ch ci gb gc gd ge gf gg gh bc gi gj gk gl gm gn go dc gp gq"
-																						rel="noopener"
-																					>
-																						Follow
-																					</a>
-																				</span>
-																			</div>
-																		</div>
-																	</span>
-																</div>
-															</div>
-															<span className="cg b fo ci fe">
-																<span className="cg b fo ci bm fr fs ft fu fv fw fe">
-																	<div>
-																		<a
-																			className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
-																			rel="noopener"
-																			href="/xmas-dice-mathematics-404950de4303?source=post_page-----404950de4303--------------------------------"
-																		>
-																			{
-																				blogsArray[0].data[`blog_${1 + 0}`].date
-																					.value
-																			}
-																		</a>{' '}
-																		{/* */}·{/* */} {/* */}
-																		{/* */}{' '}
-																		{
-																			blogsArray[0].data[`blog_${1 + 0}`]
-																				.read_time.value[0].text
-																		}{' '}
-																		read
-																	</div>
-																</span>
+														</span>
+														<div className="ga s aq h">
+															<span>
+																<a
+																	href="https://medium.com/m/signin?actionUrl=%2F_%2Fsubscribe%2Fuser%2F6ca0fe37eac1&operation=register&redirect=https%3A%2F%2Fshift.infinite.red%2Fxmas-dice-mathematics-404950de4303&source=post_page-6ca0fe37eac1----404950de4303---------------------follow_byline-----------"
+																	className="cg b ch ci gb gc gd ge gf gg gh bc gi gj gk gl gm gn go dc gp gq"
+																	rel="noopener"
+																>
+																	Follow
+																</a>
 															</span>
 														</div>
 													</div>
+												</span>
+											</div>
+										</div>
+										<span className="cg b fo ci fe">
+											<span className="cg b fo ci bm fr fs ft fu fv fw fe">
+												<div>
+													<a
+														className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
+														rel="noopener"
+														href="/xmas-dice-mathematics-404950de4303?source=post_page-----404950de4303--------------------------------"
+													>
+														{blogg.publish_date ? blogg.publish_date.value : ''}
+													</a>{' '}
+													{/* */}·{/* */} {/* */}
+													{blogg.read_time ? blogg.read_time.value[0].text : '5'} read
+												</div>
+											</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				''
+			)}
+			{renderbase}
+		</PageLayout>
+	);
+};
+
+const my = () => {
+	return (
+		<div id="root">
+			<div className="a b c">
+				<div className="d e f g h i j k" />
+				<div />
+				<div className="s">
+					<div className="cs ct cu s cv cw" />
+
+					<article>
+						<section className="cx cy cz da aj db dc s" />
+						<span className="s" />
+						<div>
+							<div className="t v wi de df dg" />
+							<section className="dh di dj dk dl">
+								<div className="n p">
+									<div className="ab ac ae af ag dm ai aj">
+										<div className>
+											<h1
+												id="fc84"
+												className="dn do dp dq b dr ds dt du dv dw dx dy dz ea eb ec ed ee ef eg eh ei ej ek el em"
+											>
+												{blogsArray[0].data[`blog_${1 + 0}`].blog_title.value[0].text}
+											</h1>
+										</div>
+										<h2
+											id="17d8"
+											className="en do dp cg b eo ep eq er es et eu ev ew ex ey ez fa fb fc fd fe"
+										>
+											{blogsArray[0].data[`blog_${1 + 0}`].short_description.value[0].text}
+										</h2>
+										<div className="ff">
+											<div className="n fg fh fi fj">
+												<div className="o n">
+													<div>
+														<a
+															href="https://gantlaborde.medium.com/?source=post_page-----404950de4303--------------------------------"
+															rel="noopener"
+														>
+															<img
+																alt="Gant Laborde"
+																className="s fk fl fm"
+																src={
+																	blogsArray[0].data[`blog_${1 + 0}`].author_image
+																		.value.main.url
+																}
+																// src="https://miro.medium.com/fit/c/96/96/1*gnkCSbW1lhpdf6ZvaLEXHQ.png"
+																width={48}
+																height={48}
+															/>
+														</a>
+													</div>
+													<div className="fn aj s">
+														<div className="n">
+															<div style={{ flex: 1 }}>
+																<span className="cg b fo ci em">
+																	<div className="fp n o fq">
+																		<span className="cg b fo ci bm fr fs ft fu fv fw em">
+																			<a
+																				href="https://gantlaborde.medium.com/?source=post_page-----404950de4303--------------------------------"
+																				className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
+																				rel="noopener"
+																			>
+																				{
+																					blogsArray[0].data[`blog_${1 + 0}`]
+																						.author_name.value[0].text
+																				}
+																			</a>
+																		</span>
+																		<div className="ga s aq h">
+																			<span>
+																				<a
+																					href="https://medium.com/m/signin?actionUrl=%2F_%2Fsubscribe%2Fuser%2F6ca0fe37eac1&operation=register&redirect=https%3A%2F%2Fshift.infinite.red%2Fxmas-dice-mathematics-404950de4303&source=post_page-6ca0fe37eac1----404950de4303---------------------follow_byline-----------"
+																					className="cg b ch ci gb gc gd ge gf gg gh bc gi gj gk gl gm gn go dc gp gq"
+																					rel="noopener"
+																				>
+																					Follow
+																				</a>
+																			</span>
+																		</div>
+																	</div>
+																</span>
+															</div>
+														</div>
+														<span className="cg b fo ci fe">
+															<span className="cg b fo ci bm fr fs ft fu fv fw fe">
+																<div>
+																	<a
+																		className="cm cn av aw ax ay az ba bb bc fx bf fy fz"
+																		rel="noopener"
+																		href="/xmas-dice-mathematics-404950de4303?source=post_page-----404950de4303--------------------------------"
+																	>
+																		{blogsArray[0].data[`blog_${1 + 0}`].date.value}
+																	</a>{' '}
+																	{/* */}·{/* */} {/* */}
+																	{/* */}{' '}
+																	{
+																		blogsArray[0].data[`blog_${1 + 0}`].read_time
+																			.value[0].text
+																	}{' '}
+																	read
+																</div>
+															</span>
+														</span>
+													</div>
 												</div>
 											</div>
-											<figure className="hg hh hi hj hk hl cz da paragraph-image">
-												<div role="button" tabIndex={0} className="hm hn ho hp aj hq">
-													<div className="cz da hf">
-														<div className="hw s ho hx">
-															<div className="hy hz s">
-																<div className="hr hs t u v ht aj bm hu hv">
-																	<img
-																		alt="Image for post"
-																		className="t u v ht aj ia ib ar wn"
-																		src="https://miro.medium.com/max/60/1*QFTq4F4W8fmX26URT4gpDQ.jpeg?q=20"
-																		width={3868}
-																		height={2464}
-																	/>
-																</div>
+										</div>
+										<figure className="hg hh hi hj hk hl cz da paragraph-image">
+											<div role="button" tabIndex={0} className="hm hn ho hp aj hq">
+												<div className="cz da hf">
+													<div className="hw s ho hx">
+														<div className="hy hz s">
+															<div className="hr hs t u v ht aj bm hu hv">
 																<img
 																	alt="Image for post"
-																	className="wj wk t u v ht aj c"
+																	className="t u v ht aj ia ib ar wn"
+																	src="https://miro.medium.com/max/60/1*QFTq4F4W8fmX26URT4gpDQ.jpeg?q=20"
 																	width={3868}
 																	height={2464}
-																	src="https://miro.medium.com/max/3868/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
-																	srcSet="https://miro.medium.com/max/276/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 276w, https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 552w, https://miro.medium.com/max/640/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 640w, https://miro.medium.com/max/700/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 700w"
-																	sizes="700px"
 																/>
-																<noscript>
-																	&lt;img alt="Image for post" class="t u v ht aj"
-																	src="https://miro.medium.com/max/7736/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
-																	width="3868" height="2464"
-																	srcSet="https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
-																	276w,
-																	https://miro.medium.com/max/1104/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
-																	552w,
-																	https://miro.medium.com/max/1280/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
-																	640w,
-																	https://miro.medium.com/max/1400/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
-																	700w" sizes="700px"/&gt;
-																</noscript>
 															</div>
+															<img
+																alt="Image for post"
+																className="wj wk t u v ht aj c"
+																width={3868}
+																height={2464}
+																src="https://miro.medium.com/max/3868/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
+																srcSet="https://miro.medium.com/max/276/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 276w, https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 552w, https://miro.medium.com/max/640/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 640w, https://miro.medium.com/max/700/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 700w"
+																sizes="700px"
+															/>
+															<noscript>
+																&lt;img alt="Image for post" class="t u v ht aj"
+																src="https://miro.medium.com/max/7736/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
+																width="3868" height="2464"
+																srcSet="https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+																276w,
+																https://miro.medium.com/max/1104/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+																552w,
+																https://miro.medium.com/max/1280/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+																640w,
+																https://miro.medium.com/max/1400/1*QFTq4F4W8fmX26URT4gpDQ.jpeg
+																700w" sizes="700px"/&gt;
+															</noscript>
 														</div>
 													</div>
 												</div>
-											</figure>
+											</div>
+										</figure>
 
-											<ol className>
-												<li
-													id="a9cd"
-													className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy jn jo jp em"
-													data-selectable-paragraph
-												>
-													“Which days will it skip?”
-												</li>
-												<li
-													id="067d"
-													className="id ie dp if b eo jq ih ii er jr ik il im js io ip iq jt is it iu ju iw ix iy jn jo jp em"
-													data-selectable-paragraph
-												>
-													“Surely they can still count down from 25?”
-												</li>
-												<li
-													id={7278}
-													className="id ie dp if b eo jq ih ii er jr ik il im js io ip iq jt is it iu ju iw ix iy jn jo jp em"
-													data-selectable-paragraph
-												>
-													“I wonder if there’s a mistake and they could be optimized?”
-												</li>
-											</ol>
-											<p
-												id="896f"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+										<ol className>
+											<li
+												id="a9cd"
+												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy jn jo jp em"
 												data-selectable-paragraph
 											>
-												If you’re about to take a lunch, drive, or have any alone time soon,
-												stop reading here. You can bookmark this page, give it claps, or share
-												it on social so you can find it later when you’d like to compare
-												results. This is a fun problem, and you can solve it mentally. It’s like
-												a fidget-spinner for your mind.
-											</p>
-										</div>
+												“Which days will it skip?”
+											</li>
+											<li
+												id="067d"
+												className="id ie dp if b eo jq ih ii er jr ik il im js io ip iq jt is it iu ju iw ix iy jn jo jp em"
+												data-selectable-paragraph
+											>
+												“Surely they can still count down from 25?”
+											</li>
+											<li
+												id={7278}
+												className="id ie dp if b eo jq ih ii er jr ik il im js io ip iq jt is it iu ju iw ix iy jn jo jp em"
+												data-selectable-paragraph
+											>
+												“I wonder if there’s a mistake and they could be optimized?”
+											</li>
+										</ol>
+										<p
+											id="896f"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											If you’re about to take a lunch, drive, or have any alone time soon, stop
+											reading here. You can bookmark this page, give it claps, or share it on
+											social so you can find it later when you’d like to compare results. This is
+											a fun problem, and you can solve it mentally. It’s like a fidget-spinner for
+											your mind.
+										</p>
 									</div>
-								</section>
-								<div className="n p ff jy jz ka" role="separator">
-									<span className="kb fk gp kc kd ke" />
-									<span className="kb fk gp kc kd ke" />
-									<span className="kb fk gp kc kd" />
 								</div>
-								<section className="dh di dj dk dl">
-									<div className="n p">
-										<div className="ab ac ae af ag dm ai aj">
-											<h1
-												id="52e4"
-												className="kf kg dp cg kh ki kj ih kk kl km ik kn ko kp kq kr ks kt ku kv kw kx ky kz la em"
-												data-selectable-paragraph
-											>
-												The Analysis
-											</h1>
-											<p
-												id="fdfb"
-												className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												Dice have six sides, so given two dice that means we should have 6² (36)
-												possible represented values. While it would be awesome to be able to
-												represent a countdown to Xmas as far as 36 days out you know that’s not
-												the case. You can disprove this quickly by thinking out the last 10
-												days. The right die (the one's spot), will need to represent 10
-												different values in a countdown, but it only can hold 6. We already know
-												we’ll have to sacrifice some values from the left die (the ten’s spot).
-											</p>
-											<h2
-												id="4d16"
-												className="lg kg dp cg kh lh li eq kk lj lk et kn eu ll ew kr ex lm ez kv fa ln fc kz lo em"
-												data-selectable-paragraph
-											>
-												First Pass
-											</h2>
-											<p
-												id="e308"
-												className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												So six numbers from the right die, means you’ll need four numbers from
-												the left die to get to 10 so you can properly countdown from nine to
-												zero. That leaves two leftover values you can burn on the left die (6–4
-												= 2).
-											</p>
-											<p
-												id="fa68"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												So there it is right? For the dice to count down from 25, you need to
-												duplicate two and one, right?
-											</p>
-											<pre className="hg hh hi hj hk lp lq bv">
-												<span
-													id={8612}
-													className="em lg kg dp lr b ls lt lu s lv"
-													data-selectable-paragraph
-												>
-													<strong className="lr jl">
-														firstDie = [0, 1, 2, 3, 4, 5]
-														<br />
-														secondDie = [1, 2, 6, 7, 8, 9]
-													</strong>
-												</span>
-											</pre>
-											<p
-												id={6339}
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												<strong className="if jl">
-													<em className="jm">Tadaaaa!</em>
-												</strong>
-											</p>
-											<p
-												id="c4b2"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												Oh, wait. How can we represent five days left? Normally, you’d represent
-												that with{' '}
-												<code className="hx lw lx ly lr b">
-													<strong className="if jl">05</strong>
-												</code>{' '}
-												but the zero and the five would be on the same single die. Does this
-												mean five days before Xmas we have to hide one of these dice and hope we
-												don’t lose it? <em className="jm">That’s kinda lame … </em>
-												😔
-											</p>
-											<p
-												id="0b1a"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												That can’t be it. The holiday dice would look silly with only one die.
-												We’re missing something here.
-											</p>
-
-											<h2
-												id="a5e9"
-												className="lg kg dp cg kh lh mi eq kk lj mj et kn eu mk ew kr ex ml ez kv fa mm fc kz lo em"
-												data-selectable-paragraph
-											>
-												Second Pass
-											</h2>
-											<p
-												id={4000}
-												className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												The only way this works is if we get an extra number on those dice. And
-												we know that number <em className="jm">has </em>to be zero. So who do we
-												bump?
-											</p>
-											<p
-												id="15ee"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												Funny enough, the answer reminds me of the last article I wrote about
-												solving a fun problem like this:
-											</p>
-
-											<p
-												id="9f3c"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												In that blog post<strong className="if jl"> (SPOILER ALERT)</strong> the
-												answer was symmetry. So what’s the answer here? Think symmetry… or is it
-												asymmetry?
-											</p>
-											<pre className="hg hh hi hj hk lp lq bv">
-												<span
-													id="a02d"
-													className="em lg kg dp lr b ls lt lu s lv"
-													data-selectable-paragraph
-												>
-													<strong className="lr jl">
-														firstDie = [0, 1, 2, 3, 4, 5]
-														<br />
-														secondDie = [0, 1, 2, 6, 7, 8]
-													</strong>
-												</span>
-											</pre>
-											<p
-												id="b222"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												Notice which one got ejected? It’s nine! Or it’s six! Doesn’t matter
-												because they are just headstands of one another. Whichever number we
-												choose can become the other with ease. Now we can fit our zero!
-											</p>
-											<p
-												id="95de"
-												className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												As a fun anecdote, that means the repeated digits are where we get
-												burned. So that means anything less than 33 should be game. So November
-												22nd (exactly 32 days before Xmas) you can break out the dice and start
-												the countdown!
-											</p>
-											<h1
-												id="ea0d"
-												className="kf kg dp cg kh ki nm ih kk kl nn ik kn ko no kq kr ks np ku kv kw nq ky kz la em"
-												data-selectable-paragraph
-											>
-												In Summation
-											</h1>
-											<p
-												id="1d32"
-												className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
-												data-selectable-paragraph
-											>
-												When I got home, I immediately checked the dice. Yup! It’s exactly those
-												numbers for each die. I can say I really enjoyed the drive with such a
-												fun mental exercise. Who knew!? This is the second time symmetry and
-												combination theory have snuck up in a real-world problem. If you find
-												more examples of similar fun problems, please share them with me!
-											</p>
-										</div>
-									</div>
-								</section>
-								<div className="n p ff jy jz ka" role="separator">
-									<span className="kb fk gp kc kd ke" />
-									<span className="kb fk gp kc kd ke" />
-									<span className="kb fk gp kc kd" />
-								</div>
+							</section>
+							<div className="n p ff jy jz ka" role="separator">
+								<span className="kb fk gp kc kd ke" />
+								<span className="kb fk gp kc kd ke" />
+								<span className="kb fk gp kc kd" />
 							</div>
-						</article>
-					</div>
+							<section className="dh di dj dk dl">
+								<div className="n p">
+									<div className="ab ac ae af ag dm ai aj">
+										<h1
+											id="52e4"
+											className="kf kg dp cg kh ki kj ih kk kl km ik kn ko kp kq kr ks kt ku kv kw kx ky kz la em"
+											data-selectable-paragraph
+										>
+											The Analysis
+										</h1>
+										<p
+											id="fdfb"
+											className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											Dice have six sides, so given two dice that means we should have 6² (36)
+											possible represented values. While it would be awesome to be able to
+											represent a countdown to Xmas as far as 36 days out you know that’s not the
+											case. You can disprove this quickly by thinking out the last 10 days. The
+											right die (the one's spot), will need to represent 10 different values in a
+											countdown, but it only can hold 6. We already know we’ll have to sacrifice
+											some values from the left die (the ten’s spot).
+										</p>
+										<h2
+											id="4d16"
+											className="lg kg dp cg kh lh li eq kk lj lk et kn eu ll ew kr ex lm ez kv fa ln fc kz lo em"
+											data-selectable-paragraph
+										>
+											First Pass
+										</h2>
+										<p
+											id="e308"
+											className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											So six numbers from the right die, means you’ll need four numbers from the
+											left die to get to 10 so you can properly countdown from nine to zero. That
+											leaves two leftover values you can burn on the left die (6–4 = 2).
+										</p>
+										<p
+											id="fa68"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											So there it is right? For the dice to count down from 25, you need to
+											duplicate two and one, right?
+										</p>
+										<pre className="hg hh hi hj hk lp lq bv">
+											<span
+												id={8612}
+												className="em lg kg dp lr b ls lt lu s lv"
+												data-selectable-paragraph
+											>
+												<strong className="lr jl">
+													firstDie = [0, 1, 2, 3, 4, 5]
+													<br />
+													secondDie = [1, 2, 6, 7, 8, 9]
+												</strong>
+											</span>
+										</pre>
+										<p
+											id={6339}
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											<strong className="if jl">
+												<em className="jm">Tadaaaa!</em>
+											</strong>
+										</p>
+										<p
+											id="c4b2"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											Oh, wait. How can we represent five days left? Normally, you’d represent
+											that with{' '}
+											<code className="hx lw lx ly lr b">
+												<strong className="if jl">05</strong>
+											</code>{' '}
+											but the zero and the five would be on the same single die. Does this mean
+											five days before Xmas we have to hide one of these dice and hope we don’t
+											lose it? <em className="jm">That’s kinda lame … </em>
+											😔
+										</p>
+										<p
+											id="0b1a"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											That can’t be it. The holiday dice would look silly with only one die. We’re
+											missing something here.
+										</p>
+
+										<h2
+											id="a5e9"
+											className="lg kg dp cg kh lh mi eq kk lj mj et kn eu mk ew kr ex ml ez kv fa mm fc kz lo em"
+											data-selectable-paragraph
+										>
+											Second Pass
+										</h2>
+										<p
+											id={4000}
+											className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											The only way this works is if we get an extra number on those dice. And we
+											know that number <em className="jm">has </em>to be zero. So who do we bump?
+										</p>
+										<p
+											id="15ee"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											Funny enough, the answer reminds me of the last article I wrote about
+											solving a fun problem like this:
+										</p>
+
+										<p
+											id="9f3c"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											In that blog post<strong className="if jl"> (SPOILER ALERT)</strong> the
+											answer was symmetry. So what’s the answer here? Think symmetry… or is it
+											asymmetry?
+										</p>
+										<pre className="hg hh hi hj hk lp lq bv">
+											<span
+												id="a02d"
+												className="em lg kg dp lr b ls lt lu s lv"
+												data-selectable-paragraph
+											>
+												<strong className="lr jl">
+													firstDie = [0, 1, 2, 3, 4, 5]
+													<br />
+													secondDie = [0, 1, 2, 6, 7, 8]
+												</strong>
+											</span>
+										</pre>
+										<p
+											id="b222"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											Notice which one got ejected? It’s nine! Or it’s six! Doesn’t matter because
+											they are just headstands of one another. Whichever number we choose can
+											become the other with ease. Now we can fit our zero!
+										</p>
+										<p
+											id="95de"
+											className="id ie dp if b eo ig ih ii er ij ik il im in io ip iq ir is it iu iv iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											As a fun anecdote, that means the repeated digits are where we get burned.
+											So that means anything less than 33 should be game. So November 22nd
+											(exactly 32 days before Xmas) you can break out the dice and start the
+											countdown!
+										</p>
+										<h1
+											id="ea0d"
+											className="kf kg dp cg kh ki nm ih kk kl nn ik kn ko no kq kr ks np ku kv kw nq ky kz la em"
+											data-selectable-paragraph
+										>
+											In Summation
+										</h1>
+										<p
+											id="1d32"
+											className="id ie dp if b eo lb ih ii er lc ik il im ld io ip iq le is it iu lf iw ix iy dh em"
+											data-selectable-paragraph
+										>
+											When I got home, I immediately checked the dice. Yup! It’s exactly those
+											numbers for each die. I can say I really enjoyed the drive with such a fun
+											mental exercise. Who knew!? This is the second time symmetry and combination
+											theory have snuck up in a real-world problem. If you find more examples of
+											similar fun problems, please share them with me!
+										</p>
+									</div>
+								</div>
+							</section>
+							<div className="n p ff jy jz ka" role="separator">
+								<span className="kb fk gp kc kd ke" />
+								<span className="kb fk gp kc kd ke" />
+								<span className="kb fk gp kc kd" />
+							</div>
+						</div>
+					</article>
 				</div>
 			</div>
-		</PageLayout>
+		</div>
 	);
 };
 export default Test;
