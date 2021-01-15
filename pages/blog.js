@@ -5,14 +5,18 @@ import { constants } from '../constants';
 export const getStaticProps = async () => {
 	// console.log('lllllllllllllllllllllllll', webflow - icons);
 	const data = await fetchData();
+	const data2 = await fetchData2();
+	const finalData = [data, data2];
 	const blogs = [];
-	if (data) {
-		for (let i = 0; i < data.data.results.length; i++) {
-			if (data.data.results[i].type.includes('blog')) {
-				blogs.push(data.data.results[i]);
+
+	if (finalData) {
+		for (let j = 0; j < finalData.length; j++) {
+			for (let i = 0; i < finalData[j].data.results.length; i++) {
+				if (finalData[j].data.results[i].type.includes('blog')) {
+					blogs.push(finalData[j].data.results[i]);
+				}
 			}
 		}
-		// console.log(blogs.length, 'BLOGSSSSSSSSSSSSSSSSS');
 	}
 	return {
 		// props: data,
@@ -31,9 +35,18 @@ const fetchData = async () =>
 			error: true,
 			data: null,
 		}));
-
+const fetchData2 = async () =>
+	await axios
+		.get(`${constants.base_url2}`)
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
 const Blog = ({ blogsData }) => {
-	const [indexValue, setIndexValue] = useState('');
 	return (
 		<PageLayout>
 			<div className="hero-sub hero-img--work">
@@ -53,7 +66,8 @@ const Blog = ({ blogsData }) => {
 					<section className="u-marginTop30 u-xs-margin0 u-marginBottom15 u-maxWidth1032 u-sm-paddingLeft20 u-sm-paddingRight20 u-borderBox u-marginAuto">
 						<div className="row u-marginTop30 u-marginLeftNegative12 u-marginRightNegative12">
 							{blogsData.map((element, index) => {
-								const val = blogsData.length - index;
+								let type = element.type;
+								let val = element.type.split('_').pop();
 								return (
 									<div
 										className="col u-xs-size12of12 js-trackPostPresentation u-paddingLeft12 u-marginBottom15 u-paddingRight12 u-size4of12"
@@ -62,24 +76,49 @@ const Blog = ({ blogsData }) => {
 										data-index={2}
 										data-scroll="native"
 									>
-										<div className="u-lineHeightBase postItem">
-											<a
-												// href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
-												// href="/blogDetails"
-												href={`/blogDetails?slug=${val}`}
-												data-action="open-post"
-												data-action-value="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
-												className="u-block u-xs-height170 u-height172 u-backgroundSizeCover u-backgroundOriginBorderBox u-backgroundColorGrayLight u-borderLighter"
-												style={{
-													backgroundImage: `url("${
-														element.data[`blog_${val}`].blog_image.value.main.url
-													}")`,
-													backgroundPosition: '50% 50% !important',
-												}}
-											>
-												<span className="u-textScreenReader"></span>
-											</a>
-										</div>
+										{element.data[`${type}`].blog_image !== undefined ? (
+											<div className="u-lineHeightBase postItem">
+												<a
+													// href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+													// href="/blogDetails"
+													href={`/blogDetails?slug=${val}`}
+													data-action="open-post"
+													data-action-value="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+													className="u-block u-xs-height170 u-height172 u-backgroundSizeCover u-backgroundOriginBorderBox u-backgroundColorGrayLight u-borderLighter"
+													style={{
+														backgroundImage: `url("${
+															element.data[`${type}`]
+																? element.data[`${type}`].blog_image.value.main.url
+																: '	'
+														}")`,
+														backgroundPosition: '50% 50% !important',
+													}}
+												>
+													<span className="u-textScreenReader"></span>
+												</a>
+											</div>
+										) : (
+											<>
+												<div className="u-lineHeightBase postItem">
+													<a
+														// href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+														href={`/blogDetails?slug=${val}`}
+														data-action="open-post"
+														data-action-value="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+														className="u-block u-xs-height170 u-height172 u-backgroundSizeCover u-backgroundOriginBorderBox u-backgroundColorGrayLight u-borderLighter"
+														style={{
+															backgroundImage:
+																'url("https://cdn-images-1.medium.com/max/400/1*WZEIsgBEOwUBkZYpl4r3VA.jpeg")',
+															backgroundPosition: '50% 50% !important',
+														}}
+													>
+														<span className="u-textScreenReader">
+															TensorFlow.js + AWS Amplify
+														</span>
+													</a>
+												</div>
+											</>
+										)}
 										<div className="col u-xs-marginBottom10 u-paddingLeft0 u-paddingRight0 u-paddingTop15 u-marginBottom30">
 											<a
 												className
@@ -89,12 +128,12 @@ const Blog = ({ blogsData }) => {
 											>
 												<h3 className="u-contentSansBold u-lineHeightTightest u-xs-fontSize24 u-paddingBottom2 u-paddingTop5 u-fontSize32">
 													<div className="u-letterSpacingTight u-lineHeightTighter u-breakWord u-textOverflowEllipsis u-lineClamp3 u-fontSize24">
-														{element.data[`blog_${val}`].blog_title.value[0].text}
+														{element.data[`${type}`].blog_title.value[0].text}
 													</div>
 												</h3>
 												<div className="u-contentSansThin u-lineHeightBaseSans u-fontSize24 u-xs-fontSize18 u-textColorNormal u-baseColor--textNormal">
 													<div className="u-fontSize18 u-letterSpacingTight u-lineHeightTight u-marginTop7 u-textColorNormal u-baseColor--textNormal">
-														{element.data[`blog_${val}`].short_description.value[0].text}
+														{element.data[`${type}`].short_description.value[0].text}
 													</div>
 												</div>
 											</a>
@@ -113,8 +152,7 @@ const Blog = ({ blogsData }) => {
 														>
 															<img
 																src={
-																	element.data[`blog_${val}`].author_image.value.main
-																		.url
+																	element.data[`${type}`].author_image.value.main.url
 																}
 																className="avatar-image u-size36x36 u-xs-size32x32"
 																alt="Go to the profile of Gant Laborde"
@@ -132,18 +170,16 @@ const Blog = ({ blogsData }) => {
 															data-collection-slug="infinite-red"
 															dir="auto"
 														>
-															{element.data[`blog_${val}`].author_name.value[0].text}
+															{element.data[`${type}`].author_name.value[0].text}
 														</a>
 														<div className="ui-caption u-fontSize12 u-baseColor--textNormal u-textColorNormal js-postMetaInlineSupplemental">
 															<time dateTime="2020-09-01T16:01:01.130Z">
-																{element.data[`blog_${val}`].publish_date.value}
+																{element.data[`${type}`].publish_date.value}
 															</time>
 															<span className="middotDivider u-fontSize12" />
 															<span
 																className="readingTime"
-																title={
-																	element.data[`blog_${val}`].read_time.value[0].text
-																}
+																title={element.data[`${type}`].read_time.value[0].text}
 															/>
 														</div>
 													</div>
@@ -151,7 +187,6 @@ const Blog = ({ blogsData }) => {
 											</div>
 										</div>
 									</div>
-									// </div>
 								);
 							})}
 						</div>

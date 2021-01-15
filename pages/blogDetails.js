@@ -5,12 +5,16 @@ import { constants } from '../constants';
 import { RichText } from 'prismic-reactjs';
 export const getStaticProps = async () => {
 	const data = await fetchData();
+	const data2 = await fetchData2();
+	const finalData = [data, data2];
 	const blogs = [];
-	if (data) {
-		for (let i = 0; i < data.data.results.length; i++) {
-			// console.log(data.data.results[i]);
-			if (data.data.results[i].type.includes('blog')) {
-				blogs.push(data.data.results[i]);
+
+	if (finalData) {
+		for (let j = 0; j < finalData.length; j++) {
+			for (let i = 0; i < finalData[j].data.results.length; i++) {
+				if (finalData[j].data.results[i].type.includes('blog')) {
+					blogs.push(finalData[j].data.results[i]);
+				}
 			}
 		}
 	}
@@ -19,19 +23,21 @@ export const getStaticProps = async () => {
 		props: { blogsArray: blogs },
 	};
 };
-export const getInitialProps = async (context) => {
-	console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
-	const { slug } = context.query;
-	// const response = await getBlogPostAPI(slug);
-	console.log(slug, 'ssssssssssssssssssssssssssss');
-	return {
-		postId: '1',
-	};
-};
 
 const fetchData = async () =>
 	await axios
 		.get(`${constants.base_url}`)
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
+const fetchData2 = async () =>
+	await axios
+		.get(`${constants.base_url2}`)
 		.then((res) => ({
 			error: false,
 			data: res.data,
@@ -48,6 +54,7 @@ const Test = ({ blogsArray, error, postId }) => {
 			const last = window.location.href.split('=').pop();
 			let something = null;
 			setBlogId(last);
+			console.log(blogsArray, 'hhhhhhhhhhhhhhhhhhhhhhhhhhh');
 			for (let i = 0; i < blogsArray.length; i++) {
 				if (blogsArray[i].type.includes(`blog_${last}`)) {
 					something = blogsArray[i];
@@ -84,7 +91,7 @@ const Test = ({ blogsArray, error, postId }) => {
 													width={3868}
 													height={2464}
 													src="https://miro.medium.com/max/3868/1*QFTq4F4W8fmX26URT4gpDQ.jpeg"
-													srcSet="https://miro.medium.com/max/276/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 276w, https://miro.medium.com/max/552/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 552w, https://miro.medium.com/max/640/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 640w, https://miro.medium.com/max/700/1*QFTq4F4W8fmX26URT4gpDQ.jpeg 700w"
+													srcSet={blogg[`${keyName}`].value.main.url}
 													sizes="700px"
 												/>
 												<noscript>

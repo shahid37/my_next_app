@@ -5,28 +5,46 @@ import { useState } from 'react';
 
 export const getStaticProps = async () => {
 	const data = await fetchData();
+	const data2 = await fetchData2();
+	const finalData = [data, data2];
 	const companyPortfolioData = [];
 	const testimonails = [];
-	if (data) {
-		for (let i = 0; i < data.data.results.length; i++) {
-			console.log(data.data.results[i]);
-			if (data.data.results[i].type === 'portfolio') {
-				companyPortfolioData.push(data.data.results[i]);
-			} else {
-				if (data.data.results[i].type === 'testimonials_home_page') {
-					testimonails.push(data.data.results[i]);
+	const blogs = [];
+	if (finalData) {
+		for (let j = 0; j < finalData.length; j++) {
+			for (let i = 0; i < finalData[j].data.results.length; i++) {
+				// console.log(data.data.results[i]);
+				if (finalData[j].data.results[i].type === 'portfolio') {
+					companyPortfolioData.push(finalData[j].data.results[i]);
+				}
+				if (finalData[j].data.results[i].type === 'testimonials_home_page') {
+					testimonails.push(finalData[j].data.results[i]);
+				}
+				if (finalData[j].data.results[i].type.includes('blog')) {
+					blogs.push(finalData[j].data.results[i]);
 				}
 			}
 		}
 	}
 	return {
-		props: { portfolio: companyPortfolioData, testimonailsData: testimonails },
+		props: { portfolio: companyPortfolioData, testimonailsData: testimonails, blogsArray: blogs },
 	};
 };
 
 const fetchData = async () =>
 	await axios
 		.get(`${constants.base_url}`)
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
+const fetchData2 = async () =>
+	await axios
+		.get(`${constants.base_url2}`)
 		.then((res) => ({
 			error: false,
 			data: res.data,
@@ -44,7 +62,7 @@ const array1 = [
 	'/5e696e83157c8c24846f4964_chain%20react.png',
 ];
 
-const App = ({ portfolio, testimonailsData, error }) => {
+const App = ({ portfolio, testimonailsData, error, blogsArray }) => {
 	const [testimonialsIndex, setTestimonialsIndex] = useState(0);
 	// console.log('lllll', testimonailsData[0].data.testimonials_home_page.description.value[0].text, 'kkkkkkkkkkkkkk');
 	return (
@@ -476,14 +494,182 @@ const App = ({ portfolio, testimonailsData, error }) => {
 			<div className="cta-img cta-img--community">
 				<div className="container">
 					<div className="cta__intro">
-						<h2 className="h2--reversed">Community leaders</h2>
-						<p className="p--large p--reversed">
-							With over 30 open source projects, a screencast series, multiple books and published
-							articles, and heavy involvement in the React Native and Rails communities, our team is
-							leading the way. We've organized meetups and conferences as well as participated in many
-							others as speakers and attendees. If it's relevant to the technologies we love, we'll
-							probably be involved in some capacity.
-						</p>
+						<div
+							className="streamItem streamItem--section js-streamItem"
+							data-action-scope="_actionscope_4"
+						>
+							<section className="u-marginTop30 u-xs-margin0 u-marginBottom15 u-maxWidth1032 u-sm-paddingLeft20 u-sm-paddingRight20 u-borderBox u-marginAuto">
+								<div className="row u-marginTop30 u-marginLeftNegative12 u-marginRightNegative12">
+									<div className="hero-sub__content">
+										<h1 className="h1--reversed">Our Blog</h1>
+										<p className="p--large p--reversed">
+											Our company has teams working on multiple projects across all domains.
+											&nbsp;Some of us are assisting external groups, and some of us are leading
+											client ideas through design and development to a finished product.
+										</p>
+									</div>
+									<div
+										style={{
+											justifyContent: 'center',
+											alignItems: 'center',
+											justifyItems: 'center',
+											marginLeft: 'auto',
+											marginRight: 'auto',
+										}}
+									>
+										{blogsArray.map((element, index) => {
+											// const val = index + 1;
+											let type = element.type;
+											let val = element.type.split('_').pop();
+											// console.log(val, 'llllllllllllllllllllllll');
+
+											return (
+												<div
+													className="col u-xs-size12of12 js-trackPostPresentation u-paddingLeft12 u-marginBottom15 u-paddingRight12 u-size4of12"
+													data-source="collection_home---4------2-----------------------"
+													data-post-id="e08a14fd995"
+													data-index={2}
+													data-scroll="native"
+												>
+													{element.data[`${type}`].blog_image !== undefined ? (
+														<div className="u-lineHeightBase postItem">
+															<a
+																// href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+																// href="/blogDetails"
+																href={`/blogDetails?slug=${val}`}
+																data-action="open-post"
+																data-action-value="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+																className="u-block u-xs-height170 u-height172 u-backgroundSizeCover u-backgroundOriginBorderBox u-backgroundColorGrayLight u-borderLighter"
+																style={{
+																	backgroundImage: `url("${
+																		element.data[`${type}`]
+																			? element.data[`${type}`].blog_image.value
+																					.main.url
+																			: '	'
+																	}")`,
+																	backgroundPosition: '50% 50% !important',
+																}}
+															>
+																<span className="u-textScreenReader"></span>
+															</a>
+														</div>
+													) : (
+														<>
+															<div className="u-lineHeightBase postItem">
+																<a
+																	// href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+																	href={`/blogDetails?slug=${val}`}
+																	data-action="open-post"
+																	data-action-value="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+																	className="u-block u-xs-height170 u-height172 u-backgroundSizeCover u-backgroundOriginBorderBox u-backgroundColorGrayLight u-borderLighter"
+																	style={{
+																		backgroundImage:
+																			'url("https://cdn-images-1.medium.com/max/400/1*WZEIsgBEOwUBkZYpl4r3VA.jpeg")',
+																		backgroundPosition: '50% 50% !important',
+																	}}
+																>
+																	<span className="u-textScreenReader">
+																		TensorFlow.js + AWS Amplify
+																	</span>
+																</a>
+															</div>
+														</>
+													)}
+													<div className="col u-xs-marginBottom10 u-paddingLeft0 u-paddingRight0 u-paddingTop15 u-marginBottom30">
+														<a
+															className
+															href="https://shift.infinite.red/tensorflow-js-aws-amplify-e08a14fd995?source=collection_home---4------2-----------------------"
+															data-action-source="collection_home---4------2-----------------------"
+															data-post-id="e08a14fd995"
+														>
+															<h3 className="u-contentSansBold u-lineHeightTightest u-xs-fontSize24 u-paddingBottom2 u-paddingTop5 u-fontSize32">
+																{/* <div className="u-letterSpacingTight u-lineHeightTighter u-breakWord u-textOverflowEllipsis u-lineClamp3 u-fontSize24"> */}
+																<div
+																	className="u-letterSpacingTight u-lineHeightTighter u-breakWord u-textOverflowEllipsis u-lineClamp3 u-fontSize24"
+																	style={{ color: 'white' }}
+																>
+																	{element.data[`${type}`].blog_title.value[0].text}
+																</div>
+															</h3>
+															{/* <div
+															
+															className="u-contentSansThin u-lineHeightBaseSans u-fontSize24 u-xs-fontSize18 u-textColorNormal u-baseColor--textNormal">
+																<div className="u-fontSize18 u-letterSpacingTight u-lineHeightTight u-marginTop7 u-textColorNormal u-baseColor--textNormal">
+																	{
+																		element.data[`blog_${val}`].short_description
+																			.value[0].text
+																	}
+																</div>
+															</div> */}
+														</a>
+														<div className="u-clearfix u-marginTop20">
+															<div className="u-flexCenter">
+																<div className="postMetaInline-avatar u-flex0">
+																	<a
+																		className="link u-baseColor--link avatar"
+																		href="https://shift.infinite.red/@gantlaborde"
+																		data-action="show-user-card"
+																		data-action-value="6ca0fe37eac1"
+																		data-action-type="hover"
+																		data-user-id="6ca0fe37eac1"
+																		data-collection-slug="infinite-red"
+																		dir="auto"
+																	>
+																		<img
+																			src={
+																				element.data[`${type}`].author_image
+																					.value.main.url
+																			}
+																			className="avatar-image u-size36x36 u-xs-size32x32"
+																			alt="Go to the profile of Gant Laborde"
+																		/>
+																	</a>
+																</div>
+																<div className="postMetaInline postMetaInline-authorLockup ui-captionStrong u-flex1 u-noWrapWithEllipsis">
+																	<a
+																		className="ds-link ds-link--styleSubtle link link--darken link--accent u-accentColor--textNormal u-accentColor--textDarken"
+																		href="https://shift.infinite.red/@gantlaborde"
+																		data-action="show-user-card"
+																		data-action-value="6ca0fe37eac1"
+																		data-action-type="hover"
+																		data-user-id="6ca0fe37eac1"
+																		data-collection-slug="infinite-red"
+																		dir="auto"
+																		style={{ color: 'white' }}
+																	>
+																		{
+																			element.data[`${type}`].author_name.value[0]
+																				.text
+																		}
+																	</a>
+																	<div className="ui-caption u-fontSize12 u-baseColor--textNormal u-textColorNormal js-postMetaInlineSupplemental">
+																		<time
+																			dateTime="2020-09-01T16:01:01.130Z"
+																			style={{ color: 'white' }}
+																		>
+																			{element.data[`${type}`].publish_date.value}
+																		</time>
+																		<span className="middotDivider u-fontSize12" />
+																		<span
+																			className="readingTime"
+																			style={{ color: 'white' }}
+																			title={
+																				element.data[`${type}`].read_time
+																					.value[0].text
+																			}
+																		/>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							</section>
+						</div>
 						<div className="cta__intro__bttns">
 							<a href="/community" className="bttn bttn--outlined bttn--outlined-reversed w-button">
 								Learn more

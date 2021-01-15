@@ -4,24 +4,30 @@ import { withRouter } from 'next/router';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { constants } from '../constants';
+// import { getBlogPostsAPI } from './api';
 
 var React = require('react');
 export const getStaticProps = async () => {
 	const data = await fetchData();
+	const data2 = await fetchData2();
+	const finalData = [data, data2];
+	console.log(data, 'data');
 	const companyData = [];
 	const employeeTeamMembers = [];
-	if (data) {
-		for (let i = 0; i < data.data.results.length; i++) {
-			console.log(data.data.results[i]);
-			if (data.data.results[i].type === 'team_members') {
-				companyData.push(data.data.results[i]);
-			} else {
-				if (data.data.results[i].type === 'employee_team_members') {
-					employeeTeamMembers.push(data.data.results[i]);
+	if (finalData) {
+		for (let j = 0; j < finalData.length; j++) {
+			console.log('daataaaaaaaaaaaaaaaaaaaaaa', finalData.length);
+			for (let i = 0; i < finalData[j].data.results.length; i++) {
+				console.log(finalData[j].data.results[i].type, 'firsttttttttttttt');
+				if (finalData[j].data.results[i].type === 'team_members') {
+					companyData.push(finalData[j].data.results[i]);
 				}
+				// if (finalData[j].data.results[i].type === 'emplayee_team_members') {
+				// employeeTeamMembers.push(finalData[j].data.results[i]);
+				// }
 			}
+			// console.log('lengthhhhhhhhh', employeeTeamMembers);
 		}
-		console.log('lengthhhhhhhhh', employeeTeamMembers[0].data.employee_team_members.boolean);
 	}
 	return {
 		// props: data,
@@ -40,22 +46,23 @@ const fetchData = async () =>
 			error: true,
 			data: null,
 		}));
+const fetchData2 = async () =>
+	await axios
+		.get(`${constants.base_url2}`)
+		.then((res) => ({
+			error: false,
+			data: res.data,
+		}))
+		.catch(() => ({
+			error: true,
+			data: null,
+		}));
 
 const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 	const [teamMembersData, setTeamMembersData] = useState(teamMembers);
 	useEffect(() => {
 		console.log('kkkkkkkkkkkkkkkkkkkkkk');
-		// setTeamMembersData(teamMembers);
 	});
-	// const router = useRouter();
-
-	// // const object = JSON.parse(query.finalData);
-	// const {
-	// 	query: { data },
-	// } = router;
-	// const finalData = JSON.parse(data).Cdata;
-	// console.log('companyyyyyyyyyyy', finalData[0]);
-
 	return (
 		<PageLayout>
 			<div className="hero-sub hero-img--company">
@@ -232,15 +239,15 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 										<div className="team__details">
 											<div
 												style={{
-													backgroundImage: `url(${element.data.employee_team_members.image.value.main.url})`,
+													backgroundImage: `url(${element.data.emplayee_team_members.image.value.main.url})`,
 												}}
 												className="team__list__img"
 											/>
 											<h4 className="h4--team-name">
-												{element.data.employee_team_members.name.value[0].text}
+												{element.data.emplayee_team_members.name.value[0].text}
 											</h4>
 											<p className="p--small">
-												{element.data.employee_team_members.designation.value[0].text}
+												{element.data.emplayee_team_members.designation.value[0].text}
 											</p>
 											<div className="team__details__location">
 												<img
@@ -249,7 +256,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 													className="team__details__location__icon"
 												/>
 												<h5 className="h5--opacity">
-													{element.data.employee_team_members.location.value[0].text}
+													{element.data.emplayee_team_members.location.value[0].text}
 												</h5>
 											</div>
 										</div>
@@ -261,7 +268,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 											<div
 												// className="team__list__link-open"
 												style={{
-													display: element.data.employee_team_members.boolean.value
+													display: element.data.emplayee_team_members.boolean.value
 														? 'none'
 														: 'block',
 												}}
@@ -269,19 +276,19 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 													setTeamMembersData(
 														teamMembersData.map((item) => {
 															if (
-																item.data.employee_team_members ===
-																element.data.employee_team_members
+																item.data.emplayee_team_members ===
+																element.data.emplayee_team_members
 															) {
 																return {
 																	...item,
 																	data: {
 																		...item.data,
-																		employee_team_members: {
-																			...item.data.employee_team_members,
+																		emplayee_team_members: {
+																			...item.data.emplayee_team_members,
 																			boolean: {
-																				...item.data.employee_team_members
+																				...item.data.emplayee_team_members
 																					.boolean,
-																				value: !item.data.employee_team_members
+																				value: !item.data.emplayee_team_members
 																					.boolean.value,
 																			},
 																		},
@@ -302,7 +309,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 											<div
 												// className="team__list__link-close"
 												style={{
-													display: element.data.employee_team_members.boolean.value
+													display: element.data.emplayee_team_members.boolean.value
 														? 'block'
 														: 'none',
 													// : 'none',
@@ -311,19 +318,19 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 													setTeamMembersData(
 														teamMembersData.map((item) => {
 															if (
-																item.data.employee_team_members ===
-																element.data.employee_team_members
+																item.data.emplayee_team_members ===
+																element.data.emplayee_team_members
 															) {
 																return {
 																	...item,
 																	data: {
 																		...item.data,
-																		employee_team_members: {
-																			...item.data.employee_team_members,
+																		emplayee_team_members: {
+																			...item.data.emplayee_team_members,
 																			boolean: {
-																				...item.data.employee_team_members
+																				...item.data.emplayee_team_members
 																					.boolean,
-																				value: !item.data.employee_team_members
+																				value: !item.data.emplayee_team_members
 																					.boolean.value,
 																			},
 																		},
@@ -341,16 +348,16 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 										<div
 											className="team__list__bio"
 											style={{
-												display: element.data.employee_team_members.boolean.value
+												display: element.data.emplayee_team_members.boolean.value
 													? 'block'
 													: 'none',
 												// : 'none',
 											}}
 										>
-											<p>{element.data.employee_team_members.description.value[0].text}</p>
+											<p>{element.data.emplayee_team_members.description.value[0].text}</p>
 											<div className="team__list__bio__social">
 												<a
-													href={element.data.employee_team_members.twitter_link.value.url}
+													href={element.data.emplayee_team_members.twitter_link.value.url}
 													target="_blank"
 													className="team__social__icon w-inline-block"
 												>
@@ -361,7 +368,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 													/>
 												</a>
 												<a
-													href={element.data.employee_team_members.github_link.value.url}
+													href={element.data.emplayee_team_members.github_link.value.url}
 													className="team__social__icon w-inline-block w-condition-invisible"
 												>
 													<img
@@ -371,7 +378,7 @@ const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 													/>
 												</a>
 												<a
-													href={element.data.employee_team_members.linkedin_link.value.url}
+													href={element.data.emplayee_team_members.linkedin_link.value.url}
 													target="_blank"
 													className="team__social__icon w-inline-block"
 												>

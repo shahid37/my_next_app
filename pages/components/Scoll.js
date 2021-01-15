@@ -11,7 +11,7 @@ class MyDocument extends React.Component {
 		this.state = {
 			visible: false,
 			route: null,
-			headerColor: 'rgba(0, 0, 0, 0)',
+			headerColor: props.menuColor ? props.menuColor : 'rgba(0, 0, 0, 0)',
 		};
 	}
 
@@ -71,7 +71,7 @@ class MyDocument extends React.Component {
 								<img src={'./logo-dark.png'} />
 							</div>
 						</a>
-						<NavBar headerColor={this.state.headerColor} />
+						<NavBar headerColor={this.state.headerColor} textColor={this.props.textColor} />
 						<MenuButton visible={this.state.visible} setValue={this.setValue} />
 					</div>
 					<div

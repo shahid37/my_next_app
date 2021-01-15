@@ -1,13 +1,16 @@
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const NavBar = (props) => {
-	const { headerColor } = props;
-	// console.log('navbar', data);
-	// const object = {
-	// Cdata: data,
-	// };
-	// console.log('nav', object);
-	const color2 = headerColor === 'rgba(0, 0, 0, 0)' ? '' : 'rgb(76, 62, 84)';
+	const { headerColor, textColor } = props;
+	const [color2, setColor] = useState('');
+
+	useEffect(() => {
+		if (textColor) {
+			setColor(textColor);
+		} else {
+			setColor(headerColor === 'rgba(0, 0, 0, 0)' ? '' : 'rgb(76, 62, 84)');
+		}
+	});
 	return (
 		<nav role="navigation" className="nav__menu w-nav-menu">
 			<a
@@ -19,6 +22,16 @@ const NavBar = (props) => {
 				data-ix="nav-link-hover"
 			>
 				Home
+			</a>
+			<a
+				href="/startUp"
+				data-w-id="48941a4f-8c15-7a61-3715-67421ac8b69a"
+				aria-current="page"
+				className="nav__menu__link w-nav-link"
+				style={{ color: color2 }}
+				data-ix="nav-link-hover"
+			>
+				Start Up
 			</a>
 			<a
 				href="/work"
