@@ -3,13 +3,14 @@ import PageLayout from './components/pageLayout';
 
 export async function getServerSideProps(context) {
 	const response = await getProductDetailsAPI({ id: context.query.id });
-	console.log(response, 'llllllllllllllllll');
+	// console.log(response.data.portfolio.project_services, 'llllllllllllllllll');
 	return {
 		props: { productId: context.query.id, product: response },
 	};
 }
 
 const ProductDetail = ({ product, productId }) => {
+	console.log(product);
 	return (
 		<PageLayout>
 			<div
@@ -61,36 +62,15 @@ const ProductDetail = ({ product, productId }) => {
 								<h5>Project Services</h5>
 								<div className="w-dyn-list">
 									<div role="list" className="specs__collection__list w-dyn-items">
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Branding</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">UI</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">UX</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Backend Architecture</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Development</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">React Native</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">iOS</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Android</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Phoenix</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Blockchain</p>
-										</div>
+										{product.data.portfolio.project_services
+											? product.data.portfolio.project_services.value.map((element) => (
+													<div role="listitem" className="specs__collection__item w-dyn-item">
+														<p className="p--project-specs">
+															{element.service_name.value[0].text}
+														</p>
+													</div>
+											  ))
+											: ''}
 									</div>
 								</div>
 							</div>
@@ -98,38 +78,11 @@ const ProductDetail = ({ product, productId }) => {
 								<h5>Platforms</h5>
 								<div className="w-dyn-list">
 									<div role="list" className="specs__collection__list w-dyn-items">
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Branding</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">UI</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">UX</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">
-												Backend Architecture
-											</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Development</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">React Native</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">iOS</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Android</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Phoenix</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Blockchain</p>
-										</div>
+										{product.data.portfolio.platforms
+											? product.data.portfolio.platforms.value.map((element) => (
+													<p className="p--project-specs">{element.platform.value[0].text}</p>
+											  ))
+											: ''}
 									</div>
 								</div>
 							</div>
@@ -137,38 +90,15 @@ const ProductDetail = ({ product, productId }) => {
 								<h5>Technology</h5>
 								<div className="w-dyn-list">
 									<div role="list" className="specs__collection__list w-dyn-items">
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Branding</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">UI</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">UX</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">
-												Backend Architecture
-											</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Development</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">React Native</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">iOS</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs w-condition-invisible">Android</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Phoenix</p>
-										</div>
-										<div role="listitem" className="specs__collection__item w-dyn-item">
-											<p className="p--project-specs">Blockchain</p>
-										</div>
+										{product.data.portfolio.technology
+											? product.data.portfolio.technology.value.map((element) => (
+													<div role="listitem" className="specs__collection__item w-dyn-item">
+														<p className="p--project-specs">
+															{element.technology1.value[0].text}
+														</p>
+													</div>
+											  ))
+											: ''}
 									</div>
 								</div>
 							</div>
@@ -192,8 +122,12 @@ const ProductDetail = ({ product, productId }) => {
 			</div>
 			<div
 				style={{
-					backgroundImage:
-						'url(https://infinite.red/work/"https://assets.website-files.com/5e696c156810060ef59d768e/5e6fcf8514a08b9af8359a69_ac__lg-grid-img1.jpg")',
+					// backgroundImage:
+					backgroundImage: `url(${
+						product.data.portfolio.second_image
+							? product.data.portfolio.second_image.value.main.url
+							: 'https://infinite.red/work/"https://assets.website-files.com/5e696c156810060ef59d768e/5e6fcf8514a08b9af8359a69_ac__lg-grid-img1.jpg'
+					})`,
 				}}
 				className="project-img-lg img-lg--contain"
 			/>
