@@ -4,7 +4,6 @@ import { RichText } from 'prismic-reactjs';
 import { getBlogPostAPI } from './api';
 
 export async function getServerSideProps(context) {
-	// console.log('getServerProps', context.params, context.query);
 	const response = await getBlogPostAPI({ id: context.query });
 	return {
 		props: { blogg: response.data[`blog_${context.query.slug}`], name: context.query.slug },

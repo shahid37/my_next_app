@@ -2,34 +2,23 @@ import React from 'react';
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
+import { getAllTeamPortfolioProjectsAPI } from './api';
 export const getStaticProps = async () => {
-	const data = await fetchData();
-	const companyPortfolioData = [];
-	if (data) {
-		for (let i = 0; i < data.data.results.length; i++) {
-			console.log(data.data.results[i]);
-			if (data.data.results[i].type === 'portfolio') {
-				companyPortfolioData.push(data.data.results[i]);
-			}
-		}
-	}
+	const companyPortfolioData = await getAllTeamPortfolioProjectsAPI();
+	// const companyPortfolioData = [];
+	// if (data) {
+	// 	for (let i = 0; i < data.data.results.length; i++) {
+	// 		console.log(data.data.results[i]);
+	// 		if (data.data.results[i].type === 'portfolio') {
+	// 			companyPortfolioData.push(data.data.results[i]);
+	// 		}
+	// 	}
+	// }
 	return {
 		// props: data,
 		props: { portfolio: companyPortfolioData },
 	};
 };
-
-const fetchData = async () =>
-	await axios
-		.get(`${constants.base_url}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
 
 const Work = ({ portfolio, error }) => {
 	return (
@@ -68,7 +57,7 @@ const Work = ({ portfolio, error }) => {
 										// href="work/blendspace.html"
 										// href={element.data.portfolio.app_link.value.url}
 										// href="/productDetails"
-										href={`/productDetails?slug=${1}`}
+										href={`/productDetails?id=${element.id}`}
 										className="project__card w-inline-block"
 									>
 										<div

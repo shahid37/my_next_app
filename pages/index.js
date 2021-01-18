@@ -2,60 +2,25 @@ import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
 import { useState } from 'react';
-import { getBlogPostsAPI } from './api';
+import { getBlogPostsAPI, getAllTestimonialsHomePageApi, getAllTeamPortfolioProjectsAPI } from './api';
 
 export const getStaticProps = async () => {
-	const data = await fetchData();
-	const data2 = await fetchData2();
+	let companyPortfolioData = [];
+	let testimonails = [];
+	let blogs = [];
 	const response = await getBlogPostsAPI({ pageSize: 10 });
-	// console.log('mmmmmmmmmmmmm', response.results.length, 'llllllllllllllll');
-	const finalData = [data, data2];
-	const companyPortfolioData = [];
-	const testimonails = [];
-	const blogs = [];
-	if (finalData) {
-		for (let j = 0; j < finalData.length; j++) {
-			for (let i = 0; i < finalData[j].data.results.length; i++) {
-				// console.log(data.data.results[i]);
-				if (finalData[j].data.results[i].type === 'portfolio') {
-					companyPortfolioData.push(finalData[j].data.results[i]);
-				}
-				if (finalData[j].data.results[i].type === 'testimonials_home_page') {
-					testimonails.push(finalData[j].data.results[i]);
-				}
-				if (finalData[j].data.results[i].type.includes('blog')) {
-					blogs.push(finalData[j].data.results[i]);
-				}
-			}
-		}
+	const response2 = await getAllTeamPortfolioProjectsAPI();
+	const response3 = await getAllTestimonialsHomePageApi();
+	if (response && response2 && response3) {
+		blogs = response.results;
+		companyPortfolioData = response2;
+		testimonails = response3;
 	}
 	return {
 		props: { portfolio: companyPortfolioData, testimonailsData: testimonails, blogsArray: blogs },
 	};
 };
 
-const fetchData = async () =>
-	await axios
-		.get(`${constants.base_url}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
-const fetchData2 = async () =>
-	await axios
-		.get(`${constants.base_url2}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
 const array1 = [
 	'/5e696ca86810061d659d79a8_microsoft.png',
 	'/5e696d25681006100a9d7acc_bluejeans.png',

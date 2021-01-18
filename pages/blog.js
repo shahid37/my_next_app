@@ -2,50 +2,16 @@ import { useState } from 'react';
 import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
+import { getBlogPostsAPI } from './api';
 export const getStaticProps = async () => {
-	// console.log('lllllllllllllllllllllllll', webflow - icons);
-	const data = await fetchData();
-	const data2 = await fetchData2();
-	const finalData = [data, data2];
-	const blogs = [];
-
-	if (finalData) {
-		for (let j = 0; j < finalData.length; j++) {
-			for (let i = 0; i < finalData[j].data.results.length; i++) {
-				if (finalData[j].data.results[i].type.includes('blog')) {
-					blogs.push(finalData[j].data.results[i]);
-				}
-			}
-		}
-	}
+	let blogs = [];
+	const response = await getBlogPostsAPI({ pageSize: 10 });
+	blogs = response.results;
 	return {
 		// props: data,
 		props: { blogsData: blogs },
 	};
 };
-
-const fetchData = async () =>
-	await axios
-		.get(`${constants.base_url}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
-const fetchData2 = async () =>
-	await axios
-		.get(`${constants.base_url2}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
 const Blog = ({ blogsData }) => {
 	return (
 		<PageLayout>

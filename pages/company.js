@@ -4,59 +4,40 @@ import { withRouter } from 'next/router';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { constants } from '../constants';
+import { getAllTeamMembersAPI } from './api';
 // import { getBlogPostsAPI } from './api';
 
 var React = require('react');
 export const getStaticProps = async () => {
-	const data = await fetchData();
-	const data2 = await fetchData2();
-	const finalData = [data, data2];
-	console.log(data, 'data');
-	const companyData = [];
-	const employeeTeamMembers = [];
-	if (finalData) {
-		for (let j = 0; j < finalData.length; j++) {
-			console.log('daataaaaaaaaaaaaaaaaaaaaaa', finalData.length);
-			for (let i = 0; i < finalData[j].data.results.length; i++) {
-				console.log(finalData[j].data.results[i].type, 'firsttttttttttttt');
-				if (finalData[j].data.results[i].type === 'team_members') {
-					companyData.push(finalData[j].data.results[i]);
-				}
-				// if (finalData[j].data.results[i].type === 'emplayee_team_members') {
-				// employeeTeamMembers.push(finalData[j].data.results[i]);
-				// }
-			}
-			// console.log('lengthhhhhhhhh', employeeTeamMembers);
-		}
-	}
+	const companyData = await getAllTeamMembersAPI();
+	// 	const data2 = await fetchData2();
+	// 	const finalData = [data, data2];
+	// 	console.log(data, 'data');
+	// 	const companyData = [];
+	// 	const employeeTeamMembers = [];
+	// 	if (finalData) {
+	// 		for (let j = 0; j < finalData.length; j++) {
+	// 			console.log('daataaaaaaaaaaaaaaaaaaaaaa', finalData.length);
+	// 			for (let i = 0; i < finalData[j].data.results.length; i++) {
+	// 				console.log(finalData[j].data.results[i].type, 'firsttttttttttttt');
+	// 				if (finalData[j].data.results[i].type === 'team_members') {
+	// 					companyData.push(finalData[j].data.results[i]);
+	// 				}
+	// 				// if (finalData[j].data.results[i].type === 'emplayee_team_members') {
+	// 				// employeeTeamMembers.push(finalData[j].data.results[i]);
+	// 				// }
+	// 			}
+	// 			// console.log('lengthhhhhhhhh', employeeTeamMembers);
+	// 		}
+	// 	}
 	return {
 		// props: data,
-		props: { ownerTeamMembers: companyData, teamMembers: employeeTeamMembers },
+		props: {
+			ownerTeamMembers: companyData,
+			teamMembers: [],
+		},
 	};
 };
-
-const fetchData = async () =>
-	await axios
-		.get(`${constants.base_url}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
-const fetchData2 = async () =>
-	await axios
-		.get(`${constants.base_url2}`)
-		.then((res) => ({
-			error: false,
-			data: res.data,
-		}))
-		.catch(() => ({
-			error: true,
-			data: null,
-		}));
 
 const Company = ({ ownerTeamMembers, teamMembers, error }) => {
 	const [teamMembersData, setTeamMembersData] = useState(teamMembers);

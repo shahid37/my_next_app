@@ -1,19 +1,32 @@
+import { getProductDetailsAPI } from './api';
 import PageLayout from './components/pageLayout';
 
-const ProductDetail = () => {
+export async function getServerSideProps(context) {
+	const response = await getProductDetailsAPI({ id: context.query.id });
+	console.log(response, 'llllllllllllllllll');
+	return {
+		props: { productId: context.query.id, product: response },
+	};
+}
+
+const ProductDetail = ({ product, productId }) => {
 	return (
 		<PageLayout>
 			<div
 				style={{
-					backgroundImage:
-						'url("https://assets.website-files.com/5e696c156810060ef59d768e/5e6fecd408830f01d8f1297b_slider-img.jpg")',
+					backgroundImage: `url(${product.data.portfolio.image.value.main.url})`,
+					// 'url("https://assets.website-files.com/5e696c156810060ef59d768e/5e6fecd408830f01d8f1297b_slider-img.jpg")',
 				}}
 				className="hero-project"
 			>
 				<div className="container">
 					<div className="hero-project__title">
-						<h5 className="h5--reversed">Arcade City</h5>
-						<h1 className="h1--reversed">Crafting a ridesharing experience for the people.</h1>
+						<h1 className="h1--reversed">{product.data.portfolio.app_name.value[0].text}</h1>
+						{product.data.portfolio.short_description ? (
+							<h3 className="h3--reversed">{product.data.portfolio.short_description.value[0].text}</h3>
+						) : (
+							<h2>None</h2>
+						)}
 					</div>
 				</div>
 			</div>
@@ -22,10 +35,24 @@ const ProductDetail = () => {
 					<div className="project-overview__flex">
 						<div className="project-overview__specs">
 							<img
-								src="https://assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.png"
-								alt="Arcade City"
+								// src="https://assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.png"
+								src={product.data.portfolio.app_icon.value.main.url}
 								className="project-overview__specs__logo"
 							/>
+							<div>
+								<h4
+									style={{
+										height: '10vh',
+										justifyContent: 'center',
+										display: 'flex',
+										alignSelf: 'center',
+										marginRight: 50,
+										marginTop: 10,
+									}}
+								>
+									{product.data.portfolio.app_name.value[0].text}
+								</h4>
+							</div>
 							<div className="project-overview__specs__expertise">
 								<h5>Project Services</h5>
 								<div className="w-dyn-list">
@@ -143,23 +170,18 @@ const ProductDetail = () => {
 							</div>
 						</div>
 						<div className="project-overview__intro">
-							<h2>Arcade City isn't your typical ride-sharing network.</h2>
-							<div className="p--project w-richtext">
-								<p>
-									Arcade City isn't your typical ride-sharing network. The company combines
-									blockchain, peer-to-peer collaboration, and local driver cooperatives to put power
-									back in the hands of individual drivers and riders.
-								</p>
-								<p>
-									So it makes sense that Christopher David isn’t your typical CEO. Free with his
-									opinions and ruthlessly efficient in his communication, he needed a partner to help
-									translate his ambitious vision into a fully functional app. He found that partner in
-									Infinite Red. With the help of our designers and engineers, the newest version of
-									Arcade City will feature an intuitive user experience, custom illustration and
-									iconography, and a cutting-edge technological foundation powered by React Native,
-									Phoenix, and Ethereum.
-								</p>
-							</div>
+							{product.data.portfolio.heading ? (
+								<h2>{product.data.portfolio.heading.value[0].text}</h2>
+							) : (
+								<h2>None</h2>
+							)}
+							{product.data.portfolio.description ? (
+								<div className="p--project w-richtext">
+									<p>{product.data.portfolio.description.value[0].text}</p>
+								</div>
+							) : (
+								<h2>None</h2>
+							)}
 						</div>
 					</div>
 				</div>
