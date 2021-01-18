@@ -3,7 +3,6 @@ import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
 export const getStaticProps = async () => {
-	// console.log('lllllllllllllllllllllllll', webflow - icons);
 	const data = await fetchData();
 	const companyPortfolioData = [];
 	if (data) {
@@ -68,7 +67,8 @@ const Work = ({ portfolio, error }) => {
 										data-w-id="fb77d157-3886-01b9-8c12-b748e44bba8c"
 										// href="work/blendspace.html"
 										// href={element.data.portfolio.app_link.value.url}
-										href="/productDetails"
+										// href="/productDetails"
+										href={`/productDetails?slug=${1}`}
 										className="project__card w-inline-block"
 									>
 										<div

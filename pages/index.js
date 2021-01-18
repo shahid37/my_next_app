@@ -2,10 +2,13 @@ import PageLayout from './components/pageLayout';
 import axios from 'axios';
 import { constants } from '../constants';
 import { useState } from 'react';
+import { getBlogPostsAPI } from './api';
 
 export const getStaticProps = async () => {
 	const data = await fetchData();
 	const data2 = await fetchData2();
+	const response = await getBlogPostsAPI({ pageSize: 10 });
+	// console.log('mmmmmmmmmmmmm', response.results.length, 'llllllllllllllll');
 	const finalData = [data, data2];
 	const companyPortfolioData = [];
 	const testimonails = [];
@@ -518,10 +521,8 @@ const App = ({ portfolio, testimonailsData, error, blogsArray }) => {
 										}}
 									>
 										{blogsArray.map((element, index) => {
-											// const val = index + 1;
 											let type = element.type;
 											let val = element.type.split('_').pop();
-											// console.log(val, 'llllllllllllllllllllllll');
 
 											return (
 												<div
