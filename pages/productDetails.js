@@ -36,7 +36,11 @@ const ProductDetail = ({ product, productId }) => {
 						<div className="project-overview__specs">
 							<img
 								// src="https://assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.png"
-								src={product.data.portfolio.app_icon.value.main.url}
+								src={
+									product.data.portfolio.app_icon
+										? product.data.portfolio.app_icon.value.main.url
+										: 'https://assets.website-files.com/5e696c156810060ef59d768e/5e6fd30639a59734dc598b06_logo-arcade-city.png'
+								}
 								className="project-overview__specs__logo"
 							/>
 							<div>
