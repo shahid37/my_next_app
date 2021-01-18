@@ -9,6 +9,9 @@ const Footer = (props) => {
 					<a href="/work" className="footer__nav__link">
 						Work
 					</a>
+					<a href="/startUp" className="footer__nav__link">
+						Start Up
+					</a>
 					<a href="/capabilities" className="footer__nav__link">
 						Capabilities
 					</a>

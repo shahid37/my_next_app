@@ -130,6 +130,15 @@ class MyDocument extends React.Component {
 								Home
 							</a>
 							<a
+								href="/startUp"
+								aria-current="page"
+								class={this.route == 'startUp' ? blueColor : blackColor}
+								data-ix="nav-link-hover"
+								style={{ opacity: 1 }}
+							>
+								Start Up
+							</a>
+							<a
 								href="/work"
 								aria-current="page"
 								class={this.route == 'work' ? blueColor : blackColor}

@@ -19,11 +19,6 @@ const MenuButton = (props) => {
 					<div
 						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
 						className="nav-icon__bar--white"
-						// style={{ 'background-color': 'rgb(255, 255, 255)' }}
-					></div>
-					<div
-						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
-						className="nav-icon__bar--white"
 						style={{ 'background-color': 'rgb(255, 255, 255)' }}
 					></div>
 					<div
@@ -31,6 +26,16 @@ const MenuButton = (props) => {
 						className="nav-icon__bar--white"
 						style={{ 'background-color': 'rgb(255, 255, 255)' }}
 					></div>
+					<div
+						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
+						className="nav-icon__bar--white"
+						style={{ 'background-color': 'rgb(255, 255, 255)' }}
+					></div>
+					{/* <div
+						data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9"
+						className="nav-icon__bar--white"
+						style={{ 'background-color': 'rgb(255, 255, 255)' }}
+					></div> */}
 					<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b8" className="nav-icon__bar--white" />
 					<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6b9" className="nav-icon__bar--white" />
 					<div data-w-id="48941a4f-8c15-7a61-3715-67421ac8b6ba" className="nav-icon__bar--white" />
