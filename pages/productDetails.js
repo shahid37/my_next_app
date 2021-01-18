@@ -22,9 +22,13 @@ const ProductDetail = ({ product, productId }) => {
 			>
 				<div className="container">
 					<div className="hero-project__title">
-						<h1 className="h1--reversed">{product.data.portfolio.app_name.value[0].text}</h1>
+						<h1 className="h1--reversed" style={{ color: 'black' }}>
+							{product.data.portfolio.app_name.value[0].text}
+						</h1>
 						{product.data.portfolio.short_description ? (
-							<h3 className="h3--reversed">{product.data.portfolio.short_description.value[0].text}</h3>
+							<h3 className="h3--reversed" style={{ color: 'black' }}>
+								{product.data.portfolio.short_description.value[0].text}
+							</h3>
 						) : (
 							<h2>None</h2>
 						)}
