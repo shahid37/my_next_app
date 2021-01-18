@@ -15,7 +15,6 @@ const Contact = () => {
 		setUserName(event.target.value);
 	};
 	const handeRadioValue = (event) => {
-		console.log(event.target.value, 'hiiiiiiiiiiiiiii');
 		setRadioValue(event.target.value);
 	};
 	const myChangeHandlerEmail = (event) => {
@@ -82,7 +81,7 @@ const Contact = () => {
 												maxLength={256}
 												name="email"
 												data-name="Email"
-												placeholder="ex. hello@infinite.red"
+												placeholder="ex. hello@pikessoft.com"
 												id="email"
 												onChange={myChangeHandlerEmail}
 												required
