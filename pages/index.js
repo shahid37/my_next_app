@@ -427,7 +427,8 @@ const App = ({ portfolio, testimonailsData, error, blogsArray }) => {
 									>
 										<a
 											data-w-id="9faa8e80-2410-9c49-9a18-e82ce5a556e7"
-											href="/productDetails"
+											// href="/productDetails"
+											href={`/productDetails?id=${element.id}`}
 											className="project__card w-inline-block"
 										>
 											<div
